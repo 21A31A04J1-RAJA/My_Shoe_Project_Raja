@@ -7,10 +7,10 @@
       <div class="card-wraper">
         <div class="image-wraper">
           <img src={{product.image}} [alt]="product.name" class="" />
-          <div class="relative mx-auto">
-            <!-- <p-tag [value]="product.inventoryStatus" [severity]="getSeverity(product.inventoryStatus)" class="absolute"
-              [ngStyle]="{ 'left.px': 5, 'top.px': 5 }" /> -->
-          </div>
+          <!-- <div class="relative mx-auto">
+            <p-tag [value]="product.inventoryStatus" [severity]="getSeverity(product.inventoryStatus)" class="absolute"
+              [ngStyle]="{ 'left.px': 5, 'top.px': 5 }" />
+          </div> -->
         </div>
         <section class="product">
           <p class="product-name">{{ product.name }}</p>
@@ -19,9 +19,6 @@
             {{product.price + ' €'}}
           </p>
           <div class="product-info">
-            <!-- <button class="card-heart">
-              <i class=" pi pi-heart"></i>
-            </button> -->
             <button class="card-cart">
               <i class="pi pi-shopping-cart"></i>
             </button>
