@@ -8,7 +8,7 @@
 
   h2 {
     font-size: clamp(2em, 4vw, 4em);
-    margin-bottom: 1em;
+    margin: 1em 0;
     color: $primary-color;
     font-family: "Roboto", sans-serif;
     text-align: center;
@@ -17,7 +17,7 @@
   p {
     font-size: 1.2em;
     max-width: 800px;
-    margin: 0 auto 2em;
+    margin: 2em auto 2em;
     color: $text-color;
   }
 
@@ -25,34 +25,30 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 4em 0;
     color: $text-color;
 
     span {
       width: 100%;
       color: rgb(65, 65, 65);
-      // border-bottom: #333333 solid 1px;
     }
     .image-wrapper {
       flex: 1;
-      border-radius: 50%;
+      height: 100%;
       img {
         width: 100%;
       }
     }
     .steps-left-side {
       flex: 2;
-      height: 100%;
-
       .step {
         text-align: left;
-        padding: 1.5em;
+        padding: 1.5em 0;
         border-radius: 8px;
         margin-bottom: 2em;
+
         .step-number {
           font-size: 1em;
           margin-bottom: 0.5em;
-          color: $primary-color;
           color: $text-color;
         }
 
@@ -71,11 +67,10 @@
     .steps-right-side {
       flex: 2;
       height: 100%;
-      width: 100%;
 
       .step {
         text-align: right;
-        padding: 1.5em;
+        padding: 1.5em 0;
         border-radius: 8px;
         margin-bottom: 2em;
 
@@ -102,9 +97,19 @@
 
 @media screen and (min-width: 769px) {
   .shoe-making-process {
+    padding: 6.4em 1em;
     .steps-wrapper {
       flex-direction: row;
-      padding: 6em 0;
+      .steps-left-side {
+        .step {
+          max-height: 170px;
+        }
+      }
+      .steps-right-side {
+        .step {
+          max-height: 170px;
+        }
+      }
     }
   }
 }
