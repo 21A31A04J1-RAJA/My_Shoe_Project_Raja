@@ -21,7 +21,7 @@ main {
     background-image: url("/sportshoes-hero-section.png");
     background-repeat: no-repeat;
     background-position: center;
-    background-size: 1000px;
+    background-size: 900px;
 
     p {
       width: 100%;
@@ -36,6 +36,8 @@ main {
       font-size: clamp(4em, 12vw, 12em);
       line-height: 1;
       color: $text-color;
+      // color: black;
+      text-shadow: 4px 4px 10px black;
       width: 100%;
       font-weight: 400;
     }

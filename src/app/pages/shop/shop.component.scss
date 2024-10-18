@@ -1,0 +1,22 @@
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  padding: 2em 1em;
+  transition: all 0.3s ease-in-out;
+
+  .product-container {
+    width: 100%;
+    max-width: 1300px;
+    display: grid;
+    padding: 4em 0em;
+    grid-template-columns: repeat(auto-fit, minmax(16em, 1fr));
+    column-gap: 2em;
+    row-gap: 4em;
+    justify-items: center;
+    border-bottom: 0.01em solid #ddd;
+  }
+}
