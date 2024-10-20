@@ -3,7 +3,7 @@
   <p>SPEED & COMFORT</p>
   <p-carousel class="carousel" [value]="products" [numVisible]="4" [numScroll]="1" [circular]="true"
     [responsiveOptions]="responsiveOptions" autoplayInterval="2500">
-    <ng-template let-product pTemplate="item" class="">
+    <ng-template let-product pTemplate="item">
       <div class="card-wraper">
         <div class="image-wraper">
           <img src={{product.image}} [alt]="product.name" class="" />
