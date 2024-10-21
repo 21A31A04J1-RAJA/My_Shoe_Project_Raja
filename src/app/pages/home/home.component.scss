@@ -21,7 +21,7 @@ main {
     background-image: url("/sportshoes-hero-section.png");
     background-repeat: no-repeat;
     background-position: center;
-    background-size: 900px;
+    background-size: contain;
 
     p {
       width: 100%;
@@ -86,5 +86,13 @@ main {
 
   .banner-wrapper {
     width: 100%;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  main {
+    section {
+      background-size: 900px;
+    }
   }
 }

@@ -11,7 +11,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0.8em 1em;
+    padding: 0.6em 1em;
 
     p {
       color: $text-color;
@@ -25,24 +25,80 @@
       align-items: center;
       gap: 1em;
 
-      i {
+      .open-menu {
+        display: flex;
+        justify-content: end;
+        width: 100%;
+        padding: 0.6em;
         font-size: 1.5em;
+        color: $text-color;
         cursor: pointer;
       }
-      ul {
-        display: flex;
+
+      .menu-mobile {
         display: none;
-        flex-direction: column;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100vh;
-        background-color: red;
-        z-index: 4;
-        padding: 1em;
-        gap: 1em;
-        overscroll-behavior-block: none;
-        position: fixed;
+
+        &.open-close-menu {
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+          height: 100%;
+          position: fixed;
+          top: 0;
+          left: 0;
+          z-index: 4;
+          overscroll-behavior-block: none;
+          background-color: $secondary-color;
+          align-items: end;
+        }
+        .close-menu {
+          padding: 0.2em;
+          margin: 0.8em;
+          font-size: 1.5em;
+          color: $text-color;
+          cursor: pointer;
+        }
+        .close-menu:hover {
+          background-color: $primary-color;
+          border-radius: 0.2em;
+        }
+
+        ul {
+          display: flex;
+          list-style-type: none;
+          flex-direction: column;
+          width: 100%;
+          height: 100%;
+          background-color: $secondary-color;
+          padding: 1em 0;
+          li {
+            cursor: pointer;
+            width: 100%;
+            border-bottom: 1px solid black;
+            a {
+              display: flex;
+              width: 100%;
+              padding: 1em;
+              font-size: 1.4em;
+              font-weight: 600;
+              text-decoration: none;
+              color: $text-color;
+            }
+            a.active {
+              color: $primary-color;
+            }
+            a.active:hover {
+              color: $text-color;
+            }
+          }
+          li:hover {
+            background-color: $primary-color;
+          }
+
+          li:hover a {
+            color: $text-color;
+          }
+        }
       }
     }
     .menu-desktop {
@@ -61,15 +117,12 @@
           font-size: 1em;
           a {
             text-decoration: none;
-            color: $primary-color;
             color: $text-color;
           }
           a:hover {
-            color: $text-color;
             color: $primary-color;
           }
           a.active {
-            color: $text-color;
             color: $primary-color;
           }
         }
@@ -86,6 +139,7 @@
         i {
           align-self: center;
           font-weight: 600;
+          color: $text-color;
         }
         .cart-quantity {
           display: flex;
@@ -93,8 +147,8 @@
           justify-content: center;
           border-radius: 50%;
           padding: 0.2em 0.4em 0.1em 0.4em;
-          background-color: $text-color;
-          color: $primary-color;
+          background-color: $primary-color;
+          color: $text-color;
           font-family: "Roboto", sans-serif;
           align-self: flex-start;
         }
@@ -106,6 +160,7 @@
 @media screen and (min-width: 920px) {
   .navbar-wrapper {
     .navbar {
+      padding: 0.6em 1em;
       .menu-desktop {
         display: flex;
       }

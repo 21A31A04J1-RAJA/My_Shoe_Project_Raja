@@ -1,17 +1,23 @@
 <section class="navbar-wrapper">
   <nav class="navbar">
     <p class="title">
-      MyStore
+      MyShoes
     </p>
     <section class="menu-mobile-wrapper">
-      <i class="pi pi-bars"></i>
-      <ul>
-        <li><a routerLink="/home" routerLinkActive="active" aria-current="page">ACCUEIL</a></li>
-        <li><a routerLink="/shop" routerLinkActive="active" aria-current="page">BOUTIQUE</a></li>
-        <li><a routerLink="/myaccount" routerLinkActive="active" aria-current="page">MON COMPTE</a></li>
-        <li><a routerLink="/about" routerLinkActive="active" aria-current="page">À PROPOS</a></li>
-        <li><a routerLink="/contact" routerLinkActive="active" aria-current="page">CONTACT</a></li>
-      </ul>
+      <i class="pi pi-bars open-menu" (click)="openMenu()"></i>
+      <section class="menu-mobile" [class.open-close-menu]="openCloseMenu">
+        <i class="pi pi-times close-menu" (click)="openMenu()"></i>
+        <ul>
+          <li (click)="openMenu()"><a routerLink="/home" routerLinkActive="active" aria-current="page">ACCUEIL</a></li>
+          <li (click)="openMenu()"><a routerLink="/shop" routerLinkActive="active" aria-current="page">BOUTIQUE</a></li>
+          <li (click)="openMenu()"><a routerLink="/myaccount" routerLinkActive="active" aria-current="page">MON
+              COMPTE</a></li>
+          <li (click)="openMenu()"><a routerLink="/about" routerLinkActive="active" aria-current="page">À PROPOS</a>
+          </li>
+          <li (click)="openMenu()"><a routerLink="/contact" routerLinkActive="active" aria-current="page">CONTACT</a>
+          </li>
+        </ul>
+      </section>
     </section>
     <section class="menu-desktop">
       <ul>
