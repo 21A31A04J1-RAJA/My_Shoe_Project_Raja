@@ -1,13 +1,13 @@
 <section class="shoe-card">
-  <div class="shoe-image">
-    <img src="/shoes1.png" alt="Nom de la chaussure" />
+  <div class="shoe-image" (click)="redirectToShopDetails(product.id)">
+    <img [src]="product.image" [alt]="product.name" />
   </div>
   <section class="shoe-info">
-    <h3 class="shoe-name">Chaussure de Course</h3>
+    <h3 class="shoe-name">{{product.name}}</h3>
     <p class="shoe-description">
-      Une chaussure de course légère et de haute qualité, conçue pour la performance et le confort.
+      {{product.title}}
     </p>
-    <p class="shoe-price">99,99 €</p>
+    <p class="shoe-price">{{product.price}} €</p>
     <div class="buttons-wrapper">
       <button class="add-to-cart-btn">Ajouter au panier <i class="pi pi-shopping-cart"></i></button>
       <button class="add-to-fav-btn">Ajouter aux favorites <i class="pi pi-heart"></i></button>

@@ -87,6 +87,10 @@
       font-size: 0.875em;
       margin: 0.3125em 0;
 
+      a {
+        color: gray;
+      }
+
       &:last-child {
         margin-bottom: 0;
         font-weight: bold;

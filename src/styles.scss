@@ -17,15 +17,23 @@
 .p-accordion {
   border-radius: 0.5em;
   max-width: 40em;
-  padding: 0.5em;
+  padding: 0 0.5em;
 
   .p-accordion-tab {
     p {
-      padding: 1em;
+      margin-left: 1.4em;
+      padding: 0.4em 0;
+    }
+    ul {
+      padding: 0.2em 0;
+      li {
+        margin-left: 2.2em;
+      }
     }
   }
   .p-accordion-header {
-    padding: 1em;
+    padding: 1em 0;
+
     .p-accordion-header-text {
       width: 100%;
     }
@@ -50,5 +58,17 @@
         font-size: clamp(1.4em, 2.4vw, 4em);
       }
     }
+  }
+}
+
+// CSS to customize the carousel in the home page.
+.p-link {
+  width: 1em;
+  margin: 0 0.2em;
+}
+@media screen and (min-width: 768px) {
+  .p-link {
+    margin: 0 0.2em;
+    width: 1.4em;
   }
 }

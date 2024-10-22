@@ -1,20 +1,15 @@
-// import { Component } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
-// import { Product } from '@domain/product';
-import { CarouselService } from '../../services/carousel.service';
+import { ProductService } from '../../services/product-service/product.service';
 import { CarouselModule } from 'primeng/carousel';
 import { ButtonModule } from 'primeng/button';
 import { TagModule } from 'primeng/tag';
 import Product from '../../model/product';
-// import { CarouselService } from '../../services/carousel.service';
 
 @Component({
   selector: 'app-carousel',
   standalone: true,
-
-  // imports: [],
   imports: [CarouselModule, ButtonModule, TagModule],
-  providers: [CarouselService],
+  providers: [ProductService],
   templateUrl: './carousel.component.html',
   styleUrl: './carousel.component.scss',
 })
@@ -23,14 +18,14 @@ export class CarouselComponent implements OnInit {
 
   responsiveOptions: any[] | undefined;
 
-  constructor(private carouselService: CarouselService) {}
+  constructor(private productService: ProductService) {}
 
   ngOnInit() {
-    this.products = this.carouselService.getProductsSmall();
+    this.products = this.productService.getProducts();
     this.responsiveOptions = [
       {
         breakpoint: '1199px',
-        numVisible: 1,
+        numVisible: 3,
         numScroll: 1,
       },
       {
@@ -44,18 +39,5 @@ export class CarouselComponent implements OnInit {
         numScroll: 1,
       },
     ];
-  }
-
-  getSeverity(status: string) {
-    switch (status) {
-      case 'INSTOCK':
-        return 'success';
-      case 'LOWSTOCK':
-        return 'warning';
-      case 'OUTOFSTOCK':
-        return 'danger';
-      default:
-        return 'success';
-    }
   }
 }
