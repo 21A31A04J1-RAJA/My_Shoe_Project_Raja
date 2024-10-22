@@ -6,15 +6,11 @@
     <ng-template let-product pTemplate="item">
       <div class="card-wraper">
         <div class="image-wraper">
-          <img src={{product.image}} [alt]="product.name" class="" />
-          <!-- <div class="relative mx-auto">
-            <p-tag [value]="product.inventoryStatus" [severity]="getSeverity(product.inventoryStatus)" class="absolute"
-              [ngStyle]="{ 'left.px': 5, 'top.px': 5 }" />
-          </div> -->
+          <a href="/shop/{{product.id}}"><img src={{product.image}} [alt]="product.name" class="" /></a>
         </div>
         <section class="product">
           <p class="product-name">{{ product.name }}</p>
-          <p class="product-description"> {{ product.description }}</p>
+          <p class="product-title"> {{ product.title }}</p>
           <p class="product-price">
             {{product.price + ' €'}}
           </p>

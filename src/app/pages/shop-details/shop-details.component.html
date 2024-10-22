@@ -1,17 +1,13 @@
 <main class="shoe-detail-page">
   <section class="shoe-container">
     <div class="shoe-image">
-      <img src="shoes1.png" alt="Air Pro X3 Whole Blue" />
+      <img [src]="product.image" alt="Air Pro X3 Whole Blue" />
     </div>
 
     <section class="shoe-details">
-      <h1>Air Pro X3 Whole Blue</h1>
-      <p class="price">62,00 € <span>+ Livraison gratuite</span></p>
-
-      <p class="description">
-        Une chaussure de course légère et de haute qualité, conçue pour la performance et le confort.
-      </p>
-
+      <h1>{{product.name}}</h1>
+      <p class="category">{{product.category}}</p>
+      <p class="price">{{product.price}} € <span>+ Livraison gratuite</span></p>
       <div class="shoe-size">
         <p>Tailles</p>
         <ul>
@@ -37,7 +33,7 @@
           <li value="45">45</li>
         </ul>
       </div>
-      <p class="category">Catégorie: Chaussures de course</p>
+
       <div class="actions">
         <button class="add-to-cart">Ajouter au panier <i class="pi pi-shopping-cart"></i></button>
         <button class="add-to-favorites"> Ajouter aux favoris <i class="pi pi-heart"></i></button>
@@ -50,44 +46,22 @@
       <p-accordion [multiple]="true">
         <p-accordionTab header="Description">
           <p>
-            Une chaussure de course légère et de haute qualité, conçue pour la performance et le confort.
+            {{product.description}}
           </p>
         </p-accordionTab>
         <p-accordionTab header="Détails">
-          <p>
-            <li>
-              Chaussant standard.
-            </li>
-            <li>Fermeture à lacets.</li>
-            <li>Tige en mesh.</li>
-            <li>Doublure textile.</li>
-            <li>Support Rods system.</li>
-            <li>Semelle intermédiaire Dreamstrike+.</li>
-            <li>Poids : 290 g (pointure 42 2/3).</li>
-            <li>Drop semelle intermédiaire : 8 mm (talon : 38 mm / avant-pied : 30 mm).</li>
-            <li>Semelle extérieure Lighttraxion.</li>
-            <li>Couleur du produit : Solar Red / Carbon /p Pulse Lime</li>
-            <li>Code du produit : IE5968</li>
-            <li>Matière: Cuir</li>
-            <li>SynthétiquePoids: 0.5kg</li>
-            <li>Couleur: Bleu</li>
-          </p>
+          <ul *ngFor="let detail of product.details">
+            <li>{{detail}}</li>
+          </ul>
         </p-accordionTab>
         <p-accordionTab header="Caractéristiques">
-          <p>Stabilité / Hyperpronation
-
-            Largeur standard Hommes
-            8mm
-
-            Drop
-            39mm / 31mm
-
-            290g
-            Taille 8.5 UK</p>
+          <ul *ngFor="let feature of product.features">
+            <li>{{feature}}</li>
+          </ul>
         </p-accordionTab>
-        <p-accordionTab header="Avis">
+        <!-- <p-accordionTab header="Avis">
           <p>Aucun avis pour ce produit pour l'instant.</p>
-        </p-accordionTab>
+        </p-accordionTab> -->
       </p-accordion>
     </div>
   </div>

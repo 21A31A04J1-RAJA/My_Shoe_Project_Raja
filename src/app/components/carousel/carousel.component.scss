@@ -76,18 +76,19 @@ section {
       }
 
       .product-price {
-        font-size: 1em;
+        font-size: 1.2em;
         text-align: left;
         font-weight: 600;
         color: black;
       }
 
-      .product-description {
+      .product-title {
         font-family: "Roboto", sans-serif;
         font-size: 1em;
         text-align: left;
         margin-bottom: 0.5em;
         color: rgb(120, 120, 120);
+        height: 2em;
       }
       .buttons-wrapper {
         display: flex;

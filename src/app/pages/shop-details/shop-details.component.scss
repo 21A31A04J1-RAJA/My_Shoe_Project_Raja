@@ -28,30 +28,33 @@
       flex: 1;
       display: flex;
       flex-direction: column;
-      gap: 1.5em;
+      // gap: 1.5em;
 
       h1 {
         font-size: 2em;
       }
 
+      .category {
+        font-size: 0.875em;
+        color: gray;
+        margin-bottom: 1.4em;
+        padding: 0.4em 0;
+      }
+
       .price {
         font-size: 1.5em;
+        margin-bottom: 1.4em;
         span {
           font-size: 0.875em;
           color: gray;
         }
       }
 
-      .description {
-        font-size: 1em;
-        color: #555;
-      }
-
       .shoe-size {
         display: flex;
         flex-direction: column;
         margin-bottom: 2em;
-        gap: 1em;
+        gap: 1.4em;
         p {
           font-weight: 600;
         }
@@ -59,8 +62,7 @@
         ul {
           display: grid;
           grid-template-columns: repeat(auto-fit, minmax(4em, 1fr));
-          column-gap: 0.5em;
-          row-gap: 0.5em;
+          gap: 0.5em;
           list-style-type: none;
           li {
             display: flex;
@@ -139,11 +141,6 @@
             }
           }
         }
-      }
-
-      .category {
-        font-size: 0.875em;
-        color: gray;
       }
     }
   }
