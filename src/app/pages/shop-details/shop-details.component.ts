@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Colors, ProductVariant, SizeStock } from './../../model/product';
+import { Component, Input, OnInit } from '@angular/core';
 import { TabViewModule } from 'primeng/tabview';
 import { AccordionModule } from 'primeng/accordion';
 import Product from '../../model/product';
@@ -19,12 +20,39 @@ export class ShopDetailsComponent implements OnInit {
     private route: ActivatedRoute
   ) {}
 
-  product!: Product;
+  @Input() colore!: Colors;
 
-  ngOnInit(): void {
+  product!: Product;
+  shoesColor!: Colors;
+  productVariant!: ProductVariant[];
+  shoesSizeStockList!: SizeStock[];
+
+  ngOnInit() {
     window.scroll(0, 0);
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.product = this.productService.getProducts()[id - 1];
-    console.log(this.product.variants);
+    const productId = Number(this.route.snapshot.paramMap.get('id'));
+    this.product = this.productService.getProducts()[productId - 1];
+
+    //Setup the first product color as shoes color default
+    this.shoesColor = this.product.variants[0].color;
+
+    this.getVariantByColor(this.shoesColor);
+    this.getShoeSizeStockList();
+  }
+
+  getVariantByColor(color: Colors) {
+    this.productVariant = this.product.variants.filter(
+      (item) => item.color == color
+    );
+  }
+
+  getShoeSizeStockList() {
+    this.shoesSizeStockList = this.productVariant[0].sizeStock.map(
+      (size) => size
+    );
+  }
+
+  changeShoesSizeAvailableByColorsChosen(color: Colors) {
+    this.getVariantByColor(color);
+    this.getShoeSizeStockList();
   }
 }

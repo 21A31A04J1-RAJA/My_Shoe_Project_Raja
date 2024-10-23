@@ -38,23 +38,8 @@ export enum Colors {
   GREEN = 'GREEN',
   BLACK = 'BLACK',
   WHITE = 'WHITE',
+  INDIGO = 'INDIGO',
+  GRAY = 'GRAY',
+  ORANGE = 'ORANGE',
+  PINK = 'PINK',
 }
-
-// export default class Products {
-//   constructor(
-//     private id,
-//     private code,
-//     private name,
-//     private title,
-//     private description,
-//     private details,
-//     private price,
-//     private category,
-//     private variants,
-//     private image,
-//     private status,
-//     private discount,
-//     private createdAt,
-//     private updatedAt
-//   ) {}
-// }

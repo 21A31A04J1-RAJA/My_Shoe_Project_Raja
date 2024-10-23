@@ -44,9 +44,10 @@ export class ProductService {
           {
             color: Colors.RED,
             sizeStock: [
+              { size: '38', stock: 12 },
               { size: '39', stock: 10 },
               { size: '40', stock: 5 },
-              { size: '41', stock: 0 }, // Out of stock
+              { size: '41', stock: 0 },
               { size: '42', stock: 3 },
               { size: '43', stock: 7 },
             ],
@@ -55,10 +56,11 @@ export class ProductService {
             color: Colors.BLUE,
             sizeStock: [
               { size: '39', stock: 4 },
-              { size: '40', stock: 0 }, // Out of stock
+              { size: '40', stock: 0 },
               { size: '41', stock: 9 },
               { size: '42', stock: 5 },
               { size: '43', stock: 1 },
+              { size: '44', stock: 1 },
             ],
           },
           {
@@ -69,6 +71,8 @@ export class ProductService {
               { size: '41', stock: 4 },
               { size: '42', stock: 8 },
               { size: '43', stock: 10 },
+              { size: '44', stock: 12 },
+              { size: '45', stock: 20 },
             ],
           },
         ],
@@ -123,6 +127,16 @@ export class ProductService {
               { size: '43', stock: 4 },
             ],
           },
+          {
+            color: Colors.ORANGE,
+            sizeStock: [
+              { size: '39', stock: 10 },
+              { size: '40', stock: 8 },
+              { size: '41', stock: 6 },
+              { size: '42', stock: 5 },
+              { size: '43', stock: 4 },
+            ],
+          },
         ],
         image: 'shoes2.png',
         status: Status.LOWSTOCK,
@@ -157,6 +171,16 @@ export class ProductService {
         category: 'Racing Shoes',
         variants: [
           {
+            color: Colors.PINK,
+            sizeStock: [
+              { size: '39', stock: 7 },
+              { size: '40', stock: 6 },
+              { size: '41', stock: 8 },
+              { size: '42', stock: 3 },
+              { size: '43', stock: 9 },
+            ],
+          },
+          {
             color: Colors.RED,
             sizeStock: [
               { size: '39', stock: 4 },
@@ -166,16 +190,16 @@ export class ProductService {
               { size: '43', stock: 2 },
             ],
           },
-          {
-            color: Colors.GREEN,
-            sizeStock: [
-              { size: '39', stock: 7 },
-              { size: '40', stock: 6 },
-              { size: '41', stock: 8 },
-              { size: '42', stock: 3 },
-              { size: '43', stock: 9 },
-            ],
-          },
+          // {
+          //   color: Colors.GREEN,
+          //   sizeStock: [
+          //     { size: '39', stock: 7 },
+          //     { size: '40', stock: 6 },
+          //     { size: '41', stock: 8 },
+          //     { size: '42', stock: 3 },
+          //     { size: '43', stock: 9 },
+          //   ],
+          // },
         ],
         image: 'shoes3.png',
         status: Status.INSTOCK,
@@ -465,6 +489,7 @@ export class ProductService {
               { size: '41', stock: 2 },
               { size: '42', stock: 6 },
               { size: '43', stock: 1 },
+              { size: '45', stock: 1 },
             ],
           },
           {
