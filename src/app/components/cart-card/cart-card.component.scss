@@ -1,0 +1,124 @@
+.cart-item {
+  display: flex;
+  flex-direction: column;
+  max-width: 700px;
+  margin: 0 auto;
+
+  .item-details {
+    display: flex;
+    flex-direction: column;
+    padding: 2em 0;
+    border-bottom: 1px solid lightgray;
+
+    .product-info {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      padding: 1em;
+      gap: 1em;
+      overflow: hidden;
+      .image-wrapper {
+        min-width: 6em;
+        max-width: 154px;
+        flex: 1;
+
+        img {
+          width: 100%;
+          height: 100%;
+          background-color: #ececec;
+          object-fit: contain;
+          border-radius: 0.2em;
+        }
+      }
+      .info-wrapper {
+        flex: 1;
+
+        .product-description {
+          display: flex;
+          flex-direction: column;
+          gap: 0.3em;
+        }
+
+        .price-info {
+          display: flex;
+          font-size: 1.1rem;
+          font-weight: bold;
+          color: #333;
+        }
+      }
+
+      .info-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 0.3em;
+      }
+
+      .product-title {
+        font-size: 1rem;
+        font-weight: bold;
+      }
+
+      .product-name {
+        font-size: 1rem;
+        color: #333;
+      }
+
+      .product-type {
+        font-size: 1rem;
+        color: #777;
+      }
+
+      .product-color {
+        font-size: 1rem;
+        font-weight: 500;
+        color: #444;
+      }
+
+      .product-size {
+        font-size: 1rem;
+        font-weight: 500;
+        color: #444;
+      }
+    }
+
+    .price-info {
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: #333;
+      display: flex;
+    }
+
+    .quantity-section {
+      // background-color: red;
+      width: 8em;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 1rem;
+      border: 1px solid gray;
+      border-radius: 2em;
+      i {
+        padding: 0.6em;
+        cursor: pointer;
+
+        border-radius: 0em 2em 2em 0;
+      }
+    }
+  }
+}
+@media screen and (min-width: 768px) {
+  .cart-item {
+    .item-details {
+      .product-info {
+        .info-wrapper {
+          width: 100%;
+          flex-direction: row-reverse;
+          justify-content: space-between;
+
+          .price-info {
+          }
+        }
+      }
+    }
+  }
+}

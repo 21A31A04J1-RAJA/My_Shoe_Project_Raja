@@ -28,8 +28,10 @@
         <li><a routerLink="/contact" routerLinkActive="active" aria-current="page">CONTACT</a></li>
       </ul>
       <button>
-        <i class="pi pi-shopping-cart"></i>
-        <p class="cart-quantity">{{quantityProductsInCart}}</p>
+        <a routerLink="/cart">
+          <i class="pi pi-shopping-cart"></i>
+          <p class="cart-quantity">{{quantityProductsInCart}}</p>
+        </a>
       </button>
     </section>
   </nav>
