@@ -18,9 +18,9 @@
       </section>
     </div>
     <div class="quantity-section">
-      <i class="pi pi-trash"></i>
-      <p>1</p>
-      <i class="pi pi-plus"></i>
+      <i [ngClass]="quantityItems < 2 ? 'pi pi-trash' : 'pi pi-minus'" (click)="removeItem()"></i>
+      <p>{{quantityItems}}</p>
+      <i class="pi pi-plus" (click)="addItem()"></i>
     </div>
   </section>
 </main>

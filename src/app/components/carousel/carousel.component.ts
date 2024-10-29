@@ -3,7 +3,7 @@ import { ProductService } from '../../services/product-service/product.service';
 import { CarouselModule } from 'primeng/carousel';
 import { ButtonModule } from 'primeng/button';
 import { TagModule } from 'primeng/tag';
-import Product from '../../model/product';
+import CatalogProduct from '../../model/CatalogProduct';
 
 @Component({
   selector: 'app-carousel',
@@ -14,7 +14,7 @@ import Product from '../../model/product';
   styleUrl: './carousel.component.scss',
 })
 export class CarouselComponent implements OnInit {
-  products: Product[] = [];
+  products: CatalogProduct[] = [];
 
   responsiveOptions: any[] | undefined;
 

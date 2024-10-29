@@ -1,0 +1,65 @@
+<section class="shoe-container">
+  <div class="shoe-image">
+    <img [src]="product.image" [alt]="product.name" />
+  </div>
+
+  <section class="shoe-details">
+    <h1>{{product.name}}</h1>
+    <p class="category">{{product.category}}</p>
+    <p class="price">{{product.price}} € <span>+ Livraison gratuite</span></p>
+
+    <p>Couleurs disponibles:</p>
+    <form [formGroup]="productForm">
+      <section class="color-wrapper">
+        <div class="color-available" *ngFor="let color of product.variants"
+          (click)="changeShoesSizeAvailableByColorChosen(color.color)">
+          <div class="" [class.borderOnClick]="shoesColor === color.color">
+            <button [ngStyle]="{'background-color': color.color }" required
+              (click)="productForm.get('productColor')?.setValue(color.color)">
+            </button>
+          </div>
+          <p>{{color.color| titlecase}}</p>
+        </div>
+      </section>
+      <div class="shoe-size">
+        <p>Tailles</p>
+        <ul>
+          <li *ngFor="let shoes of shoesSizeStockList">
+            <button required (click)="productForm.get('productSize')?.setValue(shoes.size)"
+              [class.borderOnClick]="shoes.size === productForm.get('productSize')?.value && shoes.stock >= 1"
+              [disabled]="shoes.stock < 1">{{shoes.size}}</button>
+          </li>
+        </ul>
+        <p class="chose-size"
+          *ngIf="productForm.get('productSize')?.invalid  && productForm.get('productSize')?.touched"> Veuillez
+          sélectionner votre taille</p>
+      </div>
+      <div class="actions">
+        <button class="add-to-cart" [disabled]="" (click)="(addProductToCart())">Ajouter au
+          panier <i class="pi pi-shopping-cart"></i></button>
+        <button class="add-to-favorites"> Ajouter aux favoris <i class="pi pi-heart"></i></button>
+      </div>
+    </form>
+    <div class="tabs">
+      <div class="card flex justify-content-center">
+        <p-accordion [multiple]="true">
+          <p-accordionTab header="Description">
+            <p>
+              {{product.description}}
+            </p>
+          </p-accordionTab>
+          <p-accordionTab header="Détails">
+            <ul *ngFor="let detail of product.details">
+              <li>{{detail}}</li>
+            </ul>
+          </p-accordionTab>
+          <p-accordionTab header="Caractéristiques">
+            <ul *ngFor="let feature of product.features">
+              <li>{{feature}}</li>
+            </ul>
+          </p-accordionTab>
+        </p-accordion>
+      </div>
+    </div>
+  </section>
+</section>

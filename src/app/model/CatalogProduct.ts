@@ -1,4 +1,4 @@
-export default interface Product {
+export default interface CatalogProduct {
   id: number;
   code: string;
   name: string;
@@ -8,7 +8,7 @@ export default interface Product {
   features: string[];
   price: number;
   category: string;
-  variants: ProductVariant[];
+  variants: ItemVariant[];
   image: string;
   status: Status;
   discount?: number;
@@ -16,7 +16,7 @@ export default interface Product {
   updatedAt: Date;
 }
 
-export interface ProductVariant {
+export interface ItemVariant {
   color: Colors;
   sizeStock: SizeStock[];
 }

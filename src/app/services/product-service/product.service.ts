@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import Product, { Colors, Status } from '../../model/product';
+import CatalogProduct, { Colors, Status } from '../../model/CatalogProduct';
 
 @Injectable({
   providedIn: 'root',
@@ -7,7 +7,7 @@ import Product, { Colors, Status } from '../../model/product';
 export class ProductService {
   constructor() {}
 
-  getProducts(): Product[] {
+  getProducts(): CatalogProduct[] {
     return [
       {
         id: 1,
@@ -190,16 +190,16 @@ export class ProductService {
               { size: '43', stock: 2 },
             ],
           },
-          // {
-          //   color: Colors.GREEN,
-          //   sizeStock: [
-          //     { size: '39', stock: 7 },
-          //     { size: '40', stock: 6 },
-          //     { size: '41', stock: 8 },
-          //     { size: '42', stock: 3 },
-          //     { size: '43', stock: 9 },
-          //   ],
-          // },
+          {
+            color: Colors.GREEN,
+            sizeStock: [
+              { size: '39', stock: 7 },
+              { size: '40', stock: 6 },
+              { size: '41', stock: 8 },
+              { size: '42', stock: 3 },
+              { size: '43', stock: 9 },
+            ],
+          },
         ],
         image: 'shoes3.png',
         status: Status.INSTOCK,

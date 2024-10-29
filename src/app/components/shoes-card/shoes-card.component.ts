@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import Product from '../../model/product';
+import CatalogProduct from '../../model/CatalogProduct';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 
@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 export class ShoesCardComponent {
   constructor(private router: Router) {}
 
-  @Input() product!: Product;
+  @Input() product!: CatalogProduct;
 
   redirectToShopDetails(id: number) {
     this.router.navigate([`/shop/${id}`]);

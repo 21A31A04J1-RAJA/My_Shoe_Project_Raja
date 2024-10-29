@@ -1,62 +1,6 @@
 <main class="shoe-detail-page">
-  <section class="shoe-container">
-    <div class="shoe-image">
-      <img [src]="product.image" alt="Air Pro X3 Whole Blue" />
-    </div>
+  <app-shop-product-details [product]="listOfProducts"></app-shop-product-details>
 
-    <section class="shoe-details">
-      <h1>{{product.name}}</h1>
-      <p class="category">{{product.category}}</p>
-      <p class="price">{{product.price}} € <span>+ Livraison gratuite</span></p>
-
-      <p>Couleurs disponibles:</p>
-      <section class="color-wrapper">
-        <div class="color-available" *ngFor="let color of product.variants">
-          <button (click)="changeShoesSizeAvailableByColorsChosen(color.color)"
-            [ngStyle]="{'background-color': color.color }">
-          </button>
-          <p>{{color.color| titlecase}}</p>
-        </div>
-      </section>
-      <div class="shoe-size">
-        <p>Tailles</p>
-        <ul>
-          <li *ngFor="let shoes of shoesSizeStockList">
-            <button [disabled]="shoes.stock < 1">{{shoes.size}}</button>
-          </li>
-        </ul>
-      </div>
-      <div class="actions">
-        <button class="add-to-cart">Ajouter au panier <i class="pi pi-shopping-cart"></i></button>
-        <button class="add-to-favorites"> Ajouter aux favoris <i class="pi pi-heart"></i></button>
-      </div>
-    </section>
-  </section>
-
-  <div class="tabs">
-    <div class="card flex justify-content-center">
-      <p-accordion [multiple]="true">
-        <p-accordionTab header="Description">
-          <p>
-            {{product.description}}
-          </p>
-        </p-accordionTab>
-        <p-accordionTab header="Détails">
-          <ul *ngFor="let detail of product.details">
-            <li>{{detail}}</li>
-          </ul>
-        </p-accordionTab>
-        <p-accordionTab header="Caractéristiques">
-          <ul *ngFor="let feature of product.features">
-            <li>{{feature}}</li>
-          </ul>
-        </p-accordionTab>
-        <!-- <p-accordionTab header="Avis">
-          <p>Aucun avis pour ce produit pour l'instant.</p>
-        </p-accordionTab> -->
-      </p-accordion>
-    </div>
-  </div>
   <div class="related-products">
     <h3>PRODUITS LIÉS À CET ARTICLE</h3>
     <div class="related-items">
