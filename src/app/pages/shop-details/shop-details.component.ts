@@ -1,30 +1,27 @@
 import { Component, OnInit } from '@angular/core';
-import { TabViewModule } from 'primeng/tabview';
-import { AccordionModule } from 'primeng/accordion';
-import Product from '../../model/product';
+import { ShopProductDetailsComponent } from '../../components/shop-product-details/shop-product-details.component';
 import { ProductService } from '../../services/product-service/product.service';
+import CatalogProduct from '../../model/CatalogProduct';
 import { ActivatedRoute } from '@angular/router';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-shop-details',
   standalone: true,
-  imports: [TabViewModule, AccordionModule, CommonModule],
+  imports: [ShopProductDetailsComponent],
   templateUrl: './shop-details.component.html',
   styleUrl: './shop-details.component.scss',
 })
 export class ShopDetailsComponent implements OnInit {
+  listOfProducts!: CatalogProduct;
+
   constructor(
-    private productService: ProductService,
+    private productservice: ProductService,
     private route: ActivatedRoute
   ) {}
 
-  product!: Product;
-
   ngOnInit(): void {
     window.scroll(0, 0);
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.product = this.productService.getProducts()[id - 1];
-    console.log(this.product.variants);
+    const productId = Number(this.route.snapshot.paramMap.get('id'));
+    this.listOfProducts = this.productservice.getProducts()[productId - 1];
   }
 }
