@@ -1,4 +1,11 @@
-import { Component, Input, model, OnInit } from '@angular/core';
+import {
+  Component,
+  Input,
+  model,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
 import CatalogProduct, {
   Colors,
   ItemVariant,
@@ -32,6 +39,7 @@ export class ShopProductDetailsComponent implements OnInit {
   @Input() product!: CatalogProduct;
 
   shoesColor!: Colors;
+  productIsNotAvailable: boolean = false;
   productVariant!: ItemVariant[];
   shoesSizeStockList!: SizeStock[];
 
@@ -42,6 +50,7 @@ export class ShopProductDetailsComponent implements OnInit {
 
     this.getVariantByColor(this.shoesColor);
     this.getShoeSizeStockList();
+    console.log(this.shoesSizeStockList);
   }
 
   getVariantByColor(color: Colors) {
@@ -56,14 +65,27 @@ export class ShopProductDetailsComponent implements OnInit {
     );
   }
 
-  changeShoesSizeAvailableByColorChosen(color: Colors) {
+  changeShoesSizeAvailableByColorChosen(color: Colors): void {
+    this.productIsNotAvailable = false;
     this.shoesColor = color;
     this.productForm.get('productSize')?.setValue(null);
+    this.productForm.get('productSize')?.markAsUntouched();
     this.getVariantByColor(color);
     this.getShoeSizeStockList();
   }
 
-  addProductToCart() {
+  setUpShoesSizeInFormControl(shoes: SizeStock): void {
+    this.productForm.get('productSize')?.setValue(shoes.size);
+
+    if (shoes.stock < 1) {
+      this.productIsNotAvailable = true;
+    } else {
+      this.productIsNotAvailable = false;
+    }
+    console.log(shoes.stock);
+  }
+
+  addProductToCart(): void {
     this.productForm.get('productId')?.setValue(this.product.id);
     this.productForm.get('productSize')?.markAsTouched();
 
