@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
+import { CartService } from '../../services/cart/cart.service';
 
 @Component({
   selector: 'app-navbar',
@@ -11,7 +12,12 @@ import { ButtonModule } from 'primeng/button';
   styleUrl: './navbar.component.scss',
 })
 export class NavbarComponent {
-  quantityProductsInCart: number = 3;
+  constructor(private cartService: CartService) {
+    this.cartService.listOfProducts$.subscribe(
+      (value) => (this.quantityOfProductsInCart = value.length)
+    );
+  }
+  quantityOfProductsInCart: number = 3;
   openCloseMenu: boolean = false;
 
   openMenu() {

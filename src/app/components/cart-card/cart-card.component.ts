@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import CartProduct from '../../model/CartProduct';
 
 @Component({
   selector: 'app-cart-card',
@@ -9,7 +10,11 @@ import { Component } from '@angular/core';
   styleUrl: './cart-card.component.scss',
 })
 export class CartCardComponent {
+  constructor() {}
+
   quantityItems: number = 1;
+
+  @Input() product!: CartProduct;
 
   addItem() {
     this.quantityItems += 1;

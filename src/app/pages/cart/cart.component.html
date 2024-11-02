@@ -1,4 +1,3 @@
-<h1>Panier</h1>
-<app-cart-card></app-cart-card>
-<app-cart-card></app-cart-card>
-<app-cart-card></app-cart-card>
+@for (product of products; track $index) {
+<app-cart-card [product]="product"></app-cart-card>
+}

@@ -13,7 +13,7 @@
       <section class="color-wrapper">
         <div class="color-available" *ngFor="let color of product.variants"
           (click)="changeShoesSizeAvailableByColorChosen(color.color)">
-          <div class="" [class.borderOnClick]="shoesColor === color.color">
+          <div [class.borderOnClick]="shoesColor === color.color">
             <button [ngStyle]="{'background-color': color.color }" required
               (click)="productForm.get('productColor')?.setValue(color.color)">
             </button>
