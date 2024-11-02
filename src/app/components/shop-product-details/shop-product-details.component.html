@@ -13,7 +13,7 @@
       <section class="color-wrapper">
         <div class="color-available" *ngFor="let color of product.variants"
           (click)="changeShoesSizeAvailableByColorChosen(color.color)">
-          <div class="" [class.borderOnClick]="shoesColor === color.color">
+          <div [class.borderOnClick]="shoesColor === color.color">
             <button [ngStyle]="{'background-color': color.color }" required
               (click)="productForm.get('productColor')?.setValue(color.color)">
             </button>
@@ -24,20 +24,31 @@
       <div class="shoe-size">
         <p>Tailles</p>
         <ul>
-          <li *ngFor="let shoes of shoesSizeStockList">
-            <button required (click)="productForm.get('productSize')?.setValue(shoes.size)"
-              [class.borderOnClick]="shoes.size === productForm.get('productSize')?.value && shoes.stock >= 1"
-              [disabled]="shoes.stock < 1">{{shoes.size}}</button>
+          @for (shoes of shoesSizeStockList; track $index) {
+          <li>
+            <button (click)="setUpShoesSizeInFormControl(shoes)"
+              [class.borderOnClick]="shoes.size === productForm.get('productSize')?.value"
+              [class.fadeShoesizeButton]="shoes.stock < 1">
+              {{shoes.size}}
+            </button>
           </li>
+          }
         </ul>
-        <p class="chose-size"
-          *ngIf="productForm.get('productSize')?.invalid  && productForm.get('productSize')?.touched"> Veuillez
+        @if (productForm.get('productSize')?.invalid && productForm.get('productSize')?.touched) {
+        <p class="chose-size"> Veuillez
           sélectionner votre taille</p>
+        }
+
       </div>
       <div class="actions">
-        <button class="add-to-cart" [disabled]="" (click)="(addProductToCart())">Ajouter au
-          panier <i class="pi pi-shopping-cart"></i></button>
-        <button class="add-to-favorites"> Ajouter aux favoris <i class="pi pi-heart"></i></button>
+        <button class="add-to-cart" [disabled]="productIsNotAvailable" (click)="(addProductToCart())">
+          Ajouter au panier
+          <i class="pi pi-shopping-cart"></i>
+        </button>
+        <button class="add-to-favorites">
+          Ajouter aux favoris
+          <i class="pi pi-heart"></i>
+        </button>
       </div>
     </form>
     <div class="tabs">

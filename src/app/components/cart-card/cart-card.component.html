@@ -2,25 +2,26 @@
   <section class="item-details">
     <div class="product-info">
       <div class="image-wrapper">
-        <img src="shoes1.png" alt="Shoes">
+        <img src="{{product.image}}" alt="Shoes">
+        <div class="quantity-section">
+          <i [ngClass]="quantityItems < 2 ? 'pi pi-trash' : 'pi pi-minus'" (click)="removeItem()"></i>
+          <p>{{quantityItems}}</p>
+          <i class="pi pi-plus" (click)="addItem()"></i>
+        </div>
       </div>
+
       <section class="info-wrapper">
         <div class="price-info">
-          <p class="original-price">89,99 €</p>
+          <p class="original-price">{{product.price}} €</p>
         </div>
         <div class="product-description">
-          <h2 class="product-title">Chaussure d'hiver pour homme</h2>
-          <p class="product-name">Nike Court Vision Mid</p>
-          <p class="product-type">Chaussure d'hiver pour homme</p>
-          <p class="product-color">Noir/Phantom/Noir</p>
-          <p class="product-size">Taille / Pointure: 45.5</p>
+          <h2 class="product-name">{{product.name}}</h2>
+          <p>{{product.title}}</p>
+          <p>{{product.color}}</p>
+          <p>Taille / Pointure: {{product.size}}</p>
         </div>
       </section>
     </div>
-    <div class="quantity-section">
-      <i [ngClass]="quantityItems < 2 ? 'pi pi-trash' : 'pi pi-minus'" (click)="removeItem()"></i>
-      <p>{{quantityItems}}</p>
-      <i class="pi pi-plus" (click)="addItem()"></i>
-    </div>
+
   </section>
 </main>

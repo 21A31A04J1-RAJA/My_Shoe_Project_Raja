@@ -99,7 +99,6 @@
       .chose-size {
         font-weight: 400;
         color: #e64242;
-        // padding-left: 0.4em;
       }
 
       ul {
@@ -112,7 +111,7 @@
           align-items: center;
           justify-content: center;
           border-radius: 0.2em;
-          background-color: rgb(241, 241, 241);
+          background-color: #eceff1;
 
           button {
             width: 100%;
@@ -127,7 +126,12 @@
             &:hover {
               border: 0.12em solid rgba(0, 0, 0, 0.913);
             }
-            &:disabled:after {
+          }
+          .fadeShoesizeButton {
+            color: lightgray;
+            background-color: rgba(247, 247, 247, 0.88);
+            position: relative;
+            &.fadeShoesizeButton:after {
               content: "___";
               top: 36%;
               left: 50%;
@@ -176,7 +180,7 @@
         border-radius: 0.3em;
         cursor: pointer;
         transition: background-color 0.3s ease;
-        box-shadow: 0 0.25em 0.5em rgba(0, 0, 0, 0.081);
+        box-shadow: 0 0.2em 0.2em rgba(0, 0, 0, 0.081);
 
         &.add-to-cart {
           color: $text-color;
@@ -188,6 +192,13 @@
 
           &:hover {
             background-color: darken($primary-color, 10%);
+          }
+        }
+        &:disabled {
+          background-color: lighten($primary-color, 20%);
+          cursor: default;
+          &:hover {
+            background-color: lighten($primary-color, 20%);
           }
         }
 

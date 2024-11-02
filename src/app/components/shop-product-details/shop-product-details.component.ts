@@ -1,4 +1,11 @@
-import { Component, Input, model, OnInit } from '@angular/core';
+import {
+  Component,
+  Input,
+  model,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
 import CatalogProduct, {
   Colors,
   ItemVariant,
@@ -12,7 +19,10 @@ import {
   FormGroup,
   FormControl,
   Validators,
+  AbstractControl,
 } from '@angular/forms';
+import { CartService } from '../../services/cart/cart.service';
+import CartProduct from '../../model/CartProduct';
 @Component({
   selector: 'app-shop-product-details',
   standalone: true,
@@ -21,17 +31,33 @@ import {
   styleUrl: './shop-product-details.component.scss',
 })
 export class ShopProductDetailsComponent implements OnInit {
-  productForm = new FormGroup({
-    productColor: new FormControl('', Validators.required),
-    productSize: new FormControl('', Validators.required),
-    productId: new FormControl(0, Validators.required),
-  });
-
-  constructor() {}
-
   @Input() product!: CatalogProduct;
 
+  productForm = new FormGroup({
+    productId: new FormControl<number>(0),
+    productCode: new FormControl<string>(''),
+    productName: new FormControl<string>(''),
+    productTitle: new FormControl<string>(''),
+    productDescription: new FormControl<string>(''),
+    productDetails: new FormControl<string[]>([]),
+    productFeatures: new FormControl<string[]>([]),
+    productPrice: new FormControl<number>(0),
+    productCategory: new FormControl<string>(''),
+    productColor: new FormControl<Colors | undefined>(
+      undefined,
+      Validators.required
+    ),
+    productSize: new FormControl<string>('', Validators.required),
+    productImage: new FormControl<string>(''),
+    productCreatedAt: new FormControl<Date>(new Date()),
+    productUpdatedAt: new FormControl<Date>(new Date()),
+    productDiscount: new FormControl<number | undefined>(undefined),
+  });
+
+  constructor(private cartService: CartService) {}
+
   shoesColor!: Colors;
+  productIsNotAvailable: boolean = false;
   productVariant!: ItemVariant[];
   shoesSizeStockList!: SizeStock[];
 
@@ -56,19 +82,57 @@ export class ShopProductDetailsComponent implements OnInit {
     );
   }
 
-  changeShoesSizeAvailableByColorChosen(color: Colors) {
+  changeShoesSizeAvailableByColorChosen(color: Colors): void {
+    this.productIsNotAvailable = false;
     this.shoesColor = color;
     this.productForm.get('productSize')?.setValue(null);
+    this.productForm.get('productSize')?.markAsUntouched();
     this.getVariantByColor(color);
     this.getShoeSizeStockList();
   }
 
-  addProductToCart() {
+  setUpShoesSizeInFormControl(shoes: SizeStock): void {
+    this.productForm.get('productSize')?.setValue(shoes.size);
+
+    if (shoes.stock < 1) {
+      this.productIsNotAvailable = true;
+    } else {
+      this.productIsNotAvailable = false;
+    }
+  }
+  createNewcartItem() {
+    const formValue = this.product;
+    const cartProduct = new CartProduct(
+      formValue.id!,
+      formValue.code!,
+      formValue.name!,
+      formValue.title!,
+      formValue.description!,
+      formValue.details!,
+      formValue.features!,
+      formValue.price!,
+      formValue.category!,
+      this.productForm.value.productColor!,
+      this.productForm.value.productSize!,
+      formValue.image!,
+      formValue.createdAt!,
+      formValue.updatedAt!,
+      formValue.discount!
+    );
+    if (this.productForm.valid) {
+      console.log(cartProduct);
+      this.cartService.addProductToCart(cartProduct);
+    }
+  }
+
+  addProductToCart(): void {
     this.productForm.get('productId')?.setValue(this.product.id);
+    this.productForm.get('productName')?.setValue(this.product.name);
     this.productForm.get('productSize')?.markAsTouched();
 
     if (this.productForm.valid) {
       console.log(this.productForm.value);
+      this.createNewcartItem();
     }
   }
 }
