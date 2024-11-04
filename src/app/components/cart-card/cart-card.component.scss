@@ -1,8 +1,7 @@
 .cart-item {
+  width: 100%;
   display: flex;
   flex-direction: column;
-  max-width: 700px;
-  margin: 0 auto;
 
   .item-details {
     display: flex;
@@ -11,19 +10,18 @@
     border-bottom: 1px solid lightgray;
 
     .product-info {
+      width: 100%;
       display: flex;
       flex-direction: row;
-      width: 100%;
-      padding: 1em;
       gap: 1em;
       overflow: hidden;
       .image-wrapper {
         min-width: 8em;
         max-width: 10em;
-        gap: 1em;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        gap: 1em;
 
         img {
           width: 100%;
@@ -91,6 +89,10 @@
 }
 @media screen and (min-width: 768px) {
   .cart-item {
+    flex-direction: column;
+    width: 100%;
+    flex: 1;
+
     .item-details {
       .product-info {
         .info-wrapper {

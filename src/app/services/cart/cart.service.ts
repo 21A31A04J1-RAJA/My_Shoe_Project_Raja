@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import CartProduct from '../../model/CartProduct';
-import CatalogProduct, { Colors } from '../../model/CatalogProduct';
+import { Colors } from '../../model/CatalogProduct';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
@@ -13,13 +13,25 @@ export class CartService {
   quantityOfProductsInCart: number = 0;
 
   constructor() {
-    this.listOfProducts.next([this.product1, this.product2]);
+    this.listOfProducts.next([
+      { ...this.product1, quantity: 1 },
+      { ...this.product2, quantity: 1 },
+    ]);
   }
 
   addProductToCart(product: CartProduct) {
-    const updateProducts = [...this.listOfProducts.getValue(), product];
-    this.listOfProducts.next(updateProducts);
-    console.log('service', this.listOfProducts);
+    const productIndex = this.listOfProducts
+      .getValue()
+      .findIndex((item) => item.id == product.id);
+    if (productIndex != -1) {
+      this.listOfProducts.getValue()[productIndex].quantity += 1;
+    } else {
+      const updateProducts = [
+        ...this.listOfProducts.getValue(),
+        { ...product, quantity: 1 },
+      ];
+      this.listOfProducts.next(updateProducts);
+    }
   }
 
   product1: CartProduct = new CartProduct(

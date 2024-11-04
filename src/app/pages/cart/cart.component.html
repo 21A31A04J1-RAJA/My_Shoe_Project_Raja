@@ -1,3 +1,9 @@
-@for (product of products; track $index) {
-<app-cart-card [product]="product"></app-cart-card>
-}
+<h1>Mon Panier</h1>
+<section class="products">
+  <div class="cart-products">
+    @for (product of products; track $index) {
+    <app-cart-card [product]="product"></app-cart-card>
+    }
+  </div>
+  <app-recap></app-recap>
+</section>
