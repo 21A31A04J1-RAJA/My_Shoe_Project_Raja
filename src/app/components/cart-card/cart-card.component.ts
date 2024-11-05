@@ -11,11 +11,7 @@ import { CartService } from '../../services/cart/cart.service';
   styleUrl: './cart-card.component.scss',
 })
 export class CartCardComponent {
-  constructor(private carteService: CartService) {
-    // this.carteService.listOfProducts$.subscribe((value) =>
-    //   console.log('cart-component', value[0].quantity)
-    // );
-  }
+  constructor(private cartService: CartService) {}
 
   quantityItems: number = 1;
 
@@ -24,9 +20,14 @@ export class CartCardComponent {
   addItem() {
     this.product.quantity += 1;
     if (this.product.quantity > 10) this.product.quantity = 10;
+    this.cartService.calculateTotal();
   }
   removeItem() {
     this.product.quantity -= 1;
-    if (this.product.quantity < 1) this.product.quantity = 0;
+    if (this.product.quantity < 1) {
+      this.product.quantity = 0;
+      this.cartService.removeProductFromListOfProduct(this.product);
+    }
+    this.cartService.calculateTotal();
   }
 }

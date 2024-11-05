@@ -17,6 +17,15 @@
     .cart-products {
       width: 100%;
       padding: 1em;
+
+      p {
+        color: #777;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
     }
   }
 }

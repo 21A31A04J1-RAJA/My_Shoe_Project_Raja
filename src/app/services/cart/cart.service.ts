@@ -10,6 +10,9 @@ export class CartService {
   private listOfProducts = new BehaviorSubject<CartProduct[]>([]);
   listOfProducts$ = this.listOfProducts.asObservable();
 
+  private total = new BehaviorSubject<number>(0);
+  total$ = this.total.asObservable();
+
   quantityOfProductsInCart: number = 0;
 
   constructor() {
@@ -17,6 +20,7 @@ export class CartService {
       { ...this.product1, quantity: 1 },
       { ...this.product2, quantity: 1 },
     ]);
+    this.calculateTotal();
   }
 
   addProductToCart(product: CartProduct) {
@@ -32,6 +36,22 @@ export class CartService {
       ];
       this.listOfProducts.next(updateProducts);
     }
+    this.calculateTotal();
+  }
+
+  removeProductFromListOfProduct(product: CartProduct): void {
+    const newList = this.listOfProducts
+      .getValue()
+      .filter((item) => item.id != product.id);
+    this.listOfProducts.next(newList);
+  }
+
+  calculateTotal() {
+    this.total.next(
+      this.listOfProducts.getValue().reduce((acc, product) => {
+        return product.quantity * product.price + acc;
+      }, 0)
+    );
   }
 
   product1: CartProduct = new CartProduct(
