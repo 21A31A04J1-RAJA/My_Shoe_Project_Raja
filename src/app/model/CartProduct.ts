@@ -1,4 +1,5 @@
 export default class CartProduct {
+  public quantity: number;
   constructor(
     public id: number,
     public code: string,
@@ -17,6 +18,7 @@ export default class CartProduct {
     public discount?: number
   ) {
     this.createdAt = new Date();
+    this.quantity = 0;
   }
 }
 

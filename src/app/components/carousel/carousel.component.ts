@@ -40,4 +40,6 @@ export class CarouselComponent implements OnInit {
       },
     ];
   }
+
+  goToDetails() {}
 }

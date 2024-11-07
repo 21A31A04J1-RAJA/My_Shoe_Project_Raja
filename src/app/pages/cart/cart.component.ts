@@ -2,11 +2,12 @@ import { Component, Input, OnInit } from '@angular/core';
 import { CartCardComponent } from '../../components/cart-card/cart-card.component';
 import CartProduct from '../../model/CartProduct';
 import { CartService } from '../../services/cart/cart.service';
+import { RecapComponent } from '../../components/recap/recap.component';
 
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [CartCardComponent],
+  imports: [CartCardComponent, RecapComponent],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss',
 })

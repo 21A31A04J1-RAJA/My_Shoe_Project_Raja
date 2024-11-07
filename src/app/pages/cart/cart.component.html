@@ -1,3 +1,16 @@
-@for (product of products; track $index) {
-<app-cart-card [product]="product"></app-cart-card>
-}
+<h1>Mon Panier</h1>
+<section class="products">
+  <div class="cart-products">
+    @if(products.length > 0){
+    @for (product of products; track $index) {
+    <app-cart-card [product]="product"></app-cart-card>
+    }
+    } @else {
+
+    <p>Il n'y a aucun article dans votre panier.</p>
+    }
+
+
+  </div>
+  <app-recap></app-recap>
+</section>
