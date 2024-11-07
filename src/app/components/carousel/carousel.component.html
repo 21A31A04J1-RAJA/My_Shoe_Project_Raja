@@ -1,24 +1,20 @@
 <section>
-  <h2>REMARKABLE</h2>
-  <p>SPEED & COMFORT</p>
-  <p-carousel class="carousel" [value]="products" [numVisible]="4" [numScroll]="1" [circular]="true"
-    [responsiveOptions]="responsiveOptions" autoplayInterval="2500">
+  <h2>REMARQUABLE</h2>
+  <p>VITESSE & CONFORT</p>
+  <p-carousel (click)="goToDetails()" class="carousel" [value]="products" [numVisible]="4" [numScroll]="1"
+    [circular]="true" [responsiveOptions]="responsiveOptions" autoplayInterval="2500">
     <ng-template let-product pTemplate="item">
       <div class="card-wraper">
         <div class="image-wraper">
           <a href="/shop/{{product.id}}"><img src={{product.image}} [alt]="product.name" class="" /></a>
         </div>
-        <section class="product">
+        <div class="product">
           <p class="product-name">{{ product.name }}</p>
           <p class="product-title"> {{ product.title }}</p>
           <p class="product-price">
             {{product.price + ' €'}}
           </p>
-          <div class="buttons-wrapper">
-            <button class="add-to-cart-btn">Ajouter au panier <i class="pi pi-shopping-cart"></i></button>
-            <button class="add-to-fav-btn">Ajouter aux favorites<i class="pi pi-heart"></i></button>
-          </div>
-        </section>
+        </div>
       </div>
     </ng-template>
   </p-carousel>

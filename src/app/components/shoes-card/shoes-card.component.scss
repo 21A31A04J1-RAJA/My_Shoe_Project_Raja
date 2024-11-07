@@ -1,17 +1,17 @@
 @import "../../../styles/variables.scss";
 .shoe-card {
-  border: 0.0825em solid #ddd;
-  border-radius: 0.5em;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  cursor: pointer;
   transition: transform 0.3s ease;
   overflow: hidden;
-  box-shadow: 0 0.25em 0.5em rgba(0, 0, 0, 0.1);
-  max-width: 19em;
 
   .shoe-image {
     width: 100%;
+    height: 8em;
     background-color: #ececec;
-    height: 18em;
-    cursor: pointer;
+
     img {
       width: 100%;
       height: 100%;
@@ -20,25 +20,26 @@
   }
 
   .shoe-info {
-    padding: 1.5em;
+    padding: 0.4em 0;
     text-align: left;
 
     .shoe-name {
-      font-size: 1.25em;
+      font-size: 1em;
+      font-weight: 600;
       margin-bottom: 0.5em;
-      color: $primary-color;
     }
 
     .shoe-description {
-      font-size: 0.9em;
+      font-family: "Antonio" sans-serif;
+      font-size: 1em;
       color: #555;
-      margin-bottom: 1em;
+      margin-bottom: 0.4em;
     }
 
     .shoe-price {
-      font-size: 1.2em;
-      font-weight: bold;
+      font-size: 1em;
       margin-bottom: 1em;
+      font-weight: 600;
       color: #333;
     }
 
@@ -89,6 +90,29 @@
           }
         }
       }
+    }
+  }
+}
+
+@media screen and (min-width: "390px") {
+  .shoe-card {
+    .shoe-image {
+      height: 12em;
+    }
+  }
+}
+
+@media screen and (min-width: "576px") {
+  .shoe-card {
+    .shoe-image {
+      height: 18em;
+    }
+  }
+}
+@media screen and (min-width: "768px") {
+  .shoe-card {
+    .shoe-image {
+      height: 22em;
     }
   }
 }

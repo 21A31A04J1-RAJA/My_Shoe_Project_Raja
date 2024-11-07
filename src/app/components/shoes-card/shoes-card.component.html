@@ -1,5 +1,5 @@
-<section class="shoe-card">
-  <div class="shoe-image" (click)="redirectToShopDetails(product.id)">
+<section class="shoe-card" (click)="redirectToShopDetails(product.id)">
+  <div class="shoe-image">
     <img [src]="product.image" [alt]="product.name" />
   </div>
   <section class="shoe-info">
@@ -7,10 +7,9 @@
     <p class="shoe-description">
       {{product.title}}
     </p>
+    <p class="shoe-description">
+      {{product.category}}
+    </p>
     <p class="shoe-price">{{product.price}} €</p>
-    <div class="buttons-wrapper">
-      <button class="add-to-cart-btn">Ajouter au panier <i class="pi pi-shopping-cart"></i></button>
-      <button class="add-to-fav-btn">Ajouter aux favorites <i class="pi pi-heart"></i></button>
-    </div>
   </section>
 </section>
