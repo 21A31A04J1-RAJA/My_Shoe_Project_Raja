@@ -40,10 +40,12 @@ export class CartService {
   }
 
   removeProductFromListOfProduct(product: CartProduct): void {
-    const newList = this.listOfProducts
-      .getValue()
-      .filter((item) => item.id != product.id);
-    this.listOfProducts.next(newList);
+    // const newList = this.listOfProducts
+    //   .getValue()
+    //   .filter((item) => item.id != product.id);
+    this.listOfProducts.next(
+      this.listOfProducts.getValue().filter((item) => item.id != product.id)
+    );
   }
 
   calculateTotal() {

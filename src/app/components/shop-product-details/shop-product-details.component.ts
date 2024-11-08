@@ -23,6 +23,7 @@ import {
 } from '@angular/forms';
 import { CartService } from '../../services/cart/cart.service';
 import CartProduct from '../../model/CartProduct';
+import { ToastService } from '../../services/toast/toast.service';
 @Component({
   selector: 'app-shop-product-details',
   standalone: true,
@@ -54,7 +55,10 @@ export class ShopProductDetailsComponent implements OnInit {
     productDiscount: new FormControl<number | undefined>(undefined),
   });
 
-  constructor(private cartService: CartService) {}
+  constructor(
+    private cartService: CartService,
+    private toastService: ToastService
+  ) {}
 
   shoesColor!: Colors;
   productIsNotAvailable: boolean = false;
@@ -122,6 +126,7 @@ export class ShopProductDetailsComponent implements OnInit {
     if (this.productForm.valid) {
       console.log(cartProduct);
       this.cartService.addProductToCart(cartProduct);
+      this.toastService.showToast(cartProduct);
     }
   }
 
