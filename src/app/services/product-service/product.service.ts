@@ -508,6 +508,58 @@ export class ProductService {
         createdAt: new Date('2023-10-01'),
         updatedAt: new Date(),
       },
+      {
+        id: 10,
+        code: 'PRD444',
+        name: 'Eco Runner',
+        title: 'Sustainable Running Shoes',
+        description:
+          'Crafted from recycled materials for eco-conscious runners.',
+        details: [
+          "Conception respectueuse de l'environnement.",
+          'Fermeture à lacets.',
+          'Tige en matériau recyclé.',
+          'Semelle en caoutchouc recyclé.',
+          'Poids léger pour le confort.',
+          'Couleur: Bleu et vert.',
+          'Code du produit: PRD444.',
+        ],
+        features: [
+          'Matériaux écologiques fabriqués à partir de ressources recyclées.',
+          'Conception légère pour un confort optimal lors de la course.',
+          'Amorti durable qui réduit la fatigue sur longues distances.',
+          'Semelle en caoutchouc recyclé offrant une excellente adhérence.',
+        ],
+        price: 130,
+        category: 'Running Shoes',
+        variants: [
+          {
+            color: Colors.GREEN,
+            sizeStock: [
+              { size: '39', stock: 5 },
+              { size: '40', stock: 4 },
+              { size: '41', stock: 2 },
+              { size: '42', stock: 6 },
+              { size: '43', stock: 1 },
+              { size: '45', stock: 1 },
+            ],
+          },
+          {
+            color: Colors.WHITE,
+            sizeStock: [
+              { size: '39', stock: 9 },
+              { size: '40', stock: 8 },
+              { size: '41', stock: 7 },
+              { size: '42', stock: 4 },
+              { size: '43', stock: 2 },
+            ],
+          },
+        ],
+        image: 'shoes1.png',
+        status: Status.INSTOCK,
+        createdAt: new Date('2023-10-01'),
+        updatedAt: new Date(),
+      },
     ];
   }
 }

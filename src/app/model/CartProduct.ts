@@ -1,5 +1,5 @@
 export default class CartProduct {
-  public quantity: number;
+  public quantity: number = 1;
   constructor(
     public id: number,
     public code: string,
@@ -18,7 +18,11 @@ export default class CartProduct {
     public discount?: number
   ) {
     this.createdAt = new Date();
-    this.quantity = 0;
+  }
+
+  public updateQuantity(): void {
+    this.quantity += 1;
+    if (this.quantity > 10) this.quantity = 10;
   }
 }
 

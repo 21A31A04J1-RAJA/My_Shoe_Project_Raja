@@ -12,12 +12,54 @@
     align-items: center;
     justify-content: space-between;
     padding: 0.6em 1em;
-    // background-color: blue;
-    p {
-      color: $text-color;
-    }
+
     .title {
+      color: $text-color;
       font-size: 1.5em;
+    }
+    .cart-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 1em;
+
+      .cart-mobile {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        height: 3em;
+        background-color: transparent;
+        border: none;
+        position: relative;
+        padding: 0 1.2em;
+        a {
+          cursor: pointer;
+          display: flex;
+          gap: 0.2em;
+          text-decoration: none;
+          i {
+            align-self: center;
+            font-weight: 600;
+            color: $text-color;
+            font-size: 1.4em;
+          }
+          .cart-quantity {
+            font-size: 1em;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            border-radius: 50%;
+            padding: 0.2em 0.4em 0.1em 0.4em;
+            margin-bottom: 0.4em;
+            background-color: $primary-color;
+            color: $text-color;
+            font-family: "Roboto", sans-serif;
+            align-self: flex-start;
+            position: absolute;
+            top: 0;
+            right: 0;
+          }
+        }
+      }
     }
 
     .menu-mobile-wrapper {
@@ -29,7 +71,7 @@
         display: flex;
         justify-content: end;
         width: 100%;
-        padding: 0.6em;
+        padding: 0.2em;
         font-size: 1.5em;
         color: $text-color;
         cursor: pointer;
@@ -106,7 +148,6 @@
       align-items: center;
       gap: 2em;
       padding: 0.8em 0;
-      // background-color: red;
 
       ul {
         list-style-type: none;
@@ -130,35 +171,25 @@
         }
       }
 
-      button {
+      .cart-desktop {
         display: flex;
         align-items: center;
         cursor: pointer;
-        // font-size: 1em;
         height: 3em;
         background-color: transparent;
         border: none;
-        // background-color: yellow;
         position: relative;
         padding: 0 1.4em;
         a {
           cursor: pointer;
           display: flex;
           gap: 0.2em;
-          // align-items: center;
-          // justify-content: center;
-          // border-radius: 50%;
-          // padding: 0.2em 0.4em 0.1em 0.4em;
-          // background-color: red;
           text-decoration: none;
-          // padding: 0.6em;
           i {
             align-self: center;
             font-weight: 600;
             color: $text-color;
             font-size: 1.4em;
-
-            // background-color: blue;
           }
           .cart-quantity {
             font-size: 1em;
@@ -186,10 +217,15 @@
   .navbar-wrapper {
     .navbar {
       padding: 0.6em 1em;
+
+      .cart-mobile {
+        display: none;
+      }
+
       .menu-desktop {
         display: flex;
       }
-      .menu-mobile-wrapper {
+      .cart-wrapper {
         display: none;
       }
     }

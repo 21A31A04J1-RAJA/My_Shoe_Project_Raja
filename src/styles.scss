@@ -70,3 +70,90 @@
     width: 1.4em;
   }
 }
+
+// CSS to customize the compoenent toast at app/components/toast.component.html
+.p-toast {
+  width: 100%;
+  max-width: 400px;
+  padding: 0.4em;
+  margin-top: 4em;
+  right: 0;
+  z-index: -1;
+
+  .p-toast-message {
+    display: flex;
+    position: relative;
+    margin-bottom: 0.4em;
+    padding: 0 1em;
+    border: 1px solid rgb(189, 189, 189);
+    background-color: #e3e3e3;
+
+    .p-toast-icon-close {
+      position: absolute;
+      top: 0;
+      right: 0;
+      background-color: lightgray;
+      width: 2em;
+      height: 2em;
+      margin: 1.6em;
+      font-weight: 600;
+      &:hover {
+        background-color: $primary-color;
+        color: white;
+      }
+    }
+
+    .p-toast-message-content {
+      display: flex;
+      flex-direction: column-reverse;
+      flex-wrap: wrap-reverse;
+      width: 100%;
+      align-items: center;
+      padding: 2em 0.4em;
+
+      h3 {
+        display: flex;
+        color: black;
+        i {
+          color: green;
+          font-weight: 600;
+          padding-right: 1em;
+          font-size: 1.2em;
+        }
+      }
+      .product-container {
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+        .product-details {
+          display: flex;
+          flex-direction: row;
+          gap: 1em;
+          padding: 1em 0;
+          img {
+            width: 8em;
+            height: 8em;
+            object-fit: contain;
+            background-color: #ececec;
+          }
+          .product-description {
+            color: rgb(68, 68, 68);
+            .product-price {
+              padding: 0.8em 0;
+              font-weight: 600;
+            }
+          }
+        }
+        button {
+          width: 100%;
+          display: flex;
+          padding: 1em;
+          border: none;
+          font-size: 1em;
+          font-weight: 600;
+          background-color: $primary-color;
+        }
+      }
+    }
+  }
+}

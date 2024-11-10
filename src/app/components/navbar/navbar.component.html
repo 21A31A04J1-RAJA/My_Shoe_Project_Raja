@@ -3,22 +3,33 @@
     <p class="title">
       MyShoes
     </p>
-    <section class="menu-mobile-wrapper">
-      <i class="pi pi-bars open-menu" (click)="openMenu()"></i>
-      <section class="menu-mobile" [class.open-close-menu]="openCloseMenu">
-        <i class="pi pi-times close-menu" (click)="openMenu()"></i>
-        <ul>
-          <li (click)="openMenu()"><a routerLink="/home" routerLinkActive="active" aria-current="page">ACCUEIL</a></li>
-          <li (click)="openMenu()"><a routerLink="/shop" routerLinkActive="active" aria-current="page">BOUTIQUE</a></li>
-          <li (click)="openMenu()"><a routerLink="/myaccount" routerLinkActive="active" aria-current="page">MON
-              COMPTE</a></li>
-          <li (click)="openMenu()"><a routerLink="/about" routerLinkActive="active" aria-current="page">À PROPOS</a>
-          </li>
-          <li (click)="openMenu()"><a routerLink="/contact" routerLinkActive="active" aria-current="page">CONTACT</a>
-          </li>
-        </ul>
+    <div class="cart-wrapper">
+      <button class="cart-mobile">
+        <a routerLink="/cart">
+          <i class="pi pi-shopping-cart"></i>
+          <p class="cart-quantity">{{quantityOfProductsInCart}}</p>
+        </a>
+      </button>
+      <section class="menu-mobile-wrapper">
+        <i class="pi pi-bars open-menu" (click)="openMenu()"></i>
+        <section class="menu-mobile" [class.open-close-menu]="openCloseMenu">
+          <i class="pi pi-times close-menu" (click)="openMenu()"></i>
+          <ul>
+            <li (click)="openMenu()"><a routerLink="/home" routerLinkActive="active" aria-current="page">ACCUEIL</a>
+            </li>
+            <li (click)="openMenu()"><a routerLink="/shop" routerLinkActive="active" aria-current="page">BOUTIQUE</a>
+            </li>
+            <li (click)="openMenu()">
+              <a routerLink="/myaccount" routerLinkActive="active" aria-current="page">MON COMPTE</a>
+            </li>
+            <li (click)="openMenu()"><a routerLink="/about" routerLinkActive="active" aria-current="page">À PROPOS</a>
+            </li>
+            <li (click)="openMenu()"><a routerLink="/contact" routerLinkActive="active" aria-current="page">CONTACT</a>
+            </li>
+          </ul>
+        </section>
       </section>
-    </section>
+    </div>
     <section class="menu-desktop">
       <ul>
         <li><a routerLink="/home" routerLinkActive="active" aria-current="page">ACCUEIL</a></li>
@@ -27,7 +38,7 @@
         <li><a routerLink="/about" routerLinkActive="active" aria-current="page">À PROPOS</a></li>
         <li><a routerLink="/contact" routerLinkActive="active" aria-current="page">CONTACT</a></li>
       </ul>
-      <button>
+      <button class="cart-desktop">
         <a routerLink="/cart">
           <i class="pi pi-shopping-cart"></i>
           <p class="cart-quantity">{{quantityOfProductsInCart}}</p>
