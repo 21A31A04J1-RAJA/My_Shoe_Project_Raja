@@ -19,43 +19,29 @@ export class ToastComponent {
     private router: Router,
     private toastService: ToastService
   ) {}
-  visible: boolean = false;
 
   ngOnInit() {
-    this.toastService.displaytoast$.subscribe((value) => {
-      console.log(value);
-      if (value) {
-        this.showConfirm(value);
-      }
+    this.toastService.displaytoast$.subscribe((value: CartProduct) => {
+      this.showConfirm(value);
     });
   }
 
-  showConfirm(product: any) {
-    if (!this.visible) {
-      this.messageService.add({
-        key: 'confirm',
-        sticky: false,
-        severity: 'success',
-        summary: `${product.name}`,
-        detail: product,
-        life: 5000,
-      });
-      this.visible = true;
-    }
-  }
-
-  onConfirm() {
-    this.messageService.clear('confirm');
-    this.visible = false;
+  showConfirm(product: CartProduct) {
+    this.messageService.add({
+      key: 'confirm',
+      sticky: false,
+      severity: 'success',
+      data: product,
+      life: 3000,
+    });
   }
 
   onReject() {
     this.messageService.clear('confirm');
-    this.visible = false;
   }
 
   navigateCartPage() {
     this.router.navigate(['cart']);
-    this.onConfirm();
+    this.messageService.clear('confirm');
   }
 }

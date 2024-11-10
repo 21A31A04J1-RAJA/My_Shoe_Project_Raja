@@ -2,13 +2,13 @@
   <ng-template class="test" let-message pTemplate="message">
     <section>
       <section class="product-container">
-        <h3>Ajouté au panier</h3>
+        <h3> <i class="pi pi-check-circle"></i>Ajouté au panier</h3>
         <div class="product-details">
-          <img src="{{message.detail.image}}" alt="">
+          <img src="{{message.data.image}}" alt="">
           <div class="product-description">
-            <p>{{ message.detail.name }}</p>
-            <p>{{ message.detail.title }}</p>
-            <p>{{ message.detail.price }} €</p>
+            <p>{{ message.data.name }}</p>
+            <p>{{ message.data.title }}</p>
+            <p class="product-price">{{ message.data.price }} €</p>
           </div>
         </div>
         <p-button class="navigate-cart" size="small" label="Afficher le panier" (onClick)="navigateCartPage()" />

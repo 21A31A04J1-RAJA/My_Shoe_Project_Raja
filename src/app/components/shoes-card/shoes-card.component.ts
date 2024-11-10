@@ -20,10 +20,4 @@ export class ShoesCardComponent {
   redirectToShopDetails(id: number) {
     this.router.navigate([`/shop/${id}`]);
   }
-
-  addProductToCart(product: CatalogProduct) {
-    console.log('Shoes card');
-
-    this.toastService.showToast(product);
-  }
 }

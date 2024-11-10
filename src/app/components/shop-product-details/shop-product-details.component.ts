@@ -1,11 +1,4 @@
-import {
-  Component,
-  Input,
-  model,
-  OnChanges,
-  OnInit,
-  SimpleChanges,
-} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import CatalogProduct, {
   Colors,
   ItemVariant,
@@ -19,7 +12,6 @@ import {
   FormGroup,
   FormControl,
   Validators,
-  AbstractControl,
 } from '@angular/forms';
 import { CartService } from '../../services/cart/cart.service';
 import CartProduct from '../../model/CartProduct';
@@ -104,40 +96,34 @@ export class ShopProductDetailsComponent implements OnInit {
       this.productIsNotAvailable = false;
     }
   }
-  createNewcartItem() {
-    const formValue = this.product;
+
+  createNewcartItem(): CartProduct {
     const cartProduct = new CartProduct(
-      formValue.id!,
-      formValue.code!,
-      formValue.name!,
-      formValue.title!,
-      formValue.description!,
-      formValue.details!,
-      formValue.features!,
-      formValue.price!,
-      formValue.category!,
+      this.product.id!,
+      this.product.code!,
+      this.product.name!,
+      this.product.title!,
+      this.product.description!,
+      this.product.details!,
+      this.product.features!,
+      this.product.price!,
+      this.product.category!,
       this.productForm.value.productColor!,
       this.productForm.value.productSize!,
-      formValue.image!,
-      formValue.createdAt!,
-      formValue.updatedAt!,
-      formValue.discount!
+      this.product.image!,
+      this.product.createdAt!,
+      this.product.updatedAt!,
+      this.product.discount!
     );
-    if (this.productForm.valid) {
-      console.log(cartProduct);
-      this.cartService.addProductToCart(cartProduct);
-      this.toastService.showToast(cartProduct);
-    }
+    console.log(cartProduct);
+    return cartProduct;
   }
 
   addProductToCart(): void {
-    this.productForm.get('productId')?.setValue(this.product.id);
-    this.productForm.get('productName')?.setValue(this.product.name);
     this.productForm.get('productSize')?.markAsTouched();
-
     if (this.productForm.valid) {
-      console.log(this.productForm.value);
-      this.createNewcartItem();
+      this.cartService.addProductToCart(this.createNewcartItem());
+      this.toastService.showToast(this.createNewcartItem());
     }
   }
 }

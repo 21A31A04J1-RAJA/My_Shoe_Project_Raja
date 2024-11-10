@@ -17,7 +17,7 @@ export class NavbarComponent {
       (value) => (this.quantityOfProductsInCart = value.length)
     );
   }
-  quantityOfProductsInCart: number = 3;
+  quantityOfProductsInCart!: number;
   openCloseMenu: boolean = false;
 
   openMenu() {
