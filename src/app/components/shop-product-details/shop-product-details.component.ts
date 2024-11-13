@@ -16,10 +16,17 @@ import {
 import { CartService } from '../../services/cart/cart.service';
 import CartProduct from '../../model/CartProduct';
 import { ToastService } from '../../services/toast/toast.service';
+import { ShoesColorPipe } from '../../pipes/shoes-color.pipe';
 @Component({
   selector: 'app-shop-product-details',
   standalone: true,
-  imports: [TabViewModule, AccordionModule, CommonModule, ReactiveFormsModule],
+  imports: [
+    TabViewModule,
+    AccordionModule,
+    CommonModule,
+    ReactiveFormsModule,
+    ShoesColorPipe,
+  ],
   templateUrl: './shop-product-details.component.html',
   styleUrl: './shop-product-details.component.scss',
 })
