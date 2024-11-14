@@ -9,10 +9,14 @@
   gap: 2em;
 
   .shoe-image {
+    display: flex;
+    justify-content: center;
     flex: 1;
     img {
-      max-width: 100%;
-      height: auto;
+      width: 100%;
+      height: 20em;
+      max-width: 30em;
+      object-fit: contain;
     }
   }
 
@@ -229,7 +233,14 @@
   .shoe-container {
     margin-top: 2em;
     flex-direction: row;
-
+    .shoe-image {
+      // align-self: flex-start;
+      flex: 1;
+      img {
+        max-width: 50em;
+        height: 30em;
+      }
+    }
     .shoe-details {
       .shoe-size {
         ul {
