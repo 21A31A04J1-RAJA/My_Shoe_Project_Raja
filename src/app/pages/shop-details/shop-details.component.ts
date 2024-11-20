@@ -22,6 +22,8 @@ export class ShopDetailsComponent implements OnInit {
   ngOnInit(): void {
     window.scroll(0, 0);
     const productId = Number(this.route.snapshot.paramMap.get('id'));
-    this.listOfProducts = this.productservice.getProducts()[productId - 1];
+    this.productservice
+      .getProducts()
+      .subscribe((products) => (this.listOfProducts = products[productId - 1]));
   }
 }

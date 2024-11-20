@@ -21,7 +21,9 @@ export class CarouselComponent implements OnInit {
   constructor(private productService: ProductService) {}
 
   ngOnInit() {
-    this.products = this.productService.getProducts();
+    this.productService
+      .getProducts()
+      .subscribe((products) => (this.products = products));
     this.responsiveOptions = [
       {
         breakpoint: '1199px',

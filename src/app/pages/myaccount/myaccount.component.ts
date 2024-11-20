@@ -16,7 +16,7 @@ import {
 export class MyaccountComponent {
   toggleForm: boolean = true;
 
-  loginInForm = new FormGroup({
+  loginForm = new FormGroup({
     email: new FormControl<string>('', [Validators.required, Validators.email]),
     password: new FormControl<string>('', [
       Validators.required,
@@ -32,15 +32,15 @@ export class MyaccountComponent {
     ]),
     name: new FormControl<string>('', [
       Validators.required,
-      Validators.minLength(3),
+      Validators.minLength(1),
     ]),
   });
 
   loginSubmit() {
-    this.loginInForm.get('email')?.markAsTouched();
-    this.loginInForm.get('password')?.markAsTouched();
-    console.log(this.loginInForm.value);
-    console.log(this.loginInForm.status);
+    this.loginForm.get('email')?.markAsTouched();
+    this.loginPassword?.markAsTouched();
+    console.log(this.loginForm.value);
+    console.log(this.loginForm.status);
   }
 
   signUpSubmit() {
@@ -53,5 +53,22 @@ export class MyaccountComponent {
 
   switchForm() {
     this.toggleForm = !this.toggleForm;
+  }
+
+  get loginEmail() {
+    return this.loginForm.get('email');
+  }
+  get loginPassword() {
+    return this.loginForm.get('password');
+  }
+
+  get signUpEmail() {
+    return this.signUpForm.get('email');
+  }
+  get signUpPassword() {
+    return this.signUpForm.get('password');
+  }
+  get signUpName() {
+    return this.signUpForm.get('password');
   }
 }
