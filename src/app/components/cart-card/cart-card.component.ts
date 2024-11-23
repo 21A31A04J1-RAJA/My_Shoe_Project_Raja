@@ -13,8 +13,6 @@ import { CartService } from '../../services/cart/cart.service';
 export class CartCardComponent {
   constructor(private cartService: CartService) {}
 
-  quantityItems: number = 1;
-
   @Input() product!: CartProduct;
 
   addItem() {

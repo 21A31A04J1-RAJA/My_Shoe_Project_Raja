@@ -14,7 +14,8 @@ export class RecapComponent implements OnInit {
   constructor(private cartService: CartService) {}
   ngOnInit(): void {
     this.cartService.total$.subscribe((value) => {
-      this.total = value;
+      this.subTotal = value.subtotal;
+      this.total = value.total;
     });
   }
   getTotalvalue() {
