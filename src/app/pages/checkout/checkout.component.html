@@ -1,0 +1,78 @@
+<h1>
+  Paiement
+</h1>
+<form [formGroup]="addressForm" (ngSubmit)="addressSubmit()">
+  <h2>Informations de livraison</h2>
+  <section>
+    <label for="name">Prénom
+      <input class="input-base" type="text" formControlName="name" id="name" placeholder="Entrez votre prénom">
+      @if(name?.touched && name?.invalid && !name?.hasError("minmength")){
+      <small class="error-message">Saisis votrez prénom</small>
+      }
+      @if(name?.touched && name?.invalid && name?.hasError("minlength")){
+      <small class="error-message">La saisie est trop courte</small>
+      }
+    </label>
+    <label for="surname">Nom
+      <input class="input-base" type="text" formControlName="surname" id="surname" placeholder="Entrez votre nom">
+      @if(surname?.touched && surname?.invalid && !surname?.hasError("minlength")){
+      <small class="error-message">Saisis votrez nom</small>
+      }
+      @if(surname?.touched && surname?.invalid && surname?.hasError("minlength")){
+      <small class="error-message">La saisie est trop courte</small>
+      }
+    </label>
+  </section>
+  <section>
+    <label for="adress">Adresse
+      <input class="input-base" type="text" formControlName="address" id="address" placeholder="Entrez votre addresse">
+      @if(address?.touched && address?.invalid){
+      <small class="error-message">Saisie une addresse.</small>
+      }
+    </label>
+  </section>
+  <section>
+    <label for="">Code postal
+      <input class="input-base" type="text" formControlName="postalCode" id="postalCode"
+        placeholder="Entrez votre code postal">
+      @if(postalCode?.touched && postalCode?.invalid){
+      <small class="error-message">Saisis votrez code postal.</small>
+      }
+    </label>
+    <label for="">Ville
+      <input class="input-base" type="text" formControlName="city" id="city" placeholder="Entrez votre ville">
+      @if(city?.touched && city?.invalid){
+      <small class="error-message">Saisie une ville.</small>
+      }
+    </label>
+    <label for="">Pays/Region
+      <input class="input-base" type="text" formControlName="country" id="country"
+        placeholder="Entrez votre pays ou region">
+      @if(country?.touched && country?.invalid){
+      <small class="error-message">Saisis un pays.</small>
+      }
+    </label>
+  </section>
+  <section>
+    <label for="">E-mail
+      <input class="input-base" type="text" formControlName="email" id="email" placeholder="Entrez votre e-mail">
+      @if(email?.touched && email?.invalid && !email?.hasError("email")){
+      <small class="error-message">Saisis un addresse e-mail.</small>
+      }
+      @if(email?.touched && email?.invalid && email?.hasError("email")){
+      <small class="error-message">Saisis un addresse e-mail valide.</small>
+      }
+    </label>
+    <label for="phone">Numéro de téléphone
+      <input class="input-base" type="text" formControlName="phone" id="phone"
+        placeholder=" Entrez votre numéro de téléphone">
+      @if(phone?.touched && phone?.invalid && !phone?.hasError("pattern")){
+      <small class="error-message">Saisis un numéro de téléphone.</small>
+      }
+      @if(phone?.touched && phone?.invalid && phone?.hasError("pattern")){
+      <small class="error-message">Saisis un numéro de téléphone valide.</small>
+      }
+    </label>
+  </section>
+  <button class="button-base" [disabled]="!addressForm.valid" type="submit">Enregistrer et continuer</button>
+</form>
