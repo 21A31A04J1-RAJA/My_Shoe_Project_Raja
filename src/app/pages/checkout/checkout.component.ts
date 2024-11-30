@@ -1,19 +1,35 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import {
   FormControl,
   FormGroup,
   Validators,
   ReactiveFormsModule,
 } from '@angular/forms';
+import { CartService } from '../../services/cart/cart.service';
+import CartProduct from '../../model/CartProduct';
+import { ShoesColorPipe } from '../../pipes/shoes-color.pipe';
 
 @Component({
   selector: 'app-checkout',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, ShoesColorPipe],
   templateUrl: './checkout.component.html',
   styleUrl: './checkout.component.scss',
 })
 export class CheckoutComponent {
+  subTotal: number = 0;
+  total: number = 0;
+  @Input() products: CartProduct[] = [];
+  constructor(private cartService: CartService) {}
+  ngOnInit(): void {
+    this.cartService.total$.subscribe((value) => {
+      this.subTotal = value.subtotal;
+      this.total = value.total;
+    });
+    this.cartService.listOfProducts$.subscribe((value) => {
+      this.products = value;
+    });
+  }
   addressForm = new FormGroup({
     name: new FormControl<string>('', [
       Validators.required,

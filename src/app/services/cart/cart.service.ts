@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import CartProduct from '../../model/CartProduct';
+import CartProduct, { Colors } from '../../model/CartProduct';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
