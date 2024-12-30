@@ -1,7 +1,7 @@
 export default class CartProduct {
   public quantity: number = 1;
   constructor(
-    public id: number,
+    public id: string,
     public code: string,
     public name: string,
     public title: string,

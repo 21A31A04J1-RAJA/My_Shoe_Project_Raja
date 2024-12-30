@@ -122,7 +122,6 @@ export class ShopProductDetailsComponent implements OnInit {
       this.product.updatedAt!,
       this.product.discount!
     );
-    console.log(cartProduct);
     return cartProduct;
   }
 

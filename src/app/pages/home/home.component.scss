@@ -25,7 +25,7 @@ main {
 
     p {
       width: 100%;
-      font-size: clamp(1em, 4vw, 4em);
+      font-size: clamp(2em, 4vw, 4em);
       font-weight: 600;
       line-height: 1;
       font-family: "Roboto", sans-serif;
@@ -33,7 +33,7 @@ main {
     }
     h1 {
       font-family: "Antonio", sans-serif;
-      font-size: clamp(4em, 12vw, 12em);
+      font-size: clamp(5em, 12vw, 12em);
       line-height: 1;
       color: $text-color;
 
@@ -93,7 +93,7 @@ main {
 @media screen and (min-width: 768px) {
   main {
     section {
-      background-size: 900px;
+      background-size: 600px;
     }
   }
 }

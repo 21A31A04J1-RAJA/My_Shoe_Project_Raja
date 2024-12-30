@@ -1,15 +1,25 @@
 import { Injectable } from '@angular/core';
-import CatalogProduct, { Colors, Status } from '../../model/CatalogProduct';
-import { Observable, of } from 'rxjs';
+import CatalogProduct from '../../model/CatalogProduct';
+import { catchError, Observable, of, tap, throwError } from 'rxjs';
+
+import { HttpClient } from '@angular/common/http';
 import { products } from '../../mock-product-list';
 @Injectable({
   providedIn: 'root',
 })
 export class ProductService {
-  private productList: CatalogProduct[] = products;
-  constructor() {}
+  private url: string = 'http://localhost:8080/api/products';
+  private productList = products;
+  constructor(private http: HttpClient) {}
 
   getProducts(): Observable<CatalogProduct[]> {
+    // return this.http.get<CatalogProduct[]>(`${this.url}`).pipe(
+    //   tap((product) => {}),
+    //   catchError((error) => {
+    //     console.error('Error fetching products', error);
+    //     return throwError(() => new Error('Failed fetch'));
+    //   })
+    // );
     return of(this.productList);
   }
 }

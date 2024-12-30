@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import CartProduct from '../../model/CartProduct';
+import CartProduct, { Colors } from '../../model/CartProduct';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
@@ -9,7 +9,10 @@ export class CartService {
   private listOfProducts = new BehaviorSubject<CartProduct[]>([]);
   listOfProducts$ = this.listOfProducts.asObservable();
 
-  private total = new BehaviorSubject<number>(0);
+  private total = new BehaviorSubject<{ subtotal: number; total: number }>({
+    subtotal: 0,
+    total: 0,
+  });
   total$ = this.total.asObservable();
 
   quantityOfProductsInCart: number = 0;
@@ -25,7 +28,6 @@ export class CartService {
           item.color === product.color &&
           item.size === product.size
       );
-    console.log(productIndex);
 
     if (productIndex != -1) {
       this.listOfProducts.getValue()[productIndex].updateQuantity();
@@ -56,16 +58,29 @@ export class CartService {
   }
 
   removeProductFromListOfProduct(product: CartProduct): void {
-    this.listOfProducts.next(
-      this.listOfProducts.getValue().filter((item) => item.id != product.id)
-    );
+    const productIndex = this.listOfProducts
+      .getValue()
+      .findIndex(
+        (item) =>
+          item.id === product.id &&
+          item.color === product.color &&
+          item.size === product.size
+      );
+    this.listOfProducts.getValue().splice(productIndex, 1);
+    this.listOfProducts.next(this.listOfProducts.getValue());
   }
 
   calculateTotal() {
-    this.total.next(
-      this.listOfProducts.getValue().reduce((acc, product) => {
-        return product.quantity * product.price + acc;
-      }, 0)
-    );
+    const subtotal = this.listOfProducts.getValue().reduce((acc, product) => {
+      return product.quantity * product.price + acc;
+    }, 0);
+    const discount = this.listOfProducts.getValue().reduce((acc, product) => {
+      return product.discount ? product.discount + acc : acc;
+    }, 0);
+    console.log((subtotal * discount) / 100);
+    this.total.next({
+      subtotal: subtotal,
+      total: subtotal - (subtotal * discount) / 100,
+    });
   }
 }

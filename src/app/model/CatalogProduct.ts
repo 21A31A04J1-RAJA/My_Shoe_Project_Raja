@@ -1,5 +1,5 @@
 export default interface CatalogProduct {
-  id: number;
+  id: string;
   code: string;
   name: string;
   title: string;
@@ -22,6 +22,7 @@ export interface ItemVariant {
 }
 
 export interface SizeStock {
+  id: string;
   size: string;
   stock: number;
 }
