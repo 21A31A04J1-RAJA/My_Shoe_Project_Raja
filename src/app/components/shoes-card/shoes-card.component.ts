@@ -17,7 +17,7 @@ export class ShoesCardComponent {
 
   @Input() product!: CatalogProduct;
 
-  redirectToShopDetails(id: number) {
+  redirectToShopDetails(id: string) {
     this.router.navigate([`/shop/${id}`]);
   }
 }

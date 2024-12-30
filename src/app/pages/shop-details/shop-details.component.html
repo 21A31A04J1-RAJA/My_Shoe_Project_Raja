@@ -1,5 +1,7 @@
 <main class="shoe-detail-page">
+  @if (listOfProducts) {
   <app-shop-product-details [product]="listOfProducts"></app-shop-product-details>
+  }
 
   <div class="related-products">
     <h3>PRODUITS LIÉS À CET ARTICLE</h3>

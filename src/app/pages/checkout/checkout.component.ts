@@ -51,7 +51,17 @@ export class CheckoutComponent {
   });
 
   addressSubmit() {
-    console.log(this.addressForm.value);
+    this.name?.markAsTouched();
+    this.surname?.markAsTouched();
+    this.address?.markAsTouched();
+    this.postalCode?.markAsTouched();
+    this.city?.markAsTouched();
+    this.country?.markAsTouched();
+    this.email?.markAsTouched();
+    this.phone?.markAsTouched();
+    if (this.addressForm.valid) {
+      console.log(this.addressForm.value);
+    }
   }
 
   public get name() {

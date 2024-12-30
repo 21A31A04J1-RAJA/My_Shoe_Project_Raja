@@ -12,7 +12,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrl: './shop-details.component.scss',
 })
 export class ShopDetailsComponent implements OnInit {
-  listOfProducts!: CatalogProduct;
+  listOfProducts?: CatalogProduct;
 
   constructor(
     private productservice: ProductService,
@@ -21,9 +21,14 @@ export class ShopDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     window.scroll(0, 0);
-    const productId = Number(this.route.snapshot.paramMap.get('id'));
+    const productId = this.route.snapshot.paramMap.get('id');
     this.productservice
       .getProducts()
-      .subscribe((products) => (this.listOfProducts = products[productId - 1]));
+      .subscribe(
+        (products) =>
+          (this.listOfProducts = products.find(
+            (product) => product.id == productId
+          ))
+      );
   }
 }
