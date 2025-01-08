@@ -7,7 +7,6 @@ export default class CartProduct {
     public title: string,
     public description: string,
     public details: string[],
-    public features: string[],
     public price: number,
     public category: string,
     public color: Colors,

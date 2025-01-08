@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import CartProduct from '../../model/CartProduct';
 import { CartService } from '../../services/cart/cart.service';
-import { ShoesColorPipe } from '../../pipes/shoes-color.pipe';
+import { ShoesColorPipe } from '../../pipes/shoesColor/shoes-color.pipe';
 
 @Component({
   selector: 'app-cart-card',
