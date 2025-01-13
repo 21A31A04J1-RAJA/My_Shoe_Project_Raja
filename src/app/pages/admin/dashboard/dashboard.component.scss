@@ -1,0 +1,58 @@
+.card {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  .custom-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+
+    th,
+    td {
+      text-align: left;
+      padding: 10px;
+      border: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #f4f4f4;
+      font-weight: bold;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+      height: 3em;
+      border-radius: 5px;
+      // background-color: red;
+    }
+
+    tbody tr {
+      &:nth-child(odd) {
+        background-color: #f9f9f9;
+      }
+
+      &:nth-child(even) {
+        background-color: #ffffff;
+      }
+
+      &:hover {
+        background-color: #eaeaea;
+      }
+    }
+  }
+}
+.background-red {
+  font-weight: bolder;
+  background-color: rgb(252, 88, 88);
+  // color: white;
+}
+
+.background-orange {
+  background-color: rgb(255, 197, 88);
+  font-weight: bolder;
+}
+
+.background-green {
+  font-weight: bolder;
+  background-color: rgb(82, 173, 82);
+}

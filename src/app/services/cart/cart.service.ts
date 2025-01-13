@@ -41,7 +41,6 @@ export class CartService {
           product.title,
           product.description,
           product.details,
-          product.features,
           product.price,
           product.category,
           product.color,

@@ -7,7 +7,7 @@ import {
 } from '@angular/forms';
 import { CartService } from '../../services/cart/cart.service';
 import CartProduct from '../../model/CartProduct';
-import { ShoesColorPipe } from '../../pipes/shoes-color.pipe';
+import { ShoesColorPipe } from '../../pipes/shoesColor/shoes-color.pipe';
 
 @Component({
   selector: 'app-checkout',

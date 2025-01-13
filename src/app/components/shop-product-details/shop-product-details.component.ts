@@ -16,7 +16,7 @@ import {
 import { CartService } from '../../services/cart/cart.service';
 import CartProduct from '../../model/CartProduct';
 import { ToastService } from '../../services/toast/toast.service';
-import { ShoesColorPipe } from '../../pipes/shoes-color.pipe';
+import { ShoesColorPipe } from '../../pipes/shoesColor/shoes-color.pipe';
 @Component({
   selector: 'app-shop-product-details',
   standalone: true,
@@ -40,7 +40,6 @@ export class ShopProductDetailsComponent implements OnInit {
     productTitle: new FormControl<string>(''),
     productDescription: new FormControl<string>(''),
     productDetails: new FormControl<string[]>([]),
-    productFeatures: new FormControl<string[]>([]),
     productPrice: new FormControl<number>(0),
     productCategory: new FormControl<string>(''),
     productColor: new FormControl<Colors | undefined>(
@@ -112,7 +111,6 @@ export class ShopProductDetailsComponent implements OnInit {
       this.product.title!,
       this.product.description!,
       this.product.details!,
-      this.product.features!,
       this.product.price!,
       this.product.category!,
       this.productForm.value.productColor!,
