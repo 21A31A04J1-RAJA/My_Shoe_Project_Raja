@@ -6,6 +6,7 @@ import { StatusColorPipe } from '../../../pipes/statusColor/status-color.pipe';
 import { ProductService } from './../../../services/product-service/product.service';
 import { Component, OnInit } from '@angular/core';
 import { SearchBarComponent } from '../../../components/search-bar/search-bar.component';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -17,16 +18,22 @@ import { SearchBarComponent } from '../../../components/search-bar/search-bar.co
 export class DashboardComponent implements OnInit {
   products!: CatalogProduct[];
   searchInput: string = '';
-  product!: CatalogProduct[];
-  constructor(private productService: ProductService) {}
+  searchInputProduct!: CatalogProduct[];
+  constructor(private productService: ProductService, private router: Router) {}
 
   ngOnInit(): void {
     this.productService
       .getProducts()
       .subscribe((item) => (this.products = item));
   }
+
   searchProduct(value: string) {
-    this.product = products.filter((item) => item.name.includes(value));
-    console.log(this.searchInput);
+    this.searchInputProduct = products.filter((item) =>
+      item.name.toLowerCase().includes(value.toLowerCase())
+    );
+  }
+
+  redirectToProductSettings(id: string) {
+    this.router.navigate([`/admin/${id}`]);
   }
 }

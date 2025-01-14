@@ -22,4 +22,12 @@ export class ProductService {
     // );
     return of(this.productList);
   }
+
+  getProductById(productId: string): Observable<CatalogProduct> {
+    const product = this.productList.find(
+      (product) => product.id === productId
+    );
+    if (product) return of(product);
+    return throwError(() => new Error('No product with this id'));
+  }
 }
