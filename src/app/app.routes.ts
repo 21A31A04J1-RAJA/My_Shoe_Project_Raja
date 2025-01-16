@@ -8,6 +8,7 @@ import { ShopDetailsComponent } from './pages/shop-details/shop-details.componen
 import { CartComponent } from './pages/cart/cart.component';
 import { CheckoutComponent } from './pages/checkout/checkout.component';
 import { DashboardComponent } from './pages/admin/dashboard/dashboard.component';
+import { ProductSettingsComponent } from './pages/admin/product-settings/product-settings.component';
 
 export const routes: Routes = [
   {
@@ -24,4 +25,5 @@ export const routes: Routes = [
   { path: 'cart', component: CartComponent },
   { path: 'checkout', component: CheckoutComponent },
   { path: 'admin', component: DashboardComponent },
+  { path: 'admin/:id', component: ProductSettingsComponent },
 ];

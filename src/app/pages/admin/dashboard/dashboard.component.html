@@ -1,44 +1,50 @@
 <div class="card">
+  <h1>Admin Dashboard</h1>
   <app-search-bar [(search)]="searchInput" (clickSearch)="searchProduct(searchInput)"></app-search-bar>
-  <table class="custom-table">
-    <thead>
-      <tr>
-        <th>Nom</th>
-        <th>Code</th>
-        <th>Image</th>
-        <th>Prix</th>
-        <th>Catégorie</th>
-        <th>Status</th>
-      </tr>
-    </thead>
-    <tbody>
-      @if (product != undefined) {
-      @for (item of product; track $index) {
-      <tr>
-        <td>{{item.name}}</td>
-        <td>{{item.code}}</td>
-        <td><img [src]="item.image" alt="Running Shoes" /></td>
-        <td>€{{item.price}}</td>
-        <td>{{item.category}}</td>
-        <td [ngClass]="item.variants | stockstatus | statusColor ">
-          {{item.variants | stockstatus}}
-        </td>
-      </tr>
-      }
-      }@else {
-      @for (product of products; track $index) {
-      <tr>
-        <td>{{product.name}}</td>
-        <td>{{product.code}}</td>
-        <td><img [src]="product.image" alt="Running Shoes" /></td>
-        <td>€{{product.price}}</td>
-        <td>{{product.category}}</td>
-        <td [ngClass]="product.variants | stockstatus | statusColor ">
-          {{product.variants | stockstatus}}
-        </td>
-      </tr>
-      }
-      }
-    </tbody>
-  </table>
+  <section class="table-wrapper">
+    <table class="custom-table">
+      <thead>
+        <tr>
+          <th>Nom</th>
+          <th>Code</th>
+          <th>Image</th>
+          <th>Prix</th>
+          <th>Catégorie</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        @if (searchInputProduct === undefined) {
+        @for (item of products; track $index) {
+        <tr (click)="redirectToProductSettings(item.id)">
+          <td>{{item.name}}</td>
+          <td>{{item.code}}</td>
+          <td><img [src]="item.image" alt="Running Shoes" /></td>
+          <td>€{{item.price}}</td>
+          <td>{{item.category}}</td>
+          <td [ngClass]="item.variants | stockstatus | statusColor ">
+            {{item.variants | stockstatus}}
+          </td>
+        </tr>
+        }
+        }@else if(searchInputProduct != undefined) {
+        @for (product of searchInputProduct ; track $index) {
+        <tr (click)="redirectToProductSettings(product.id)">
+          <td>{{product.name}}</td>
+          <td>{{product.code}}</td>
+          <td><img [src]="product.image" alt="Running Shoes" /></td>
+          <td>€{{product.price}}</td>
+          <td>{{product.category}}</td>
+          <td [ngClass]="product.variants | stockstatus | statusColor ">
+            {{product.variants | stockstatus}}
+          </td>
+        </tr>
+        }
+        }
+      </tbody>
+    </table>
+    @if (searchInputProduct != undefined && searchInputProduct.length === 0) {
+    <p class="not-found">Auncun produit trouvé avec ce nom</p>
+    }
+  </section>
 </div>
