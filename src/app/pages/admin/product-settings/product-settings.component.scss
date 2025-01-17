@@ -1,0 +1,100 @@
+@import ".././../../../styles/variables.scss";
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 1em;
+  h1 {
+    padding: 1em 0;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    label {
+      display: flex;
+      flex-direction: column;
+    }
+    input {
+      margin: 0.2em 0 1em 0;
+      max-width: 20em;
+      width: 100%;
+      padding: 0.75rem;
+      font-size: 1rem;
+      border: 1px solid #e2e8f0;
+      border-radius: 0.4em;
+      background-color: #ffffff;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+      &:focus {
+        border-color: $primary-color;
+        box-shadow: 0 0 0 1px lighten($primary-color, 30%);
+        outline: none;
+      }
+      &::placeholder {
+        color: rgb(175, 175, 175);
+      }
+    }
+    button {
+      margin-top: 2em;
+      padding: 0.75rem;
+      font-size: 1rem;
+      color: #ffffff;
+      background-color: $primary-color;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.2s ease;
+
+      &:hover {
+        background-color: darken($primary-color, 10%);
+      }
+    }
+    .details {
+      padding: 1em 0;
+      label {
+        display: flex;
+        flex-direction: column;
+        padding: 0.4em 0;
+        textarea {
+          padding: 0.6em;
+          resize: none;
+          width: 36em;
+          height: 8em;
+        }
+      }
+    }
+    .variant {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1em;
+
+      .variant-color {
+        display: flex;
+        justify-content: center;
+        margin: 1em 0;
+        padding: 1em;
+        border: 1px solid lightgray;
+        border-radius: 0.4em;
+        gap: 1em;
+        background-color: rgb(218, 218, 218);
+
+        .size-stock-list {
+          display: flex;
+          flex-direction: column;
+          .size-stock {
+            display: flex;
+            margin: 0.4em;
+            gap: 0.6em;
+
+            label {
+              input {
+                width: 4em;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,64 @@
+<h1>Update Product</h1>
+<form [formGroup]="productForm" (ngSubmit)="updateProduct()">
+  <label for="code">Code
+    <input type="text" id="code" name="code" formControlName="code">
+  </label>
+  <label for="name">Nom
+    <input type="text" id="name" name="name" formControlName="name">
+  </label>
+  <label for="title">Title
+    <input type="text" id="title" name="title" formControlName="title">
+  </label>
+  <label for="description">Description
+    <input type="text" id="description" name="description" formControlName="description">
+  </label>
+
+  <div formArrayName="details" class="details">
+    @for (detail of detailsForm.controls; track $index) {
+    <label for={{$index}}>
+      Detail {{$index + 1}}
+      <textarea type="text" [formControlName]="$index" name={{$index}} id={{$index}}></textarea>
+    </label>
+    }
+  </div>
+  <label for="price">Prix
+    <input type="text" id="price" name="price" formControlName="price">
+  </label>
+  <label for="category">Category
+    <input type="text" id="category" name="category" formControlName="category">
+  </label>
+  <label for="discount">Discount
+    <input type="text" id="discount" name="discount" formControlName="discount">
+  </label>
+  <h2>Colors sizes and stock</h2>
+  <section formArrayName="variant" class="variant">
+    @for (item of variantForm.controls; track $index) {
+    <div [formGroupName]="$index" class="variant-color">
+
+      <label for="color">Color
+        <input type="input" name="color" id="color" formControlName="color">
+      </label>
+      <div formArrayName="sizeStock" class="size-stock-list">
+        @for (variant of item.get("sizeStock")?.value; track $index) {
+        <div class="size-stock">
+          <label for="" [formGroupName]="$index">
+            Size:
+            <input type="text" name="" id="" formControlName="size">
+          </label>
+
+
+          <label for="" [formGroupName]="$index">
+            Stock:
+            <input type="number" name="" id="" formControlName="stock">
+          </label>
+        </div>
+        }
+      </div>
+    </div>
+    }
+  </section>
+
+
+
+  <button class="button-base" type="submit">Save</button>
+</form>
