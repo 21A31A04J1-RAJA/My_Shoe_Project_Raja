@@ -1,7 +1,7 @@
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../../services/product-service/product.service';
-import CatalogProduct, { ItemVariant } from '../../../model/CatalogProduct';
+import CatalogProduct from '../../../model/CatalogProduct';
 import {
   FormArray,
   FormControl,
@@ -20,7 +20,6 @@ import { CommonModule } from '@angular/common';
 })
 export class ProductSettingsComponent implements OnInit {
   product!: CatalogProduct;
-
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService
@@ -35,10 +34,10 @@ export class ProductSettingsComponent implements OnInit {
       Validators.required,
       Validators.minLength(1),
     ]),
-    details: new FormArray([]),
+    details: new FormArray<FormGroup>([]),
     price: new FormControl<number>(0),
     category: new FormControl<string>(''),
-    variant: new FormArray([]),
+    variant: new FormArray<FormGroup>([]),
     image: new FormControl<string>(''),
     createdAt: new FormControl<Date>(new Date()),
     updatedAt: new FormControl<Date>(new Date()),
@@ -51,7 +50,6 @@ export class ProductSettingsComponent implements OnInit {
     if (productId)
       this.productService.getProductById(productId).subscribe((product) => {
         this.product = product;
-
         this.productForm.patchValue({
           id: product.id,
           code: product.code,
@@ -60,7 +58,6 @@ export class ProductSettingsComponent implements OnInit {
           description: product.description,
           price: product.price,
           category: product.category,
-          // variant: product.variants,
           image: product.image,
           createdAt: product.createdAt,
           updatedAt: product.updatedAt,
@@ -92,19 +89,65 @@ export class ProductSettingsComponent implements OnInit {
           this.variantForm.push(variantControl);
         });
       });
-    console.log(this.variantForm.value);
+  }
+  addVariant(): void {
+    this.variantForm.push(
+      new FormGroup({
+        color: new FormControl('', Validators.required),
+        sizeStock: new FormArray([
+          new FormGroup({
+            size: new FormControl('', Validators.required),
+            stock: new FormControl('', [
+              Validators.required,
+              Validators.min(0),
+            ]),
+          }),
+        ]),
+      })
+    );
   }
 
-  get detailsForm() {
+  getDetailControl(index: number): FormControl {
+    return this.detailsForm.at(index) as FormControl;
+  }
+
+  get detailsForm(): FormArray {
     return this.productForm.get('details') as FormArray;
   }
 
-  get variantForm() {
+  get variantForm(): FormArray<FormGroup> {
     return this.productForm.get('variant') as FormArray;
+  }
+
+  deleteDetail(index: number) {
+    this.detailsForm.removeAt(index, { emitEvent: true });
+  }
+
+  addDetail(): void {
+    this.detailsForm.push(new FormControl('', Validators.required));
+  }
+
+  addSizeStock(index: number) {
+    const sizeStockFormArray = this.variantForm
+      .at(index)
+      .get('sizeStock') as FormArray;
+
+    const newSizeStock = new FormGroup({
+      size: new FormControl('', Validators.required),
+      stock: new FormControl(null, [Validators.required, Validators.min(0)]),
+    });
+    sizeStockFormArray.push(newSizeStock);
+  }
+
+  deleteSizeStcok(variantIndex: number, sizeStockIndex: number) {
+    const value = this.variantForm
+      .at(variantIndex)
+      .get('sizeStock') as FormArray;
+    value.removeAt(sizeStockIndex);
   }
 
   updateProduct() {
     console.log(this.productForm.status);
-    console.log(this.productForm.value.variant);
+    console.log(this.productForm.value);
   }
 }
