@@ -1,5 +1,5 @@
 <h1>Update Product</h1>
-<form [formGroup]="productForm" (ngSubmit)="updateProduct()">
+<form [formGroup]="productForm" (ngSubmit)="save()">
   <section class="first">
     <label for="code" class="product-label">Code:
       <input type="text" id="code" name="code" formControlName="code">
@@ -50,16 +50,16 @@
           <button type="button" (click)="addSizeStock($index)">Add Size Stock</button>
         </div>
         <div formArrayName="sizeStock" class="size-stock-list">
-          @for (variant of item.get("sizeStock")?.value; track $index) {
-          <div class="size-stock">
-            <label for="" [formGroupName]="$index">
+          @for (sizeStock of getSizeStockArray(colorIndex).controls; track $index) {
+          <div class="size-stock" [formGroup]="getSizeStockControl(colorIndex, $index)">
+            <label for="">
               Size:
-              <input type="text" name="" id="" formControlName="size">
+              <input type="text" formControlName="size">
             </label>
-            <label for="" [formGroupName]="$index">
+            <label for="">
               Stock:
-              <input type="number" name="" id="" formControlName="stock">
-              <button type="button" (click)="deleteSizeStcok(colorIndex, variant)">Delete</button>
+              <input type="number" formControlName="stock">
+              <button type="button" (click)="deleteSizeStcok(colorIndex, $index)">Delete</button>
             </label>
           </div>
           }

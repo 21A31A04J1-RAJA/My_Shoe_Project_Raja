@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../../services/product-service/product.service';
 import CatalogProduct from '../../../model/CatalogProduct';
 import {
+  AbstractControl,
   FormArray,
   FormControl,
   FormGroup,
@@ -90,6 +91,15 @@ export class ProductSettingsComponent implements OnInit {
         });
       });
   }
+
+  get detailsForm(): FormArray {
+    return this.productForm.get('details') as FormArray;
+  }
+
+  get variantForm(): FormArray<FormGroup> {
+    return this.productForm.get('variant') as FormArray;
+  }
+
   addVariant(): void {
     this.variantForm.push(
       new FormGroup({
@@ -111,14 +121,6 @@ export class ProductSettingsComponent implements OnInit {
     return this.detailsForm.at(index) as FormControl;
   }
 
-  get detailsForm(): FormArray {
-    return this.productForm.get('details') as FormArray;
-  }
-
-  get variantForm(): FormArray<FormGroup> {
-    return this.productForm.get('variant') as FormArray;
-  }
-
   deleteDetail(index: number) {
     this.detailsForm.removeAt(index, { emitEvent: true });
   }
@@ -137,17 +139,36 @@ export class ProductSettingsComponent implements OnInit {
       stock: new FormControl(null, [Validators.required, Validators.min(0)]),
     });
     sizeStockFormArray.push(newSizeStock);
+    console.log(this.productForm);
+  }
+
+  getSizeStockControl(variantIndex: number, sizeStockIndex: number): FormGroup {
+    const sizeStockArray = this.variantForm
+      .at(variantIndex)
+      .get('sizeStock') as FormArray;
+    return sizeStockArray.at(sizeStockIndex) as FormGroup;
+  }
+
+  getSizeStockArray(variantIndex: number): FormArray {
+    return this.variantForm.at(variantIndex).get('sizeStock') as FormArray;
   }
 
   deleteSizeStcok(variantIndex: number, sizeStockIndex: number) {
     const value = this.variantForm
       .at(variantIndex)
       .get('sizeStock') as FormArray;
+
     value.removeAt(sizeStockIndex);
   }
 
-  updateProduct() {
-    console.log(this.productForm.status);
-    console.log(this.productForm.value);
+  save() {
+    if (this.productForm.valid)
+      this.productService
+        .upDateProduct(this.productForm.value as CatalogProduct)
+        .subscribe({
+          next: () => {
+            console.log('Product upload successfully');
+          },
+        });
   }
 }
