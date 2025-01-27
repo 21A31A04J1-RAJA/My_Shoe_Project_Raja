@@ -9,6 +9,7 @@ import { CartComponent } from './pages/cart/cart.component';
 import { CheckoutComponent } from './pages/checkout/checkout.component';
 import { DashboardComponent } from './pages/admin/dashboard/dashboard.component';
 import { ProductSettingsComponent } from './pages/admin/product-settings/product-settings.component';
+import { AuthGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
   {
@@ -24,6 +25,14 @@ export const routes: Routes = [
   { path: 'contact', component: ContactComponent },
   { path: 'cart', component: CartComponent },
   { path: 'checkout', component: CheckoutComponent },
-  { path: 'admin', component: DashboardComponent },
-  { path: 'admin/:id', component: ProductSettingsComponent },
+  {
+    path: 'admin',
+    component: DashboardComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'admin/:id',
+    component: ProductSettingsComponent,
+    canActivate: [AuthGuard],
+  },
 ];
