@@ -6,6 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { AuthService } from '../../services/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-myaccount',
@@ -16,7 +17,7 @@ import { AuthService } from '../../services/auth/auth.service';
 })
 export class MyaccountComponent {
   toggleForm: boolean = true;
-  constructor(private auth: AuthService) {}
+  constructor(private auth: AuthService, private router: Router) {}
 
   loginForm = new FormGroup({
     email: new FormControl<string>('', [Validators.required, Validators.email]),
@@ -46,6 +47,7 @@ export class MyaccountComponent {
       .subscribe({
         next: (response) => {
           console.log(response);
+          this.router.navigate(['/home']);
         },
         error: (error) => {
           console.log(error);
@@ -68,13 +70,15 @@ export class MyaccountComponent {
       .subscribe({
         next: (response) => {
           console.log(response);
+          this.toggleForm = true;
         },
         error: (error) => {
           console.log(error);
         },
       });
-    // console.log(this.signUpForm.value);
-    // console.log(this.signUpForm.status);
+
+    console.log(this.signUpForm.value);
+    console.log(this.signUpForm.status);
   }
 
   switchForm() {

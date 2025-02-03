@@ -10,7 +10,7 @@ import { ToastComponent } from './components/toast/toast.component';
   imports: [
     RouterOutlet,
     NavbarComponent,
-    RouterLinkActive,
+    // RouterLinkActive,
     FooterComponent,
     ToastComponent,
   ],

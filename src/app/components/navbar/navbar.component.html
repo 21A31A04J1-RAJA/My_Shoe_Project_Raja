@@ -26,18 +26,24 @@
             </li>
             <li (click)="openMenu()"><a routerLink="/contact" routerLinkActive="active" aria-current="page">CONTACT</a>
             </li>
+            @if (isUserAdmin) {
+            <li (click)="openMenu()"><a routerLink="/admin" routerLinkActive="active" aria-current="page">ADMIN</a>
+            </li>
+            }
           </ul>
         </section>
       </section>
     </div>
     <section class="menu-desktop">
       <ul>
-        <li><a routerLink="/admin" routerLinkActive="active" aria-current="page">ADMIN</a></li>
         <li><a routerLink="/home" routerLinkActive="active" aria-current="page">ACCUEIL</a></li>
         <li><a routerLink="/shop" routerLinkActive="active" aria-current="page">BOUTIQUE</a></li>
-        <li><a routerLink="/myaccount" routerLinkActive="active" aria-current="page">MON COMPTE</a></li>
         <li><a routerLink="/about" routerLinkActive="active" aria-current="page">À PROPOS</a></li>
         <li><a routerLink="/contact" routerLinkActive="active" aria-current="page">CONTACT</a></li>
+        <li><a routerLink="/myaccount" routerLinkActive="active" aria-current="page">MON COMPTE</a></li>
+        @if (isUserAdmin) {
+        <li><a routerLink="/admin" routerLinkActive="active" aria-current="page">ADMIN</a></li>
+        }
       </ul>
       <button class="cart-desktop">
         <a routerLink="/cart">
@@ -45,6 +51,7 @@
           <p class="cart-quantity">{{quantityOfProductsInCart}}</p>
         </a>
       </button>
+      <app-pop-over></app-pop-over>
     </section>
   </nav>
 </section>

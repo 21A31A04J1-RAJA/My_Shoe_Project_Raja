@@ -1,0 +1,23 @@
+<button class="button-profile" pButton type="button" (click)="toggle($event)">
+  <i class="pi pi-user profile" style="font-size: 1.4rem"></i>
+</button>
+<p-overlayPanel class="pop-over" #op>
+  <ul>
+    <li>
+      <a routerLink="/profile">Profil</a>
+    </li>
+    <li>
+      <a routerLink="/admin">Admin</a>
+    </li>
+    <li>
+      <a>Commandes</a>
+    </li>
+    <li>
+      <a>Favoris</a>
+    </li>
+    <li>
+      <a>Paramètres du compte</a>
+    </li>
+  </ul>
+  <button type="button" (click)="logout()">Se déconnecter</button>
+</p-overlayPanel>

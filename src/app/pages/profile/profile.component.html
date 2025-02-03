@@ -1,0 +1,30 @@
+<section class="profile-container">
+  <section class="profile-header">
+    <div class="image-profile"></div>
+    <div class="profile-info">
+      <h2 class="user-name">{{ user.name }}</h2>
+      <p class="membership-status">{{ user.membership }}</p>
+    </div>
+  </section>
+  <section class="profile-navigation">
+    <ul>
+      <li><a href="#">Favoris</a></li>
+      <li><a href="#">Commandes</a></li>
+      <!-- <li><a href="#">Boîte de réception</a></li> -->
+      <li><a href="#">Paramètres</a></li>
+    </ul>
+  </section>
+  <section class="favorites-section">
+    <h3>Favoris</h3>
+    <div class="favorites-list">
+      <!-- <div class="favorite-item" *ngFor="let favorite of favorites">
+        <img [src]="favorite.img" alt="{{ favorite.name }}" class="favorite-img" />
+        <div class="favorite-info">
+          <h4>{{ favorite.name }}</h4>
+          <p>{{ favorite.type }}</p>
+          <p class="price">{{ favorite.price }}</p>
+        </div>
+      </div> -->
+    </div>
+  </section>
+</section>

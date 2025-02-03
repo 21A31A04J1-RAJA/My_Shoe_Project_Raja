@@ -3,19 +3,34 @@ import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { CartService } from '../../services/cart/cart.service';
+import { AuthService } from '../../services/auth/auth.service';
+import { PopOverComponent } from '../pop-over/pop-over.component';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive, ButtonModule, CommonModule],
+  imports: [
+    RouterLink,
+    RouterLinkActive,
+    ButtonModule,
+    CommonModule,
+    PopOverComponent,
+  ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',
 })
 export class NavbarComponent {
-  constructor(private cartService: CartService) {
+  isUserAdmin: boolean = false;
+  constructor(
+    private cartService: CartService,
+    private authService: AuthService
+  ) {
     this.cartService.listOfProducts$.subscribe(
       (value) => (this.quantityOfProductsInCart = value.length)
     );
+    this.authService.isAuthenticated$.subscribe((isAuthenticated) => {
+      this.isUserAdmin = isAuthenticated;
+    });
   }
   quantityOfProductsInCart!: number;
   openCloseMenu: boolean = false;

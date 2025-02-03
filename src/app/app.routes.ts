@@ -9,7 +9,9 @@ import { CartComponent } from './pages/cart/cart.component';
 import { CheckoutComponent } from './pages/checkout/checkout.component';
 import { DashboardComponent } from './pages/admin/dashboard/dashboard.component';
 import { ProductSettingsComponent } from './pages/admin/product-settings/product-settings.component';
-import { AuthGuard } from './guards/auth.guard';
+import { AdminGuard } from './guards/admin.guard';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { userLoggedGuard } from './guards/user-logged.guard';
 
 export const routes: Routes = [
   {
@@ -25,14 +27,20 @@ export const routes: Routes = [
   { path: 'contact', component: ContactComponent },
   { path: 'cart', component: CartComponent },
   { path: 'checkout', component: CheckoutComponent },
+
+  {
+    path: 'profile',
+    component: ProfileComponent,
+    canActivate: [userLoggedGuard],
+  },
   {
     path: 'admin',
     component: DashboardComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AdminGuard],
   },
   {
     path: 'admin/:id',
     component: ProductSettingsComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AdminGuard],
   },
 ];
