@@ -27,7 +27,6 @@ export const routes: Routes = [
   { path: 'contact', component: ContactComponent },
   { path: 'cart', component: CartComponent },
   { path: 'checkout', component: CheckoutComponent },
-
   {
     path: 'profile',
     component: ProfileComponent,
@@ -43,4 +42,5 @@ export const routes: Routes = [
     component: ProductSettingsComponent,
     canActivate: [AdminGuard],
   },
+  { path: '**', component: HomeComponent },
 ];

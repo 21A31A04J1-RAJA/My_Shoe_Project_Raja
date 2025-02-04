@@ -4,12 +4,12 @@ import { Router } from '@angular/router';
 
 export const userLoggedGuard: CanActivateFn = (route, state) => {
   const router = inject(Router);
-  const authToken = sessionStorage.getItem('auth-token');
-  const userRole = sessionStorage.getItem('role');
+  const authToken = localStorage.getItem('auth-token');
+  const userRole = localStorage.getItem('role');
 
-  if (authToken && userRole === 'USER') {
+  if ((authToken && userRole === 'USER') || userRole === 'ADMIN') {
     return true;
   }
-  return false;
   router.navigateByUrl('/myaccount');
+  return false;
 };

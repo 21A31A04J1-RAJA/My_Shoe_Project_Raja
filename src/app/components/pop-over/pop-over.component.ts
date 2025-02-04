@@ -1,5 +1,5 @@
 import { AuthService } from './../../services/auth/auth.service';
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { RouterLink } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
@@ -12,9 +12,16 @@ import { CommonModule } from '@angular/common';
   templateUrl: './pop-over.component.html',
   styleUrl: './pop-over.component.scss',
 })
-export class PopOverComponent {
+export class PopOverComponent implements OnInit {
   @ViewChild('op') op!: PopOverComponent;
+  isUserAdmin: boolean = false;
   constructor(private authService: AuthService) {}
+
+  ngOnInit(): void {
+    this.authService.isUserAdmin$.subscribe((isUserAdmin) => {
+      this.isUserAdmin = isUserAdmin;
+    });
+  }
 
   toggle(event: Event) {
     this.op.toggle(event);

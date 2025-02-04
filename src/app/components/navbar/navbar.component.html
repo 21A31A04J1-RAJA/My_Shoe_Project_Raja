@@ -51,7 +51,9 @@
           <p class="cart-quantity">{{quantityOfProductsInCart}}</p>
         </a>
       </button>
+      @if (isUserAuthenticated) {
       <app-pop-over></app-pop-over>
+      }
     </section>
   </nav>
 </section>

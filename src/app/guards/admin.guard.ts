@@ -5,12 +5,12 @@ import { AuthService } from '../services/auth/auth.service';
 export const AdminGuard: CanActivateFn = () => {
   const auth = inject(AuthService);
   const router = inject(Router);
-  const authToken = sessionStorage.getItem('auth-token');
-  const userRole = sessionStorage.getItem('role');
+  const authToken = localStorage.getItem('auth-token');
+  const userRole = localStorage.getItem('role');
 
   if (authToken && userRole === 'ADMIN') {
     return true;
   }
-  return false;
   router.navigateByUrl('/myaccount');
+  return false;
 };

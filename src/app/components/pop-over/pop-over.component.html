@@ -3,19 +3,21 @@
 </button>
 <p-overlayPanel class="pop-over" #op>
   <ul>
-    <li>
+    <li (click)="toggle($event)">
       <a routerLink="/profile">Profil</a>
     </li>
-    <li>
+    @if (isUserAdmin) {
+    <li (click)="toggle($event)">
       <a routerLink="/admin">Admin</a>
     </li>
-    <li>
+    }
+    <li (click)="toggle($event)">
       <a>Commandes</a>
     </li>
-    <li>
+    <li (click)="toggle($event)">
       <a>Favoris</a>
     </li>
-    <li>
+    <li (click)="toggle($event)">
       <a>Paramètres du compte</a>
     </li>
   </ul>
