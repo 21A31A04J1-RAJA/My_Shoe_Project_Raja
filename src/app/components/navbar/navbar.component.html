@@ -26,7 +26,7 @@
             </li>
             <li (click)="openMenu()"><a routerLink="/contact" routerLinkActive="active" aria-current="page">CONTACT</a>
             </li>
-            @if (isUserAdmin) {
+            @if (isAdmin) {
             <li (click)="openMenu()"><a routerLink="/admin" routerLinkActive="active" aria-current="page">ADMIN</a>
             </li>
             }
@@ -41,7 +41,7 @@
         <li><a routerLink="/about" routerLinkActive="active" aria-current="page">À PROPOS</a></li>
         <li><a routerLink="/contact" routerLinkActive="active" aria-current="page">CONTACT</a></li>
         <li><a routerLink="/myaccount" routerLinkActive="active" aria-current="page">MON COMPTE</a></li>
-        @if (isUserAdmin) {
+        @if (isAdmin) {
         <li><a routerLink="/admin" routerLinkActive="active" aria-current="page">ADMIN</a></li>
         }
       </ul>
@@ -51,7 +51,7 @@
           <p class="cart-quantity">{{quantityOfProductsInCart}}</p>
         </a>
       </button>
-      @if (isUserAuthenticated) {
+      @if (isUser || isAdmin) {
       <app-pop-over></app-pop-over>
       }
     </section>

@@ -6,7 +6,7 @@
     <li (click)="toggle($event)">
       <a routerLink="/profile">Profil</a>
     </li>
-    @if (isUserAdmin) {
+    @if (isAdmin) {
     <li (click)="toggle($event)">
       <a routerLink="/admin">Admin</a>
     </li>

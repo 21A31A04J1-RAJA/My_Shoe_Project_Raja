@@ -20,8 +20,8 @@ import { PopOverComponent } from '../pop-over/pop-over.component';
   styleUrl: './navbar.component.scss',
 })
 export class NavbarComponent {
-  isUserAdmin: boolean = false;
-  isUserAuthenticated: boolean = false;
+  isAdmin: boolean = false;
+  isUser: boolean = false;
   constructor(
     private cartService: CartService,
     private authService: AuthService
@@ -29,11 +29,11 @@ export class NavbarComponent {
     this.cartService.listOfProducts$.subscribe(
       (value) => (this.quantityOfProductsInCart = value.length)
     );
-    this.authService.isUserAdmin$.subscribe((isUserAdmin) => {
-      this.isUserAdmin = isUserAdmin;
+    this.authService.isAdminAuthenticate$.subscribe((isAdmin) => {
+      this.isAdmin = isAdmin;
     });
-    this.authService.isUserAuthenticated$.subscribe((isUserAuthenticated) => {
-      this.isUserAuthenticated = isUserAuthenticated;
+    this.authService.isUserAuthenticate$.subscribe((isUser) => {
+      this.isUser = isUser;
     });
   }
   quantityOfProductsInCart!: number;

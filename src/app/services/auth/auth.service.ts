@@ -1,17 +1,29 @@
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, tap } from 'rxjs';
+import {
+  BehaviorSubject,
+  catchError,
+  Observable,
+  Subject,
+  tap,
+  throwError,
+} from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   private apiUrl: string = 'http://localhost:8080/api';
-  // private isUserAuthenticated: boolean = false;
-  // private isAdmin = false;
-  private isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
-  isAuthenticated$ = this.isAuthenticatedSubject.asObservable();
+
+  private userSubject = new Subject<UserAuth>();
+  user$ = this.userSubject.asObservable();
+
+  private isUserAuthenticateSubject = new BehaviorSubject<boolean>(false);
+  isUserAuthenticate$ = this.isUserAuthenticateSubject.asObservable();
+
+  private isAdminAuthenticateSubject = new BehaviorSubject<boolean>(false);
+  isAdminAuthenticate$ = this.isAdminAuthenticateSubject.asObservable();
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -26,14 +38,11 @@ export class AuthService {
       }),
     };
     return this.http
-      .post<AuthResponse>(this.apiUrl + '/login', body, httpOptions)
+      .post<{ token: string }>(this.apiUrl + '/login', body, httpOptions)
       .pipe(
         tap((value) => {
-          sessionStorage.setItem('auth-token', value.token);
-          sessionStorage.setItem('role', value.role);
-          if (value.role === 'ADMIN') {
-            this.isAuthenticatedSubject.next(true);
-          }
+          localStorage.setItem('auth-token', value.token);
+          this.authenticateUser()?.subscribe(() => {});
         })
       );
   }
@@ -57,26 +66,45 @@ export class AuthService {
   }
 
   logout() {
-    sessionStorage.clear();
-    this.isAuthenticatedSubject.next(false);
+    localStorage.removeItem('auth-token');
+    this.isUserAuthenticateSubject.next(false);
+    this.isAdminAuthenticateSubject.next(false);
     this.router.navigate(['/home']);
-    // this.isUserAdmin();
   }
 
-  // isAuthenticated() {
-  //   return this.isUserAuthenticated;
-  // }
-
-  // isUserAdmin() {
-  //   const authToken = sessionStorage.getItem('auth-token');
-  //   const user = sessionStorage.getItem('role');
-  //   if (authToken && user === 'ADMIN') {
-  //     this.isAdmin = true;
-  //   }
-  //   return this.isAdmin;
-  // }
+  authenticateUser(): Observable<UserAuth> | null {
+    const token: String | null = localStorage.getItem('auth-token');
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      }),
+    };
+    if (token) {
+      return this.http
+        .post<UserAuth>(this.apiUrl + '/authenticate', token, httpOptions)
+        .pipe(
+          tap((user: UserAuth) => {
+            this.userSubject.next(user);
+            if (user.role === 'USER') {
+              this.isUserAuthenticateSubject.next(true);
+            }
+            if (user.role === 'ADMIN') {
+              this.isAdminAuthenticateSubject.next(true);
+            }
+          }),
+          catchError((error) => {
+            return throwError(() => new Error(error));
+          })
+        );
+    }
+    return null;
+  }
 }
-type AuthResponse = {
-  token: string;
+
+interface UserAuth {
+  id: string;
+  email: string;
+  username: string;
   role: string;
-};
+}

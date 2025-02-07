@@ -14,12 +14,12 @@ import { CommonModule } from '@angular/common';
 })
 export class PopOverComponent implements OnInit {
   @ViewChild('op') op!: PopOverComponent;
-  isUserAdmin: boolean = false;
+  isAdmin: boolean = false;
   constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
-    this.authService.isUserAdmin$.subscribe((isUserAdmin) => {
-      this.isUserAdmin = isUserAdmin;
+    this.authService.isAdminAuthenticate$.subscribe((isAdmin) => {
+      this.isAdmin = isAdmin;
     });
   }
 
