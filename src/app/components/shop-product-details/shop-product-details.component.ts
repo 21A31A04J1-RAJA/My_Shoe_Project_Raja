@@ -127,7 +127,7 @@ export class ShopProductDetailsComponent implements OnInit {
     this.productForm.get('productSize')?.markAsTouched();
     if (this.productForm.valid) {
       this.cartService.addProductToCart(this.createNewcartItem());
-      this.toastService.showToast(this.createNewcartItem());
+      this.toastService.showCartToast(this.createNewcartItem());
     }
   }
 }

@@ -1,18 +1,21 @@
+import { AuthService } from './../services/auth/auth.service';
 import { inject } from '@angular/core';
-import { CanActivateFn } from '@angular/router';
-import { Router } from '@angular/router';
-import { AuthService } from '../services/auth/auth.service';
+import { CanActivateFn, Router } from '@angular/router';
+import { firstValueFrom } from 'rxjs';
 
 export const userLoggedGuard: CanActivateFn = async (route, state) => {
   const router = inject(Router);
-  const userAuth = inject(AuthService);
-  let isUser: boolean = false;
-  userAuth.isUserAuthenticate$.subscribe((value) => {
-    isUser = value;
-  });
-  if (isUser) {
-    return true;
+  const authService = inject(AuthService);
+
+  const authResponse = authService.authenticateUser();
+  if (!authResponse) return router.createUrlTree(['/myaccount']);
+  try {
+    const user = await firstValueFrom(authResponse);
+    return user.role === 'USER' || user.role === 'ADMIN'
+      ? true
+      : router.createUrlTree(['/myaccount']);
+  } catch (error) {
+    router.createUrlTree(['/myaccount']);
+    return false;
   }
-  router.navigateByUrl('/myaccount');
-  return false;
 };

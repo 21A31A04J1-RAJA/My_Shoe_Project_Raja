@@ -16,6 +16,7 @@ export class ProfileComponent implements OnInit {
     this.authService.authenticateUser()?.subscribe((value) => {
       this.user = value;
     });
+    console.log();
   }
 }
 interface UserAuth {

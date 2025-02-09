@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { CartService } from '../../services/cart/cart.service';
@@ -19,13 +19,14 @@ import { PopOverComponent } from '../pop-over/pop-over.component';
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit {
   isAdmin: boolean = false;
   isUser: boolean = false;
   constructor(
     private cartService: CartService,
     private authService: AuthService
-  ) {
+  ) {}
+  ngOnInit(): void {
     this.cartService.listOfProducts$.subscribe(
       (value) => (this.quantityOfProductsInCart = value.length)
     );

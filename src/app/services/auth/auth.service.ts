@@ -92,6 +92,7 @@ export class AuthService {
             if (user.role === 'ADMIN') {
               this.isAdminAuthenticateSubject.next(true);
             }
+            return user;
           }),
           catchError((error) => {
             return throwError(() => new Error(error));

@@ -69,17 +69,24 @@ export class CartService {
     this.listOfProducts.next(this.listOfProducts.getValue());
   }
 
-  calculateTotal() {
+  calculateDiscount(): number {
+    let discount = 0;
+    this.listOfProducts.getValue().map((product) => {
+      if (product.discount) {
+        discount += (product.price * product.quantity * product.discount) / 100;
+      }
+      discount += product.price * product.quantity;
+    });
+    return discount;
+  }
+
+  calculateTotal(): void {
     const subtotal = this.listOfProducts.getValue().reduce((acc, product) => {
       return product.quantity * product.price + acc;
     }, 0);
-    const discount = this.listOfProducts.getValue().reduce((acc, product) => {
-      return product.discount ? product.discount + acc : acc;
-    }, 0);
-    console.log((subtotal * discount) / 100);
     this.total.next({
       subtotal: subtotal,
-      total: subtotal - (subtotal * discount) / 100,
+      total: subtotal - this.calculateDiscount(),
     });
   }
 }
