@@ -10,6 +10,9 @@
           <p class="cart-quantity">{{quantityOfProductsInCart}}</p>
         </a>
       </button>
+      @if (isUser || isAdmin) {
+      <app-pop-over></app-pop-over>
+      }
       <section class="menu-mobile-wrapper">
         <i class="pi pi-bars open-menu" (click)="openMenu()"></i>
         <section class="menu-mobile" [class.open-close-menu]="openCloseMenu">
@@ -19,13 +22,19 @@
             </li>
             <li (click)="openMenu()"><a routerLink="/shop" routerLinkActive="active" aria-current="page">BOUTIQUE</a>
             </li>
+            @if (!isUser) {
             <li (click)="openMenu()">
               <a routerLink="/myaccount" routerLinkActive="active" aria-current="page">MON COMPTE</a>
             </li>
+            }
             <li (click)="openMenu()"><a routerLink="/about" routerLinkActive="active" aria-current="page">À PROPOS</a>
             </li>
             <li (click)="openMenu()"><a routerLink="/contact" routerLinkActive="active" aria-current="page">CONTACT</a>
             </li>
+            @if (isAdmin) {
+            <li (click)="openMenu()"><a routerLink="/admin" routerLinkActive="active" aria-current="page">ADMIN</a>
+            </li>
+            }
           </ul>
         </section>
       </section>
@@ -34,9 +43,14 @@
       <ul>
         <li><a routerLink="/home" routerLinkActive="active" aria-current="page">ACCUEIL</a></li>
         <li><a routerLink="/shop" routerLinkActive="active" aria-current="page">BOUTIQUE</a></li>
-        <li><a routerLink="/myaccount" routerLinkActive="active" aria-current="page">MON COMPTE</a></li>
         <li><a routerLink="/about" routerLinkActive="active" aria-current="page">À PROPOS</a></li>
         <li><a routerLink="/contact" routerLinkActive="active" aria-current="page">CONTACT</a></li>
+        @if(!isUser && !isAdmin){
+        <li><a routerLink="/myaccount" routerLinkActive="active" aria-current="page">MON COMPTE</a></li>
+        }
+        @if (isAdmin) {
+        <li><a routerLink="/admin" routerLinkActive="active" aria-current="page">ADMIN</a></li>
+        }
       </ul>
       <button class="cart-desktop">
         <a routerLink="/cart">
@@ -44,6 +58,9 @@
           <p class="cart-quantity">{{quantityOfProductsInCart}}</p>
         </a>
       </button>
+      @if (isUser || isAdmin) {
+      <app-pop-over></app-pop-over>
+      }
     </section>
   </nav>
 </section>

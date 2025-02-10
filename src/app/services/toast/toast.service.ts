@@ -9,7 +9,7 @@ export class ToastService {
   private displayToast = new Subject<CartProduct>();
   displaytoast$ = this.displayToast.asObservable();
 
-  showToast(product: CartProduct): void {
+  showCartToast(product: CartProduct): void {
     this.displayToast.next(product);
   }
 }

@@ -4,7 +4,12 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 
 import { routes } from './app.routes';
 import { MessageService } from 'primeng/api';
-import { provideHttpClient } from '@angular/common/http';
+import {
+  HTTP_INTERCEPTORS,
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from '@angular/common/http';
+import { AuthInterceptorService } from './services/auth-interceptor/AuthInterceptor.service';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -12,6 +17,11 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideAnimationsAsync(),
     MessageService,
-    provideHttpClient(),
+    provideHttpClient(withInterceptorsFromDi()),
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true,
+    },
   ],
 };

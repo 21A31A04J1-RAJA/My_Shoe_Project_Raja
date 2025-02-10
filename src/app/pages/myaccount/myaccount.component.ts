@@ -5,6 +5,8 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { AuthService } from '../../services/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-myaccount',
@@ -15,6 +17,7 @@ import {
 })
 export class MyaccountComponent {
   toggleForm: boolean = true;
+  constructor(private auth: AuthService, private router: Router) {}
 
   loginForm = new FormGroup({
     email: new FormControl<string>('', [Validators.required, Validators.email]),
@@ -39,14 +42,41 @@ export class MyaccountComponent {
   loginSubmit() {
     this.loginForm.get('email')?.markAsTouched();
     this.loginPassword?.markAsTouched();
-    console.log(this.loginForm.value);
-    console.log(this.loginForm.status);
+    this.auth
+      .login(this.loginForm.value.email!, this.loginForm.value.password!)
+      .subscribe({
+        next: (response) => {
+          console.log(response);
+          this.router.navigate(['/home']);
+        },
+        error: (error) => {
+          console.log(error);
+        },
+      });
+    // console.log(this.loginForm.value);
+    // console.log(this.loginForm.status);
   }
 
   signUpSubmit() {
     this.signUpForm.get('email')?.markAsTouched();
     this.signUpForm.get('password')?.markAsTouched();
     this.signUpForm.get('name')?.markAsTouched();
+    this.auth
+      .signup(
+        this.signUpForm.value.email!,
+        this.signUpForm.value.password!,
+        this.signUpForm.value.name!
+      )
+      .subscribe({
+        next: (response) => {
+          console.log(response);
+          this.toggleForm = true;
+        },
+        error: (error) => {
+          console.log(error);
+        },
+      });
+
     console.log(this.signUpForm.value);
     console.log(this.signUpForm.status);
   }
