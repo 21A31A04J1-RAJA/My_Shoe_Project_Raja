@@ -74,8 +74,9 @@ export class CartService {
     this.listOfProducts.getValue().map((product) => {
       if (product.discount) {
         discount += (product.price * product.quantity * product.discount) / 100;
+      } else {
+        discount += product.price * product.quantity;
       }
-      discount += product.price * product.quantity;
     });
     return discount;
   }
