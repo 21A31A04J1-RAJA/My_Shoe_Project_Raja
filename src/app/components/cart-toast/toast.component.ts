@@ -1,4 +1,4 @@
-import { ToastService } from './../../services/toast/toast.service';
+import { ToastService } from '../../services/toast/toast.service';
 import { Component } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
@@ -7,7 +7,7 @@ import { RippleModule } from 'primeng/ripple';
 import { Router } from '@angular/router';
 import CartProduct from '../../model/CartProduct';
 @Component({
-  selector: 'app-toast',
+  selector: 'app-cart-toast',
   standalone: true,
   imports: [ToastModule, ButtonModule, RippleModule],
   templateUrl: './toast.component.html',

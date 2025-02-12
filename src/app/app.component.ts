@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterLinkActive, RouterOutlet } from '@angular/router';
+import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { ToastComponent } from './components/toast/toast.component';
+import { ToastComponent } from './components/cart-toast/toast.component';
 import { AuthService } from './services/auth/auth.service';
 import { Subscription } from 'rxjs';
+import { GenericToastComponent } from './components/generic-toast/generic-toast.component';
 
 @Component({
   selector: 'app-root',
@@ -12,9 +13,9 @@ import { Subscription } from 'rxjs';
   imports: [
     RouterOutlet,
     NavbarComponent,
-    // RouterLinkActive,
     FooterComponent,
     ToastComponent,
+    GenericToastComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -24,13 +25,10 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): Subscription | undefined {
     return this.authService.authenticateUser()?.subscribe({
-      next: (response) => {
-        console.log('Value from backend: ', response);
-      },
+      next: (response) => {},
       error: (error) => {
         console.log('Auth invalid: ', error);
       },
     });
   }
-  title = 'myEcommerce';
 }

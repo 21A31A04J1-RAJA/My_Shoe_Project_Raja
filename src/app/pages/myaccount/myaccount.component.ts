@@ -7,6 +7,8 @@ import {
 } from '@angular/forms';
 import { AuthService } from '../../services/auth/auth.service';
 import { Router } from '@angular/router';
+import { ToastService } from '../../services/toast/toast.service';
+import { GenericToastProps, Severity } from '../../model/CartProduct';
 
 @Component({
   selector: 'app-myaccount',
@@ -17,7 +19,12 @@ import { Router } from '@angular/router';
 })
 export class MyaccountComponent {
   toggleForm: boolean = true;
-  constructor(private auth: AuthService, private router: Router) {}
+  buttonInvalide: boolean = false;
+  constructor(
+    private auth: AuthService,
+    private router: Router,
+    private toastService: ToastService
+  ) {}
 
   loginForm = new FormGroup({
     email: new FormControl<string>('', [Validators.required, Validators.email]),
@@ -42,43 +49,68 @@ export class MyaccountComponent {
   loginSubmit() {
     this.loginForm.get('email')?.markAsTouched();
     this.loginPassword?.markAsTouched();
-    this.auth
-      .login(this.loginForm.value.email!, this.loginForm.value.password!)
-      .subscribe({
-        next: (response) => {
-          console.log(response);
-          this.router.navigate(['/home']);
-        },
-        error: (error) => {
-          console.log(error);
-        },
-      });
-    // console.log(this.loginForm.value);
-    // console.log(this.loginForm.status);
+    if (this.loginForm.status === 'VALID') {
+      this.buttonInvalide = true;
+      this.auth
+        .login(this.loginForm.value.email!, this.loginForm.value.password!)
+        .subscribe({
+          next: (response) => {
+            this.router.navigate(['/home']);
+            this.buttonInvalide = false;
+          },
+          error: (error) => {
+            console.error(error);
+            const signupToast: GenericToastProps = {
+              severity: Severity.error,
+              summary: 'Erreur',
+              detail: `L'adresse e-mail ou le mot de passe n'est pas valide.`,
+            };
+            this.toastService.displayGenericToast(signupToast);
+            this.buttonInvalide = false;
+          },
+        });
+    }
   }
 
   signUpSubmit() {
     this.signUpForm.get('email')?.markAsTouched();
     this.signUpForm.get('password')?.markAsTouched();
     this.signUpForm.get('name')?.markAsTouched();
-    this.auth
-      .signup(
-        this.signUpForm.value.email!,
-        this.signUpForm.value.password!,
-        this.signUpForm.value.name!
-      )
-      .subscribe({
-        next: (response) => {
-          console.log(response);
-          this.toggleForm = true;
-        },
-        error: (error) => {
-          console.log(error);
-        },
-      });
-
-    console.log(this.signUpForm.value);
-    console.log(this.signUpForm.status);
+    if (this.signUpForm.status === 'VALID') {
+      this.buttonInvalide = true;
+      this.auth
+        .signup(
+          this.signUpForm.value.email!,
+          this.signUpForm.value.password!,
+          this.signUpForm.value.name!
+        )
+        .subscribe({
+          next: (response) => {
+            console.log(response);
+            this.toggleForm = true;
+            const signupToast: GenericToastProps = {
+              severity: Severity.success,
+              summary: 'Succès',
+              detail: 'Compte créé avec succès.',
+            };
+            this.toastService.displayGenericToast(signupToast);
+            this.signUpForm.get('email')?.setValue('');
+            this.signUpForm.get('password')?.setValue('');
+            this.signUpForm.get('name')?.setValue('');
+            this.buttonInvalide = false;
+          },
+          error: (error) => {
+            const signupToast: GenericToastProps = {
+              severity: Severity.error,
+              summary: 'Erreur',
+              detail: `L'adresse e-mail ou le mot de passe n'est pas valide.`,
+            };
+            this.toastService.displayGenericToast(signupToast);
+            this.buttonInvalide = false;
+            console.log(error);
+          },
+        });
+    }
   }
 
   switchForm() {

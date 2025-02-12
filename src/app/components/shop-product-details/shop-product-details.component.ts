@@ -14,7 +14,10 @@ import {
   Validators,
 } from '@angular/forms';
 import { CartService } from '../../services/cart/cart.service';
-import CartProduct from '../../model/CartProduct';
+import CartProduct, {
+  GenericToastProps,
+  Severity,
+} from '../../model/CartProduct';
 import { ToastService } from '../../services/toast/toast.service';
 import { ShoesColorPipe } from '../../pipes/shoesColor/shoes-color.pipe';
 @Component({
@@ -129,5 +132,14 @@ export class ShopProductDetailsComponent implements OnInit {
       this.cartService.addProductToCart(this.createNewcartItem());
       this.toastService.showCartToast(this.createNewcartItem());
     }
+  }
+
+  addProductToFavorites() {
+    const genericToastProps: GenericToastProps = {
+      severity: Severity.success,
+      summary: 'Product Saved',
+      detail: 'Product added to you favorites',
+    };
+    this.toastService.displayGenericToast(genericToastProps);
   }
 }

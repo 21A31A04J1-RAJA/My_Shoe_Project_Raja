@@ -71,7 +71,7 @@
   }
 }
 
-// CSS to customize the compoenent toast at app/components/toast.component.html
+// CSS to customize the compoenent cart-toast at app/components/cart-toast.component.html
 .p-toast {
   width: 100%;
   max-width: 400px;
@@ -157,6 +157,41 @@
     }
   }
 }
+//CSS code to customize the component generic-toast at src/app/components/generic-toast
+.generic-toast {
+  .p-toast {
+    max-width: 30em;
+    .p-toast-message {
+      padding: 0.8em;
+      .p-toast-icon-close {
+        position: fixed;
+        margin: 1.3em;
+      }
+      .p-toast-message-content {
+        display: flex;
+        flex-direction: row;
+        padding: 0;
+        gap: 1em;
+        .p-icon {
+          width: 100%;
+        }
+        .p-toast-message-text {
+          width: 80%;
+          .p-toast-summary {
+            display: flex;
+            padding: 0.2em 0;
+            font-weight: 600;
+            font-size: 1.1em;
+          }
+          .p-toast-detail {
+            padding: 0.2em 0;
+            max-width: 80%;
+          }
+        }
+      }
+    }
+  }
+}
 
 // Class base of button
 .button-base {
@@ -169,7 +204,7 @@
   cursor: pointer;
   font-weight: bold;
   transition: background-color 0.2s ease;
-
+  gap: 2em;
   &:hover {
     background-color: darken($primary-color, 10%);
   }

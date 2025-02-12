@@ -23,8 +23,12 @@
     <p class="error">Minimum 6 caractères</p>
     }
   </div>
-
-  <button class="button-base" type="submit">Se connecter</button>
+  <button class="button-base" type="submit">
+    @if (buttonInvalide) {
+    <i class="pi pi-spin pi-spinner" style="font-size: 1rem; font-weight: 400;"></i>
+    }
+    Se connecter
+  </button>
   <p class="signup-text">Vous n'avez pas de compte ? <a (click)="switchForm()">Inscrivez-vous</a></p>
 </form>
 } @else {
@@ -41,7 +45,6 @@
     <p class="error">Entrez une adresse email valide</p>
     }
   </div>
-
   <div class="wrapper-input">
     <label for="password">Mot de passe :</label>
     <input type="password" id="password" formControlName="password" placeholder="Entrez votre mot de passe">
@@ -49,12 +52,10 @@
     !signUpPassword?.hasError("minlength")) {
     <p class="error">Le mot de passe est requis</p>
     }
-
     @if(signUpPassword?.hasError('minlength') && signUpPassword?.touched){
     <p class="error">Minimum 6 caractères</p>
     }
   </div>
-
   <div class="wrapper-input">
     <label for="name">Nom :</label>
     <input type="text" id="name" formControlName="name" placeholder="Entrez votre nom">
@@ -62,8 +63,12 @@
     <p class="error">Le nom est requis</p>
     }
   </div>
-
-  <button class="button-base" type="submit">S'inscrire</button>
+  <button class="button-base" type="submit" [disabled]="buttonInvalide">
+    @if (buttonInvalide) {
+    <i class="pi pi-spin pi-spinner" style="font-size: 1rem; font-weight: 400;"></i>
+    }
+    S'inscrire
+  </button>
   <p class="signup-text">Vous avez déjà une compte ? <a (click)="switchForm()">Connectez-vous</a></p>
 </form>
 }
