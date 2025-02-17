@@ -10,11 +10,13 @@ import {
   throwError,
 } from 'rxjs';
 
+import { environment } from '../../../environments/environment';
+
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private apiUrl: string = 'http://localhost:8080/api';
+  private apiUrl: string = environment.apiURL;
 
   private userSubject = new Subject<UserAuth>();
   user$ = this.userSubject.asObservable();
@@ -96,6 +98,7 @@ export class AuthService {
           }),
           catchError((error) => {
             this.logout();
+            console.log('ERROR', error);
             return throwError(() => new Error(error));
           })
         );

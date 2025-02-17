@@ -3,11 +3,12 @@ import CatalogProduct from '../../model/CatalogProduct';
 import { catchError, Observable, of, tap, throwError } from 'rxjs';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
 @Injectable({
   providedIn: 'root',
 })
 export class ProductService {
-  private url: string = 'http://localhost:8080/api/products';
+  private url: string = environment.apiURL + '/products';
 
   constructor(private http: HttpClient) {}
 

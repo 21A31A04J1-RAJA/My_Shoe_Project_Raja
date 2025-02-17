@@ -23,7 +23,7 @@
     <p class="error">Minimum 6 caractères</p>
     }
   </div>
-  <button class="button-base" type="submit">
+  <button class="button-base" type="submit" [disabled]="buttonInvalide">
     @if (buttonInvalide) {
     <i class="pi pi-spin pi-spinner" style="font-size: 1rem; font-weight: 400;"></i>
     }
