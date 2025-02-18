@@ -105,6 +105,31 @@ export class AuthService {
     }
     return null;
   }
+
+  deleteAccount(): Observable<string> | null {
+    const token: String | null = localStorage.getItem('auth-token');
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      }),
+    };
+    if (token) {
+      return this.http
+        .post<string>(this.apiUrl + '/delete', token, httpOptions)
+        .pipe(
+          tap((message) => {
+            return message;
+            console.log(message);
+          }),
+          catchError((error) => {
+            console.log(error);
+            return throwError(() => new Error(error));
+          })
+        );
+    }
+    return null;
+  }
 }
 
 interface UserAuth {
