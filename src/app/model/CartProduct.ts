@@ -36,3 +36,18 @@ export enum Colors {
   ORANGE = 'ORANGE',
   PINK = 'PINK',
 }
+
+export enum Severity {
+  success = 'success',
+  info = 'info',
+  warn = 'warn',
+  error = 'error',
+  contrast = 'contrast',
+  secondary = 'secondary',
+}
+
+export type GenericToastProps = {
+  severity: Severity;
+  summary: string;
+  detail: string;
+};

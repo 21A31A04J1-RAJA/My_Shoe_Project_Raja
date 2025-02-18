@@ -2,7 +2,7 @@
 .profile-container {
   max-width: 1200px;
   margin: 2em auto;
-  padding: 2rem;
+  padding: 1rem;
   background-color: #fff;
   min-height: 100vh;
   .profile-header {
@@ -12,17 +12,17 @@
     border-bottom: 1px solid #ddd;
     padding-bottom: 0.8em;
     align-items: center;
-    gap: 1em;
+    gap: 0.2em;
     .image-profile {
-      width: 5.4em;
-      height: 5.4em;
+      width: 4em;
+      height: 4em;
       border-radius: 50%;
       border: 0.1em solid lightgray;
       background-color: #ececec;
     }
     .profile-info {
       .user-name {
-        font-size: 2.8rem;
+        font-size: 1.8rem;
         font-weight: 400;
         margin: 0;
       }
@@ -33,64 +33,78 @@
     }
   }
   .profile-navigation {
-    margin-bottom: 2rem;
-    ul {
-      list-style: none;
-      padding: 0;
-      display: flex;
-      gap: 1.5rem;
-      font-size: 1.1rem;
-    }
-    li {
-      a {
-        color: #333;
-        text-decoration: none;
-        transition: color 0.3s ease;
-        &:hover {
-          color: #007bff;
-        }
+    .settings,
+    .favorites,
+    .orders {
+      margin: 1em 0;
+      padding: 1em;
+      position: relative;
+      background-color: rgb(232, 232, 232);
+      border-radius: 0.8em;
+      h2 {
+        display: flex;
+        position: sticky;
+        cursor: pointer;
+        z-index: 1;
       }
-    }
-  }
-  .favorites-section {
-    .favorites-list {
-      display: flex;
-      gap: 2rem;
-      flex-wrap: wrap;
-    }
-    .favorite-item {
-      background-color: #f9f9f9;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      width: 240px;
-      padding: 1rem;
-      text-align: center;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      &:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+      h3 {
+        padding: 1em 0;
       }
-      .favorite-img {
+      input {
         width: 100%;
-        height: auto;
-        border-radius: 8px;
-        margin-bottom: 1rem;
-      }
-      .favorite-info {
-        h4 {
-          font-size: 1.1rem;
-          font-weight: bold;
-        }
-        p {
-          font-size: 1rem;
-          color: #777;
-        }
-        .price {
-          font-size: 1.2rem;
-          font-weight: bold;
-          color: #333;
+        padding: 0.75rem;
+        font-size: 1rem;
+        border: 1px solid #e2e8f0;
+        border-radius: 4px;
+        background-color: #ffffff;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        &:focus {
+          border-color: $primary-color;
+          box-shadow: 0 0 0 1px lighten($primary-color, 30%);
+          outline: none;
         }
       }
+      .toggle-tab-content {
+        width: 2.4em;
+        height: 2.4em;
+        top: 0;
+        right: 0;
+        margin: 1em;
+        border: none;
+        border-radius: 50%;
+        position: absolute;
+        cursor: pointer;
+        z-index: 0;
+      }
+    }
+
+    .settings-body,
+    .favorites-body,
+    .orders-body {
+      display: flex;
+      flex-direction: column;
+      padding: 1em 0;
+      label {
+        display: flex;
+        flex-direction: column;
+        max-width: 20rem;
+        margin: 1em 0;
+        color: #4a5568;
+      }
+      button {
+        max-width: 20rem;
+        background-color: rgb(245, 56, 56);
+      }
+      .delete-account {
+        padding: 0.4em;
+        margin: 1em 0;
+        border-radius: 0.4em;
+        background-color: lightgray;
+      }
+    }
+
+    .display-content {
+      display: none;
     }
   }
 }

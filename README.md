@@ -1,16 +1,14 @@
-[ANGULAR_BADGE]: https://img.shields.io/badge/Angular-%23DD0031.svg?logo=angular&logoColor=white
-[TYPESCRIPT_BADGE]: https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=fff
-[SCSS_BADGE]: https://img.shields.io/badge/Scss-CC6699?logo=sass&logoColor=white
-
 <h1 style="font-weight: bold;">E-Commerce Shoes Store</h1>
 
 <p>E-Commerce Shoes Store A modern web application for shoes shopping, featuring a wide variety of footwear, user accounts and secure checkout. Built with Angular 18 and PrimeNG</p>
 
 <h2 id="technologies">💻 Technologies</h2>
 
-![typescript][TYPESCRIPT_BADGE]
-![angular][ANGULAR_BADGE]
-![scss][SCSS_BADGE]
+![TYPESCRIPT_BADGE](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=fff)
+![ANGULAR_BADGE](https://img.shields.io/badge/Angular-%23DD0031.svg?style=for-the-badge&logo=angular&logoColor=white)
+![SCSS_BADGE](https://img.shields.io/badge/Scss-CC6699?style=for-the-badge&logo=sass&logoColor=white)
+![PRIME_NG](https://img.shields.io/badge/PrimeNG-F43F5E?style=for-the-badge&logo=primeng&logoColor=white)
+![RENDER](https://img.shields.io/badge/Render-fff?style=for-the-badge&logo=render&logoColor=000)
 
 <h2 id="started">🚀 Getting started</h2>
 

@@ -10,11 +10,13 @@ import {
   throwError,
 } from 'rxjs';
 
+import { environment } from '../../../environments/environment';
+
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private apiUrl: string = 'http://localhost:8080/api';
+  private apiUrl: string = environment.apiURL;
 
   private userSubject = new Subject<UserAuth>();
   user$ = this.userSubject.asObservable();
@@ -95,6 +97,33 @@ export class AuthService {
             return user;
           }),
           catchError((error) => {
+            this.logout();
+            console.log('ERROR', error);
+            return throwError(() => new Error(error));
+          })
+        );
+    }
+    return null;
+  }
+
+  deleteAccount(): Observable<string> | null {
+    const token: String | null = localStorage.getItem('auth-token');
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      }),
+    };
+    if (token) {
+      return this.http
+        .post<string>(this.apiUrl + '/delete', token, httpOptions)
+        .pipe(
+          tap((message) => {
+            return message;
+            console.log(message);
+          }),
+          catchError((error) => {
+            console.log(error);
             return throwError(() => new Error(error));
           })
         );

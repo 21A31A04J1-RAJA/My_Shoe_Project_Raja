@@ -3,29 +3,47 @@
   <section class="profile-header">
     <div class="image-profile"></div>
     <div class="profile-info">
-      <h2 class="user-name">{{ user.username.toUpperCase()}}</h2>
+      <h2 class="user-name">{{user.username.toUpperCase()}}</h2>
       <p class="membership-status">{{ user.email }}</p>
     </div>
   </section>
   <section class="profile-navigation">
-    <ul>
-      <li><a href="#">Favoris</a></li>
-      <li><a href="#">Commandes</a></li>
-      <!-- <li><a href="#">Boîte de réception</a></li> -->
-      <li><a href="#">Paramètres</a></li>
-    </ul>
-  </section>
-  <section class="favorites-section">
-    <h3>Favoris</h3>
-    <div class="favorites-list">
-      <!-- <div class="favorite-item" *ngFor="let favorite of favorites">
-          <img [src]="favorite.img" alt="{{ favorite.name }}" class="favorite-img" />
-          <div class="favorite-info">
-            <h4>{{ favorite.name }}</h4>
-            <p>{{ favorite.type }}</p>
-            <p class="price">{{ favorite.price }}</p>
-          </div>
-        </div> -->
+    <div class="settings">
+      <h2 (click)="openCloseContentTab('toggleSettingsContent')">Paramètres</h2>
+      <button type="button" class="toggle-tab-content">⬇</button>
+
+      <div class="settings-body" [ngClass]="{'display-content': toggleSettingsContent}">
+        <h3>Infomations du compte</h3>
+
+        <label>Addresse e-email :
+
+          <input type="text" class="input-base" [(ngModel)]="user.email">
+        </label>
+
+        <label>Nom :
+
+          <input type="text" [(ngModel)]="user.username">
+        </label>
+        <div class="delete-account">
+          <p>La suppression de votre compte est une action irréversible.</p>
+          <p>Toutes vos données seront définitivement supprimées.</p>
+          <button type="button" class="button-base" (click)="deleteAccount()">Supprimer compte</button>
+        </div>
+      </div>
+    </div>
+    <div class="favorites">
+      <h2 (click)="openCloseContentTab('toggleFavoritesContent')">Favoris</h2>
+      <button type="button" class="toggle-tab-content">⬇</button>
+      <div class="favorites-body" [ngClass]="{'display-content': toggleFavoritesContent}">
+        vous n'avez aucun favori pour le moment
+      </div>
+    </div>
+    <div class="orders">
+      <h2 (click)="openCloseContentTab('toggleCommandeContent')">Commandes</h2>
+      <button type="button" class="toggle-tab-content">⬇</button>
+      <div class="orders-body" [ngClass]="{'display-content': toggleCommandeContent}">
+        Vous n'avez aucune commande pour le moment
+      </div>
     </div>
   </section>
 </section>
