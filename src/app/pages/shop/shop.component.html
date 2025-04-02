@@ -1,4 +1,8 @@
 <main>
+  <div class="shop-header">
+    <h1>Our Products</h1>
+    <p class="product-count">{{listOfProducts.length}} products available</p>
+  </div>
   <section class="product-container">
     <app-shoes-card *ngFor="let product of listOfProducts" [product]="product"></app-shoes-card>
   </section>

@@ -4,6 +4,7 @@ import { AccordionModule } from 'primeng/accordion';
 import { ProductService } from '../../services/product-service/product.service';
 import CatalogProduct from '../../model/CatalogProduct';
 import { CommonModule } from '@angular/common';
+import { products } from '../../mock-product-list';
 
 @Component({
   selector: 'app-shop',
@@ -18,14 +19,8 @@ export class ShopComponent implements OnInit {
   listOfProducts: CatalogProduct[] = [];
 
   ngOnInit(): void {
-    this.productService.getProducts().subscribe(
-      (products) => {
-        this.listOfProducts = products;
-        console.log(products); // Log the products to see if data is coming through
-      },
-      (error) => {
-        console.error('Error fetching products:', error); // Log any error if the API request fails
-      }
-    );
+    // Use mock data instead of API call
+    this.listOfProducts = products;
+    console.log('Products loaded:', this.listOfProducts);
   }
 }
