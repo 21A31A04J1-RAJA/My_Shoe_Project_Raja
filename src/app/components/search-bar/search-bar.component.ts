@@ -1,6 +1,5 @@
-import { Component, model, output } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import CatalogProduct from '../../model/CatalogProduct';
 
 @Component({
   selector: 'app-search-bar',
@@ -10,10 +9,10 @@ import CatalogProduct from '../../model/CatalogProduct';
   styleUrl: './search-bar.component.scss',
 })
 export class SearchBarComponent {
-  search = model<string>('');
-  clickSearch = output();
+  @Input() search: string = ''; // Use @Input() to receive the value from parent component
+  @Output() searchChange = new EventEmitter<string>(); // Use @Output() to emit changes back to parent
 
   searchProduct() {
-    this.clickSearch.emit();
+    this.searchChange.emit(this.search); // Emit the search value to the parent when the search is triggered
   }
 }

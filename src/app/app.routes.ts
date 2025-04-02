@@ -43,4 +43,4 @@ export const routes: Routes = [
     canActivate: [AdminGuard],
   },
   { path: '**', component: HomeComponent },
-];
+];  

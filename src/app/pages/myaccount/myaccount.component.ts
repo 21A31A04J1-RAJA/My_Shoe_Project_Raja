@@ -62,8 +62,8 @@ export class MyaccountComponent {
             console.error(error);
             const signupToast: GenericToastProps = {
               severity: Severity.error,
-              summary: 'Erreur',
-              detail: `L'adresse e-mail ou le mot de passe n'est pas valide.`,
+              summary: 'Error',
+              detail:" The email address or password is not valid",
             };
             this.toastService.displayGenericToast(signupToast);
             this.buttonInvalide = false;
@@ -102,8 +102,8 @@ export class MyaccountComponent {
           error: (error) => {
             const signupToast: GenericToastProps = {
               severity: Severity.error,
-              summary: 'Erreur',
-              detail: `L'adresse e-mail ou le mot de passe n'est pas valide.`,
+              summary: 'Error',
+              detail: `The email address or password is not valid.`,
             };
             this.toastService.displayGenericToast(signupToast);
             this.buttonInvalide = false;

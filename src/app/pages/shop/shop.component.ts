@@ -18,8 +18,14 @@ export class ShopComponent implements OnInit {
   listOfProducts: CatalogProduct[] = [];
 
   ngOnInit(): void {
-    this.productService
-      .getProducts()
-      .subscribe((products) => (this.listOfProducts = products));
+    this.productService.getProducts().subscribe(
+      (products) => {
+        this.listOfProducts = products;
+        console.log(products); // Log the products to see if data is coming through
+      },
+      (error) => {
+        console.error('Error fetching products:', error); // Log any error if the API request fails
+      }
+    );
   }
 }
