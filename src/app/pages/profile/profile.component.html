@@ -1,50 +1,51 @@
 @if(user){
-<section class="profile-container">
-  <section class="profile-header">
-    <div class="image-profile"></div>
-    <div class="profile-info">
-      <h2 class="user-name">{{user.username.toUpperCase()}}</h2>
-      <p class="membership-status">{{ user.email }}</p>
-    </div>
-  </section>
-  <section class="profile-navigation">
-    <div class="settings">
-      <h2 (click)="openCloseContentTab('toggleSettingsContent')">Paramètres</h2>
-      <button type="button" class="toggle-tab-content">⬇</button>
-
-      <div class="settings-body" [ngClass]="{'display-content': toggleSettingsContent}">
-        <h3>Infomations du compte</h3>
-
-        <label>Addresse e-email :
-
-          <input type="text" class="input-base" [(ngModel)]="user.email">
-        </label>
-
-        <label>Nom :
-
-          <input type="text" [(ngModel)]="user.username">
-        </label>
-        <div class="delete-account">
-          <p>La suppression de votre compte est une action irréversible.</p>
-          <p>Toutes vos données seront définitivement supprimées.</p>
-          <button type="button" class="button-base" (click)="deleteAccount()">Supprimer compte</button>
+  <section class="profile-container">
+    <section class="profile-header">
+      <div class="image-profile"></div>
+      <div class="profile-info">
+        <h2 class="user-name">{{user.username.toUpperCase()}}</h2>
+        <p class="membership-status">{{ user.email }}</p>
+      </div>
+    </section>
+    <section class="profile-navigation">
+      <div class="settings">
+        <h2 (click)="openCloseContentTab('toggleSettingsContent')">Settings</h2>
+        <button type="button" class="toggle-tab-content">⬇</button>
+  
+        <div class="settings-body" [ngClass]="{'display-content': toggleSettingsContent}">
+          <h3>Account Information</h3>
+  
+          <label>Email Address:
+  
+            <input type="text" class="input-base" [(ngModel)]="user.email">
+          </label>
+  
+          <label>Name:
+  
+            <input type="text" [(ngModel)]="user.username">
+          </label>
+          <div class="delete-account">
+            <p>Deleting your account is irreversible.</p>
+            <p>All your data will be permanently deleted.</p>
+            <button type="button" class="button-base" (click)="deleteAccount()">Delete Account</button>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="favorites">
-      <h2 (click)="openCloseContentTab('toggleFavoritesContent')">Favoris</h2>
-      <button type="button" class="toggle-tab-content">⬇</button>
-      <div class="favorites-body" [ngClass]="{'display-content': toggleFavoritesContent}">
-        vous n'avez aucun favori pour le moment
+      <div class="favorites">
+        <h2 (click)="openCloseContentTab('toggleFavoritesContent')">Favorites</h2>
+        <button type="button" class="toggle-tab-content">⬇</button>
+        <div class="favorites-body" [ngClass]="{'display-content': toggleFavoritesContent}">
+          You have no favorites at the moment.
+        </div>
       </div>
-    </div>
-    <div class="orders">
-      <h2 (click)="openCloseContentTab('toggleCommandeContent')">Commandes</h2>
-      <button type="button" class="toggle-tab-content">⬇</button>
-      <div class="orders-body" [ngClass]="{'display-content': toggleCommandeContent}">
-        Vous n'avez aucune commande pour le moment
+      <div class="orders">
+        <h2 (click)="openCloseContentTab('toggleCommandeContent')">Orders</h2>
+        <button type="button" class="toggle-tab-content">⬇</button>
+        <div class="orders-body" [ngClass]="{'display-content': toggleCommandeContent}">
+          You have no orders at the moment.
+        </div>
       </div>
-    </div>
+    </section>
   </section>
-</section>
-}
+  }
+  

@@ -1,74 +1,75 @@
 @if(toggleForm){
-<h1>Mon compte</h1>
-<form [formGroup]="loginForm" (ngSubmit)="loginSubmit()">
-  <h2>Se connecter</h2>
-  <div class="wrapper-input">
-    <label for="email">Email :</label>
-    <input type="text" id="email" formControlName="email" placeholder="Entrez votre email">
-    @if (loginForm.get("email")?.invalid && loginForm.get("email")?.touched && !loginEmail?.hasError("email")) {
-    <p class="error">L'email est requis</p>
-    }
-    @if (loginEmail?.hasError("email") && loginEmail?.touched) {
-    <p class="error">Entrez une adresse email valide</p>
-    }
-  </div>
-  <div class="wrapper-input">
-    <label for="password">Mot de passe :</label>
-    <input type="password" id="password" formControlName="password" placeholder="Entrez votre mot de passe" required="">
-    @if (loginForm.get("password")?.invalid && loginForm.get("password")?.touched &&
-    !loginPassword?.hasError("minlength")) {
-    <p class="error">Le mot de passe est requis</p>
-    }
-    @if(loginPassword?.hasError('minlength') && loginPassword?.touched){
-    <p class="error">Minimum 6 caractères</p>
-    }
-  </div>
-  <button class="button-base" type="submit" [disabled]="buttonInvalide">
-    @if (buttonInvalide) {
-    <i class="pi pi-spin pi-spinner" style="font-size: 1rem; font-weight: 400;"></i>
-    }
-    Se connecter
-  </button>
-  <p class="signup-text">Vous n'avez pas de compte ? <a (click)="switchForm()">Inscrivez-vous</a></p>
-</form>
-} @else {
-<h1>Mon compte</h1>
-<form [formGroup]="signUpForm" (ngSubmit)="signUpSubmit()">
-  <h2>S'inscrire</h2>
-  <div class="wrapper-input">
-    <label for="email">Email :</label>
-    <input type="text" id="email" formControlName="email" placeholder="Entrez votre email">
-    @if (signUpForm.get("email")?.invalid && signUpForm.get("email")?.touched && !signUpEmail?.hasError("email")) {
-    <p class="error">L'email est requis</p>
-    }
-    @if (signUpEmail?.hasError("email") && signUpEmail?.touched) {
-    <p class="error">Entrez une adresse email valide</p>
-    }
-  </div>
-  <div class="wrapper-input">
-    <label for="password">Mot de passe :</label>
-    <input type="password" id="password" formControlName="password" placeholder="Entrez votre mot de passe">
-    @if (signUpForm.get("password")?.invalid && signUpForm.get("password")?.touched &&
-    !signUpPassword?.hasError("minlength")) {
-    <p class="error">Le mot de passe est requis</p>
-    }
-    @if(signUpPassword?.hasError('minlength') && signUpPassword?.touched){
-    <p class="error">Minimum 6 caractères</p>
-    }
-  </div>
-  <div class="wrapper-input">
-    <label for="name">Nom :</label>
-    <input type="text" id="name" formControlName="name" placeholder="Entrez votre nom">
-    @if (signUpForm.get("name")?.invalid && signUpForm.get("name")?.touched) {
-    <p class="error">Le nom est requis</p>
-    }
-  </div>
-  <button class="button-base" type="submit" [disabled]="buttonInvalide">
-    @if (buttonInvalide) {
-    <i class="pi pi-spin pi-spinner" style="font-size: 1rem; font-weight: 400;"></i>
-    }
-    S'inscrire
-  </button>
-  <p class="signup-text">Vous avez déjà une compte ? <a (click)="switchForm()">Connectez-vous</a></p>
-</form>
-}
+  <h1>My Account</h1>
+  <form [formGroup]="loginForm" (ngSubmit)="loginSubmit()">
+    <h2>Log in</h2>
+    <div class="wrapper-input">
+      <label for="email">Email :</label>
+      <input type="text" id="email" formControlName="email" placeholder="Enter valid email">
+      @if (loginForm.get("email")?.invalid && loginForm.get("email")?.touched && !loginEmail?.hasError("email")) {
+      <p class="error">The email is required</p>
+      }
+      @if (loginEmail?.hasError("email") && loginEmail?.touched) {
+      <p class="error">Enter a valid email address</p>
+      }
+    </div>
+    <div class="wrapper-input">
+      <label for="password">Password :</label>
+      <input type="password" id="password" formControlName="password" placeholder="Enter your password" required="">
+      @if (loginForm.get("password")?.invalid && loginForm.get("password")?.touched &&
+      !loginPassword?.hasError("minlength")) {
+      <p class="error">The password is required</p>
+      }
+      @if(loginPassword?.hasError('minlength') && loginPassword?.touched){
+      <p class="error">Minimum 6 characters</p>
+      }
+    </div>
+    <button class="button-base" type="submit" [disabled]="buttonInvalide">
+      @if (buttonInvalide) {
+      <i class="pi pi-spin pi-spinner" style="font-size: 1rem; font-weight: 400;"></i>
+      }
+      Login
+    </button>
+    <p class="signup-text">You don't have an account? <a (click)="switchForm()">Sign up</a></p>
+  </form>
+  } @else {
+  <h1>My Account</h1>
+  <form [formGroup]="signUpForm" (ngSubmit)="signUpSubmit()">
+    <h2>Sign up</h2>
+    <div class="wrapper-input">
+      <label for="email">Email :</label>
+      <input type="text" id="email" formControlName="email" placeholder="Enter your email">
+      @if (signUpForm.get("email")?.invalid && signUpForm.get("email")?.touched && !signUpEmail?.hasError("email")) {
+      <p class="error">The email is required</p>
+      }
+      @if (signUpEmail?.hasError("email") && signUpEmail?.touched) {
+      <p class="error">Enter a valid email address</p>
+      }
+    </div>
+    <div class="wrapper-input">
+      <label for="password">Password :</label>
+      <input type="password" id="password" formControlName="password" placeholder="Enter your password">
+      @if (signUpForm.get("password")?.invalid && signUpForm.get("password")?.touched &&
+      !signUpPassword?.hasError("minlength")) {
+      <p class="error">The password is required</p>
+      }
+      @if(signUpPassword?.hasError('minlength') && signUpPassword?.touched){
+      <p class="error">Minimum 6 characters</p>
+      }
+    </div>
+    <div class="wrapper-input">
+      <label for="name">Name :</label>
+      <input type="text" id="name" formControlName="name" placeholder="Enter your name">
+      @if (signUpForm.get("name")?.invalid && signUpForm.get("name")?.touched) {
+      <p class="error">The name is required</p>
+      }
+    </div>
+    <button class="button-base" type="submit" [disabled]="buttonInvalide">
+      @if (buttonInvalide) {
+      <i class="pi pi-spin pi-spinner" style="font-size: 1rem; font-weight: 400;"></i>
+      }
+      Sign up
+    </button>
+    <p class="signup-text">You already have an account? <a (click)="switchForm()">Log in</a></p>
+  </form>
+  }
+  

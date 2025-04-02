@@ -1,15 +1,12 @@
 <section class="shoe-card" (click)="redirectToShopDetails(product.id)">
   <div class="shoe-image">
-    <img [src]="product.image" [alt]="product.name" />
+    <!-- Ensure the image has both alt and title attributes -->
+    <img [src]="product.image" [alt]="product.name || 'Image of ' + product.title" [title]="product.name || 'Image of ' + product.title" />
   </div>
   <section class="shoe-info">
     <h3 class="shoe-name">{{product.name}}</h3>
-    <p class="shoe-description">
-      {{product.title}}
-    </p>
-    <p class="shoe-description">
-      {{product.category}}
-    </p>
+    <p class="shoe-description">{{product.title}}</p>
+    <p class="shoe-description">{{product.category}}</p>
     <p class="shoe-price">{{product.price}} €</p>
   </section>
 </section>

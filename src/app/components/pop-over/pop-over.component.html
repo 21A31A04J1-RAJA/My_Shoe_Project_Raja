@@ -4,7 +4,7 @@
 <p-overlayPanel class="pop-over" #op>
   <ul>
     <li (click)="toggle($event)">
-      <a routerLink="/profile">Profil</a>
+      <a routerLink="/profile">Profile</a>
     </li>
     @if (isAdmin) {
     <li (click)="toggle($event)">
@@ -12,14 +12,14 @@
     </li>
     }
     <li (click)="toggle($event)">
-      <a>Commandes</a>
+      <a>Orders</a>
     </li>
     <li (click)="toggle($event)">
-      <a>Favoris</a>
+      <a>Favorites</a>
     </li>
     <li (click)="toggle($event)">
-      <a>Paramètres du compte</a>
+      <a>Account Settings</a>
     </li>
   </ul>
-  <button type="button" (click)="logout()">Se déconnecter</button>
+  <button type="button" (click)="logout()">Log out</button>
 </p-overlayPanel>

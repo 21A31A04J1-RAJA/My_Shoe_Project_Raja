@@ -18,16 +18,16 @@
         <section class="menu-mobile" [class.open-close-menu]="openCloseMenu">
           <i class="pi pi-times close-menu" (click)="openMenu()"></i>
           <ul>
-            <li (click)="openMenu()"><a routerLink="/home" routerLinkActive="active" aria-current="page">ACCUEIL</a>
+            <li (click)="openMenu()"><a routerLink="/home" routerLinkActive="active" aria-current="page">HOME</a>
             </li>
-            <li (click)="openMenu()"><a routerLink="/shop" routerLinkActive="active" aria-current="page">BOUTIQUE</a>
+            <li (click)="openMenu()"><a routerLink="/shop" routerLinkActive="active" aria-current="page">SHOP</a>
             </li>
             @if (!isUser) {
             <li (click)="openMenu()">
-              <a routerLink="/myaccount" routerLinkActive="active" aria-current="page">MON COMPTE</a>
+              <a routerLink="/myaccount" routerLinkActive="active" aria-current="page">MY ACCOUNT</a>
             </li>
             }
-            <li (click)="openMenu()"><a routerLink="/about" routerLinkActive="active" aria-current="page">À PROPOS</a>
+            <li (click)="openMenu()"><a routerLink="/about" routerLinkActive="active" aria-current="page">ABOUT</a>
             </li>
             <li (click)="openMenu()"><a routerLink="/contact" routerLinkActive="active" aria-current="page">CONTACT</a>
             </li>
@@ -41,12 +41,12 @@
     </div>
     <section class="menu-desktop">
       <ul>
-        <li><a routerLink="/home" routerLinkActive="active" aria-current="page">ACCUEIL</a></li>
-        <li><a routerLink="/shop" routerLinkActive="active" aria-current="page">BOUTIQUE</a></li>
-        <li><a routerLink="/about" routerLinkActive="active" aria-current="page">À PROPOS</a></li>
+        <li><a routerLink="/home" routerLinkActive="active" aria-current="page">HOME</a></li>
+        <li><a routerLink="/shop" routerLinkActive="active" aria-current="page">SHOP</a></li>
+        <li><a routerLink="/about" routerLinkActive="active" aria-current="page">ABOUT</a></li>
         <li><a routerLink="/contact" routerLinkActive="active" aria-current="page">CONTACT</a></li>
         @if(!isUser && !isAdmin){
-        <li><a routerLink="/myaccount" routerLinkActive="active" aria-current="page">MON COMPTE</a></li>
+        <li><a routerLink="/myaccount" routerLinkActive="active" aria-current="page">MY ACCOUNT</a></li>
         }
         @if (isAdmin) {
         <li><a routerLink="/admin" routerLinkActive="active" aria-current="page">ADMIN</a></li>

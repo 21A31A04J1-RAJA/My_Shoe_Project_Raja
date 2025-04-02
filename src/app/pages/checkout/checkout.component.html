@@ -1,98 +1,98 @@
 <h1>
-  Paiement
+  Payment
 </h1>
 <section class="checkout-wrap">
   <form [formGroup]="addressForm" (ngSubmit)="addressSubmit()">
-    <h2>Informations de livraison</h2>
+    <h2>Delivery Information</h2>
     <section>
-      <label for="name">Prénom
-        <input class="input-base" type="text" formControlName="name" id="name" placeholder="Entrez votre prénom">
+      <label for="name">First Name
+        <input class="input-base" type="text" formControlName="name" id="name" placeholder="Enter your first name">
         @if(name?.touched && name?.invalid && !name?.hasError("minmength")){
-        <small class="error-message">Saisis votrez prénom</small>
+        <small class="error-message">Enter your first name</small>
         }
         @if(name?.touched && name?.invalid && name?.hasError("minlength")){
-        <small class="error-message">La saisie est trop courte</small>
+        <small class="error-message">Input is too short</small>
         }
       </label>
-      <label for="surname">Nom
-        <input class="input-base" type="text" formControlName="surname" id="surname" placeholder="Entrez votre nom">
+      <label for="surname">Last Name
+        <input class="input-base" type="text" formControlName="surname" id="surname" placeholder="Enter your last name">
         @if(surname?.touched && surname?.invalid && !surname?.hasError("minlength")){
-        <small class="error-message">Saisis votrez nom</small>
+        <small class="error-message">Enter your last name</small>
         }
         @if(surname?.touched && surname?.invalid && surname?.hasError("minlength")){
-        <small class="error-message">La saisie est trop courte</small>
+        <small class="error-message">Input is too short</small>
         }
       </label>
     </section>
     <section>
-      <label for="adress">Adresse
+      <label for="adress">Address
         <input class="input-base" type="text" formControlName="address" id="address"
-          placeholder="Entrez votre addresse">
+          placeholder="Enter your address">
         @if(address?.touched && address?.invalid){
-        <small class="error-message">Saisie une addresse.</small>
+        <small class="error-message">Enter an address.</small>
         }
       </label>
     </section>
     <section>
-      <label for="">Code postal
+      <label for="">Postal Code
         <input class="input-base" type="text" formControlName="postalCode" id="postalCode"
-          placeholder="Entrez votre code postal">
+          placeholder="Enter your postal code">
         @if(postalCode?.touched && postalCode?.invalid){
-        <small class="error-message">Saisis votrez code postal.</small>
+        <small class="error-message">Enter your postal code.</small>
         }
       </label>
-      <label for="">Ville
-        <input class="input-base" type="text" formControlName="city" id="city" placeholder="Entrez votre ville">
+      <label for="">City
+        <input class="input-base" type="text" formControlName="city" id="city" placeholder="Enter your city">
         @if(city?.touched && city?.invalid){
-        <small class="error-message">Saisie une ville.</small>
+        <small class="error-message">Enter a city.</small>
         }
       </label>
-      <label for="">Pays/Region
+      <label for="">Country/Region
         <input class="input-base" type="text" formControlName="country" id="country"
-          placeholder="Entrez votre pays ou region">
+          placeholder="Enter your country or region">
         @if(country?.touched && country?.invalid){
-        <small class="error-message">Saisis un pays.</small>
+        <small class="error-message">Enter a country.</small>
         }
       </label>
     </section>
     <section>
-      <label for="">E-mail
-        <input class="input-base" type="text" formControlName="email" id="email" placeholder="Entrez votre e-mail">
+      <label for="">Email
+        <input class="input-base" type="text" formControlName="email" id="email" placeholder="Enter your email">
         @if(email?.touched && email?.invalid && !email?.hasError("email")){
-        <small class="error-message">Saisis un addresse e-mail.</small>
+        <small class="error-message">Enter an email address.</small>
         }
         @if(email?.touched && email?.invalid && email?.hasError("email")){
-        <small class="error-message">Saisis un addresse e-mail valide.</small>
+        <small class="error-message">Enter a valid email address.</small>
         }
       </label>
-      <label for="phone">Numéro de téléphone
+      <label for="phone">Phone Number
         <input class="input-base" type="text" formControlName="phone" id="phone"
-          placeholder=" Entrez votre numéro de téléphone">
+          placeholder="Enter your phone number">
         @if(phone?.touched && phone?.invalid && !phone?.hasError("pattern")){
-        <small class="error-message">Saisis un numéro de téléphone.</small>
+        <small class="error-message">Enter a phone number.</small>
         }
         @if(phone?.touched && phone?.invalid && phone?.hasError("pattern")){
-        <small class="error-message">Saisis un numéro de téléphone valide.</small>
+        <small class="error-message">Enter a valid phone number.</small>
         }
       </label>
     </section>
-    <button class="button-base" type="submit">Enregistrer et continuer</button>
+    <button class="button-base" type="submit">Save and Continue</button>
   </form>
   <aside>
     <h2>
-      Dans votre panier
+      In Your Cart
     </h2>
     <section class="summary">
       <div class="line-item">
-        <span>Sous-total</span>
+        <span>Subtotal</span>
         <span>{{subTotal}} €</span>
       </div>
       <div class="line-item">
-        <span>Frais estimés de prise en charge et d'expédition</span>
-        <span class="item-value">Gratuit</span>
+        <span>Estimated Handling and Shipping Fees</span>
+        <span class="item-value">Free</span>
       </div>
       <div class="line-item">
-        <span>Réduction appliquée</span>
+        <span>Applied Discount</span>
         <span>{{subTotal - total}} €</span>
       </div>
       <div class="total">
@@ -112,9 +112,9 @@
           </div>
           <div class="product-description">
             <p class="product-name">{{product.name}}</p>
-            <p>Couleur : {{product.color | shoesColor}}</p>
-            <p>Taille / Pointure : {{product.size}}</p>
-            <p>Quantité : {{product.quantity}}</p>
+            <p>Color: {{product.color | shoesColor}}</p>
+            <p>Size: {{product.size}}</p>
+            <p>Quantity: {{product.quantity}}</p>
           </div>
         </section>
       </div>

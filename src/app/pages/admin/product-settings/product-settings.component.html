@@ -4,19 +4,19 @@
     <label for="code" class="product-label">Code:
       <input type="text" id="code" name="code" formControlName="code">
     </label>
-    <label for="name" class="product-label">Nom:
+    <label for="name" class="product-label">Name:
       <input type="text" id="name" name="name" formControlName="name">
     </label>
     <label for="title" class="product-label">Title:
       <input type="text" id="title" name="title" formControlName="title">
     </label>
-    <label for="price" class="product-label">Prix :
+    <label for="price" class="product-label">Price:
       <input type="text" id="price" name="price" formControlName="price">
     </label>
-    <label for="category" class="product-label">Category :
+    <label for="category" class="product-label">Category:
       <input type="text" id="category" name="category" formControlName="category">
     </label>
-    <label for="discount" class="product-label">Discount :
+    <label for="discount" class="product-label">Discount:
       <input type="text" id="discount" name="discount" formControlName="discount">
     </label>
     <label for="description" class="product-label">Description:
@@ -28,21 +28,21 @@
     <div formArrayName="details" class="details">
       @for (detail of detailsForm.controls; track $index) {
       <label for={{$index}}>
-        Detail {{$index + 1}} :
+        Detail {{$index + 1}}:
         <textarea type="text" [formControl]="getDetailControl($index)" name={{$index}} id={{$index}}></textarea>
-        <button (click)="deleteDetail($index)">Delete</button>
+        <button type="button" (click)="deleteDetail($index)">Delete</button>
       </label>
       }
     </div>
-    <button (click)="addDetail()">Add new detail</button>
+    <button type="button" (click)="addDetail()">Add new detail</button>
   </section>
   <section formArrayName="variant" class="variant-wrapper">
-    <h2>Colors sizes and stock</h2>
+    <h2>Colors, Sizes, and Stock</h2>
     <div class="variant">
       @for (item of variantForm.controls; track $index; let colorIndex = $index) {
       <div [formGroupName]="$index" class="variant-color">
         <div class="color-wrapper">
-          <p>Color : {{item.value.color}}</p>
+          <p>Color: {{item.value.color}}</p>
           <label for="color" class="color">Change color:
             <input type="color" name={{$index}} id="color" formControlName="color"
               [style.background-color]="item.value.color">
@@ -67,7 +67,7 @@
       </div>
       }
     </div>
-    <button class="add-new-color-button" (click)="addVariant()">Add new color</button>
+    <button type="button" class="add-new-color-button" (click)="addVariant()">Add new color</button>
   </section>
-  <button class="update-product" type="submit">Save</button>
+  <button type="submit" class="update-product">Save</button>
 </form>
