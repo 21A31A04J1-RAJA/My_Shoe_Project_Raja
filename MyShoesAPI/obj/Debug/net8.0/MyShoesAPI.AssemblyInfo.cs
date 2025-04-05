@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MyShoesAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+16e6129fc7845fb267634a130d907f855e21aabf")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+72b1ff0b16a60e4c351b159afa4c75a398aa9fdd")]
 [assembly: System.Reflection.AssemblyProductAttribute("MyShoesAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MyShoesAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

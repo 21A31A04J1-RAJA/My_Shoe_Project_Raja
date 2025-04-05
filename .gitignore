@@ -1,12 +1,18 @@
 # See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
 
-# Compiled output
+# .NET Core
+bin/
+obj/
+*.user
+*.userosscache
+*.suo
+*.userprefs
+
+# Angular
 /dist
 /tmp
 /out-tsc
 /bazel-out
-
-# Node
 /node_modules
 npm-debug.log
 yarn-error.log
@@ -19,6 +25,7 @@ yarn-error.log
 *.launch
 .settings/
 *.sublime-workspace
+.vscode/*
 
 # Visual Studio Code
 .vscode/*
@@ -26,7 +33,6 @@ yarn-error.log
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
-.history/*
 
 # Miscellaneous
 /.angular/cache
@@ -37,6 +43,6 @@ yarn-error.log
 testem.log
 /typings
 
-# System files
+# System Files
 .DS_Store
 Thumbs.db
