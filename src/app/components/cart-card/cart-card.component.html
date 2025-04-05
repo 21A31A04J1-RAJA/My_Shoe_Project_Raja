@@ -2,7 +2,7 @@
   <section class="item-details">
     <div class="product-info">
       <div class="image-wrapper">
-        <img src="{{product.image}}" alt="Shoes">
+        <img [src]="product.imageUrl" alt="Cart product image" title="Cart product image">
         <div class="quantity-section">
           <i [ngClass]="product.quantity < 2 ? 'pi pi-trash' : 'pi pi-minus'" (click)="removeItem()"></i>
           <p>{{product.quantity}}</p>
@@ -16,7 +16,7 @@
         <div class="product-description">
           <h2 class="product-name">{{product.name}}</h2>
           <p>{{product.title}}</p>
-          <p>{{product.color | shoesColor}}</p>
+          <p>{{product.color}}</p>
           <p>Size: {{product.size}}</p>
         </div>
       </section>

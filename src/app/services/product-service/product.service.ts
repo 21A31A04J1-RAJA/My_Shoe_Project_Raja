@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import CatalogProduct from '../../model/CatalogProduct';
 import { catchError, Observable, of, tap, throwError } from 'rxjs';
-
+import { products } from '../../mock-product-list';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -13,7 +14,8 @@ export class ProductService {
   constructor(private http: HttpClient) {}
 
   getProducts(): Observable<CatalogProduct[]> {
-    return this.http.get<CatalogProduct[]>(`${this.url}`).pipe(
+    // Use mock data instead of making an HTTP request
+    return of(products).pipe(
       tap((product) => {}),
       catchError((error) => {
         console.error('Error fetching products', error);
@@ -23,35 +25,33 @@ export class ProductService {
   }
 
   getProductById(productId: string): Observable<CatalogProduct> {
-    return this.http.get<CatalogProduct>(`${this.url}/${productId}`).pipe(
-      tap((product) => {
-        console.log(product);
-      }),
-      catchError((error) => {
-        console.error('Error fetching products', error);
-        return throwError(() => new Error('Failed fetch'));
-      })
-    );
+    // Find the product in the mock data
+    const product = products.find(p => p.id === productId);
+    if (product) {
+      return of(product).pipe(
+        tap((product) => {
+          console.log(product);
+        }),
+        catchError((error) => {
+          console.error('Error fetching product', error);
+          return throwError(() => new Error('Failed fetch'));
+        })
+      );
+    } else {
+      return throwError(() => new Error('Product not found'));
+    }
   }
 
   upDateProduct(catalogProduct: CatalogProduct): Observable<CatalogProduct> {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
+    // For mock implementation, just return the product
+    return of(catalogProduct).pipe(
+      tap((product) => {
+        console.log('Product updated:', product);
       }),
-    };
-    return this.http
-      .put<CatalogProduct>(
-        `${this.url}/${catalogProduct.id}`,
-        catalogProduct,
-        httpOptions
-      )
-      .pipe(
-        catchError((error) => {
-          console.warn(error, 'Error while saving the product');
-
-          return throwError(() => new Error('Error while saving the product'));
-        })
-      );
+      catchError((error) => {
+        console.error('Error updating product', error);
+        return throwError(() => new Error('Failed to update product'));
+      })
+    );
   }
 }

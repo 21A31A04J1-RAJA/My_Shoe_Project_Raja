@@ -5,38 +5,46 @@
     <table class="custom-table">
       <thead>
         <tr>
+          <th>ID</th>
           <th>Name</th>
-          <th>Code</th>
           <th>Image</th>
           <th>Price</th>
           <th>Category</th>
-          <th>Status</th>
+          <th>Brand</th>
+          <th>Stock Quantity</th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
         @if (searchInputProduct === undefined) {
         @for (item of products; track $index) {
         <tr (click)="redirectToProductSettings(item.id)">
+          <td>{{item.id}}</td>
           <td>{{item.name}}</td>
-          <td>{{item.code}}</td>
-          <td><img [src]="item.image" alt="Running Shoes" /></td>
+          <td><img [src]="item.imageUrl" alt="Product thumbnail" title="Product thumbnail" /></td>
           <td>€{{item.price}}</td>
           <td>{{item.category}}</td>
-          <td [ngClass]="item.variants | stockstatus | statusColor ">
-            {{item.variants | stockstatus}}
+          <td>{{item.brand}}</td>
+          <td>{{item.stockQuantity}}</td>
+          <td>
+            <button class="edit-button" (click)="editProduct(item)">Edit</button>
+            <button class="delete-button" (click)="deleteProduct(item)">Delete</button>
           </td>
         </tr>
         }
         }@else if(searchInputProduct != undefined) {
         @for (product of searchInputProduct ; track $index) {
         <tr (click)="redirectToProductSettings(product.id)">
+          <td>{{product.id}}</td>
           <td>{{product.name}}</td>
-          <td>{{product.code}}</td>
-          <td><img [src]="product.image" alt="Running Shoes" /></td>
-          <td>€{{product.price}}</td>
+          <td><img [src]="product.imageUrl" alt="Product thumbnail" title="Product thumbnail" /></td>
+          <td>{{product.price}} €</td>
           <td>{{product.category}}</td>
-          <td [ngClass]="product.variants | stockstatus | statusColor ">
-            {{product.variants | stockstatus}}
+          <td>{{product.brand}}</td>
+          <td>{{product.stockQuantity}}</td>
+          <td>
+            <button class="edit-button" (click)="editProduct(product)">Edit</button>
+            <button class="delete-button" (click)="deleteProduct(product)">Delete</button>
           </td>
         </tr>
         }

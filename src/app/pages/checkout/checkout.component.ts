@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -16,20 +16,22 @@ import { ShoesColorPipe } from '../../pipes/shoesColor/shoes-color.pipe';
   templateUrl: './checkout.component.html',
   styleUrl: './checkout.component.scss',
 })
-export class CheckoutComponent {
+export class CheckoutComponent implements OnInit {
   subTotal: number = 0;
   total: number = 0;
   @Input() products: CartProduct[] = [];
   constructor(private cartService: CartService) {}
+  
   ngOnInit(): void {
     this.cartService.total$.subscribe((value) => {
       this.subTotal = value.subtotal;
       this.total = value.total;
     });
-    this.cartService.listOfProducts$.subscribe((value) => {
-      this.products = value;
+    this.cartService.cartItems$.subscribe((items: CartProduct[]) => {
+      this.products = items;
     });
   }
+  
   addressForm = new FormGroup({
     name: new FormControl<string>('', [
       Validators.required,
@@ -46,7 +48,7 @@ export class CheckoutComponent {
     email: new FormControl<string>('', [Validators.required, Validators.email]),
     phone: new FormControl<string>('', [
       Validators.required,
-      Validators.pattern(/^((\+)33|0|0033)[1-9](\d{2}){4}$/g),
+      Validators.pattern(/^[\d]{10}$/),
     ]),
   });
 

@@ -3,6 +3,9 @@
     <p class="title">
       <a routerLink="/home">MyShoes</a>
     </p>
+    <div class="search-container">
+      <app-search-bar [search]="searchQuery" (searchChange)="onSearchChange($event)"></app-search-bar>
+    </div>
     <div class="cart-wrapper">
       <button class="cart-mobile">
         <a routerLink="/cart">

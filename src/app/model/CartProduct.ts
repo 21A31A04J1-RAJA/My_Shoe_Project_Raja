@@ -2,21 +2,18 @@ export default class CartProduct {
   public quantity: number = 1;
   constructor(
     public id: string,
-    public code: string,
     public name: string,
     public title: string,
     public description: string,
-    public details: string[],
     public price: number,
     public category: string,
-    public color: Colors,
+    public brand: string,
     public size: string,
-    public image: string,
-    public createdAt: Date,
-    public updatedAt: Date,
-    public discount?: number
+    public color: string,
+    public imageUrl: string,
+    public details: string[],
+    public severity: Severity
   ) {
-    this.createdAt = new Date();
   }
 
   public updateQuantity(): void {

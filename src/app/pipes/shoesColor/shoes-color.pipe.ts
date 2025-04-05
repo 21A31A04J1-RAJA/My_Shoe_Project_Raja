@@ -1,15 +1,14 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Colors } from '../../model/CartProduct';
 
 @Pipe({
   name: 'shoesColor',
   standalone: true,
 })
 export class ShoesColorPipe implements PipeTransform {
-  transform(color: Colors) {
+  transform(color: string) {
     let shoesColor: string;
 
-    switch (color) {
+    switch (color.toUpperCase()) {
       case 'RED':
         shoesColor = 'Rouge';
         break;
@@ -38,7 +37,7 @@ export class ShoesColorPipe implements PipeTransform {
         shoesColor = 'Rose';
         break;
       default:
-        shoesColor = '';
+        shoesColor = color;
         break;
     }
     return shoesColor;

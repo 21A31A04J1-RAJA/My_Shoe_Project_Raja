@@ -6,7 +6,7 @@
     <ng-template let-product pTemplate="item">
       <div class="card-wrapper">
         <div class="image-wrapper">
-          <a href="/shop/{{product.id}}"><img src="D:\my pics\IMG_2707.jpg" [alt]="product.name" class="" /></a>
+          <a href="/shop/{{product.id}}" [title]="'View details for ' + product.name"><img [src]="product.imageUrl || 'assets/images/default-product.jpg'" alt="Product Image" title="Product Image" class="" /></a>
         </div>
         <div class="product">
           <p class="product-name">{{ product.name }}</p>

@@ -1,4 +1,12 @@
-@if(user){
+@if (loading) {
+  <div class="loading">
+    Loading profile...
+  </div>
+} @else if (error) {
+  <div class="error-message">
+    {{ error }}
+  </div>
+} @else if (user) {
   <section class="profile-container">
     <section class="profile-header">
       <div class="image-profile"></div>
@@ -47,5 +55,9 @@
       </div>
     </section>
   </section>
-  }
+} @else {
+  <div class="loading">
+    Loading profile...
+  </div>
+}
   

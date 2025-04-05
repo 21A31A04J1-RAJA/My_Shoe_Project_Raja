@@ -1,73 +1,59 @@
-<h1>Update Product</h1>
-<form [formGroup]="productForm" (ngSubmit)="save()">
-  <section class="first">
-    <label for="code" class="product-label">Code:
-      <input type="text" id="code" name="code" formControlName="code">
-    </label>
-    <label for="name" class="product-label">Name:
-      <input type="text" id="name" name="name" formControlName="name">
-    </label>
-    <label for="title" class="product-label">Title:
-      <input type="text" id="title" name="title" formControlName="title">
-    </label>
-    <label for="price" class="product-label">Price:
-      <input type="text" id="price" name="price" formControlName="price">
-    </label>
-    <label for="category" class="product-label">Category:
-      <input type="text" id="category" name="category" formControlName="category">
-    </label>
-    <label for="discount" class="product-label">Discount:
-      <input type="text" id="discount" name="discount" formControlName="discount">
-    </label>
-    <label for="description" class="product-label">Description:
-      <textarea type="text" id="description" name="description" formControlName="description"></textarea>
-    </label>
-  </section>
-  <section class="details-wrapper">
-    <h2>Details</h2>
-    <div formArrayName="details" class="details">
-      @for (detail of detailsForm.controls; track $index) {
-      <label for={{$index}}>
-        Detail {{$index + 1}}:
-        <textarea type="text" [formControl]="getDetailControl($index)" name={{$index}} id={{$index}}></textarea>
-        <button type="button" (click)="deleteDetail($index)">Delete</button>
-      </label>
-      }
+<div class="product-settings">
+  <h2>{{ isEditMode ? 'Edit Product' : 'Create New Product' }}</h2>
+  <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input id="name" type="text" formControlName="name" placeholder="Product name">
     </div>
-    <button type="button" (click)="addDetail()">Add new detail</button>
-  </section>
-  <section formArrayName="variant" class="variant-wrapper">
-    <h2>Colors, Sizes, and Stock</h2>
-    <div class="variant">
-      @for (item of variantForm.controls; track $index; let colorIndex = $index) {
-      <div [formGroupName]="$index" class="variant-color">
-        <div class="color-wrapper">
-          <p>Color: {{item.value.color}}</p>
-          <label for="color" class="color">Change color:
-            <input type="color" name={{$index}} id="color" formControlName="color"
-              [style.background-color]="item.value.color">
-          </label>
-          <button type="button" (click)="addSizeStock($index)">Add Size Stock</button>
-        </div>
-        <div formArrayName="sizeStock" class="size-stock-list">
-          @for (sizeStock of getSizeStockArray(colorIndex).controls; track $index) {
-          <div class="size-stock" [formGroup]="getSizeStockControl(colorIndex, $index)">
-            <label for="">
-              Size:
-              <input type="text" formControlName="size">
-            </label>
-            <label for="">
-              Stock:
-              <input type="number" formControlName="stock">
-              <button type="button" (click)="deleteSizeStcok(colorIndex, $index)">Delete</button>
-            </label>
-          </div>
-          }
-        </div>
-      </div>
-      }
+
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input id="title" type="text" formControlName="title" placeholder="Product title">
     </div>
-    <button type="button" class="add-new-color-button" (click)="addVariant()">Add new color</button>
-  </section>
-  <button type="submit" class="update-product">Save</button>
-</form>
+
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea id="description" formControlName="description" placeholder="Product description"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="price">Price</label>
+      <input id="price" type="number" formControlName="price" placeholder="Product price">
+    </div>
+
+    <div class="form-group">
+      <label for="category">Category</label>
+      <input id="category" type="text" formControlName="category" placeholder="Product category">
+    </div>
+
+    <div class="form-group">
+      <label for="brand">Brand</label>
+      <input id="brand" type="text" formControlName="brand" placeholder="Product brand">
+    </div>
+
+    <div class="form-group">
+      <label for="size">Size</label>
+      <input id="size" type="text" formControlName="size" placeholder="Product size">
+    </div>
+
+    <div class="form-group">
+      <label for="color">Color</label>
+      <input id="color" type="text" formControlName="color" placeholder="Product color">
+    </div>
+
+    <div class="form-group">
+      <label for="imageUrl">Image URL</label>
+      <input id="imageUrl" type="text" formControlName="imageUrl" placeholder="Product image URL">
+    </div>
+
+    <div class="form-group">
+      <label for="stockQuantity">Stock Quantity</label>
+      <input id="stockQuantity" type="number" formControlName="stockQuantity" placeholder="Product stock quantity">
+    </div>
+
+    <div class="form-actions">
+      <button type="button" (click)="router.navigate(['/admin/dashboard'])">Cancel</button>
+      <button type="submit" [disabled]="!productForm.valid">Save</button>
+    </div>
+  </form>
+</div>

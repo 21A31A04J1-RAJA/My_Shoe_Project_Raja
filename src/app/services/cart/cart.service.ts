@@ -1,17 +1,18 @@
 import { Injectable } from '@angular/core';
-import CartProduct, { Colors } from '../../model/CartProduct';
+import CartProduct, { Severity } from '../../model/CartProduct';
 import { BehaviorSubject } from 'rxjs';
+import CatalogProduct from '../../model/CatalogProduct';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class CartService {
-  private listOfProducts = new BehaviorSubject<CartProduct[]>([]);
-  listOfProducts$ = this.listOfProducts.asObservable();
+  private cartItems = new BehaviorSubject<CartProduct[]>([]);
+  cartItems$ = this.cartItems.asObservable();
 
   private total = new BehaviorSubject<{ subtotal: number; total: number }>({
     subtotal: 0,
-    total: 0,
+    total: 0
   });
   total$ = this.total.asObservable();
 
@@ -19,75 +20,55 @@ export class CartService {
 
   constructor() {}
 
-  addProductToCart(product: CartProduct) {
-    const productIndex = this.listOfProducts
-      .getValue()
-      .findIndex(
-        (item) =>
-          item.id === product.id &&
-          item.color === product.color &&
-          item.size === product.size
-      );
+  addToCart(product: CatalogProduct): void {
+    const currentItems = this.cartItems.value;
+    const existingItem = currentItems.find(item => item.id === product.id);
 
-    if (productIndex != -1) {
-      this.listOfProducts.getValue()[productIndex].updateQuantity();
+    if (existingItem) {
+      existingItem.updateQuantity();
     } else {
-      const updateProducts = [
-        ...this.listOfProducts.getValue(),
-        new CartProduct(
-          product.id,
-          product.code,
-          product.name,
-          product.title,
-          product.description,
-          product.details,
-          product.price,
-          product.category,
-          product.color,
-          product.size,
-          product.image,
-          product.createdAt,
-          product.updatedAt,
-          product.discount
-        ),
-      ];
-      this.listOfProducts.next(updateProducts);
+      const newItem = this.createCartProduct(product);
+      this.cartItems.next([...currentItems, newItem]);
     }
     this.calculateTotal();
   }
 
-  removeProductFromListOfProduct(product: CartProduct): void {
-    const productIndex = this.listOfProducts
-      .getValue()
-      .findIndex(
-        (item) =>
-          item.id === product.id &&
-          item.color === product.color &&
-          item.size === product.size
-      );
-    this.listOfProducts.getValue().splice(productIndex, 1);
-    this.listOfProducts.next(this.listOfProducts.getValue());
+  createCartProduct(product: CatalogProduct): CartProduct {
+    return new CartProduct(
+      product.id,
+      product.name,
+      product.title,
+      product.description,
+      product.price,
+      product.category,
+      product.brand,
+      product.size,
+      product.color,
+      product.imageUrl,
+      [], // details array is empty since we don't have it anymore
+      Severity.success
+    );
   }
 
-  calculateDiscount(): number {
-    let discount = 0;
-    this.listOfProducts.getValue().map((product) => {
-      if (product.discount) {
-        discount += (product.price * product.quantity * product.discount) / 100;
-      } else {
-        discount += product.price * product.quantity;
-      }
-    });
-    return discount;
+  removeFromCart(productId: string): void {
+    const currentItems = this.cartItems.value;
+    this.cartItems.next(currentItems.filter(item => item.id !== productId));
+    this.calculateTotal();
+  }
+
+  clearCart(): void {
+    this.cartItems.next([]);
+    this.calculateTotal();
   }
 
   calculateTotal(): void {
-    const subtotal = this.listOfProducts.getValue().reduce((acc, product) => {
+    const subtotal = this.cartItems.value.reduce((acc, product) => {
       return product.quantity * product.price + acc;
     }, 0);
+
     this.total.next({
-      subtotal: subtotal,
-      total: subtotal - this.calculateDiscount(),
+      subtotal,
+      total: subtotal
     });
   }
 }

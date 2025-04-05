@@ -234,3 +234,12 @@
     }
   }
 }
+
+.search-container {
+  flex: 1;
+  max-width: 500px;
+  margin: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

@@ -21,12 +21,17 @@ export class CartCardComponent {
     if (this.product.quantity > 10) this.product.quantity = 10;
     this.cartService.calculateTotal();
   }
+  
   removeItem() {
     this.product.quantity -= 1;
     if (this.product.quantity < 1) {
       this.product.quantity = 0;
-      this.cartService.removeProductFromListOfProduct(this.product);
+      this.cartService.removeFromCart(this.product.id);
     }
     this.cartService.calculateTotal();
+  }
+
+  removeFromCart(): void {
+    this.cartService.removeFromCart(this.product.id);
   }
 }

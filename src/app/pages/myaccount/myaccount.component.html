@@ -20,7 +20,7 @@
       <p class="error">The password is required</p>
       }
       @if(loginPassword?.hasError('minlength') && loginPassword?.touched){
-      <p class="error">Minimum 6 characters</p>
+      <p class="error">Minimum 8 characters</p>
       }
     </div>
     <button class="button-base" type="submit" [disabled]="buttonInvalide">
@@ -35,6 +35,8 @@
   <h1>My Account</h1>
   <form [formGroup]="signUpForm" (ngSubmit)="signUpSubmit()">
     <h2>Sign up</h2>
+    
+    <!-- Email -->
     <div class="wrapper-input">
       <label for="email">Email :</label>
       <input type="text" id="email" formControlName="email" placeholder="Enter your email">
@@ -45,24 +47,32 @@
       <p class="error">Enter a valid email address</p>
       }
     </div>
+    
+    <!-- Password -->
     <div class="wrapper-input">
       <label for="password">Password :</label>
       <input type="password" id="password" formControlName="password" placeholder="Enter your password">
       @if (signUpForm.get("password")?.invalid && signUpForm.get("password")?.touched &&
-      !signUpPassword?.hasError("minlength")) {
+      !signUpPassword?.hasError("minlength") && !signUpPassword?.hasError("pattern")) {
       <p class="error">The password is required</p>
       }
       @if(signUpPassword?.hasError('minlength') && signUpPassword?.touched){
-      <p class="error">Minimum 6 characters</p>
+      <p class="error">Minimum 8 characters</p>
+      }
+      @if(signUpPassword?.hasError('pattern') && signUpPassword?.touched){
+      <p class="error">Password must contain at least one uppercase letter, one lowercase letter, one number and one special character</p>
       }
     </div>
+    
+    <!-- Name -->
     <div class="wrapper-input">
       <label for="name">Name :</label>
       <input type="text" id="name" formControlName="name" placeholder="Enter your name">
-      @if (signUpForm.get("name")?.invalid && signUpForm.get("name")?.touched) {
-      <p class="error">The name is required</p>
+      @if (signUpName?.invalid && signUpName?.touched) {
+      <p class="error">Name is required (minimum 2 characters)</p>
       }
     </div>
+    
     <button class="button-base" type="submit" [disabled]="buttonInvalide">
       @if (buttonInvalide) {
       <i class="pi pi-spin pi-spinner" style="font-size: 1rem; font-weight: 400;"></i>

@@ -12,21 +12,14 @@ main {
 
   .shop-header {
     text-align: center;
-    margin-bottom: 2rem;
-    padding: 1rem;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-
+    margin: 2rem 0;
+    
     h1 {
-      margin: 0;
-      color: #2c3e50;
-      font-size: 2rem;
-      font-weight: bold;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
     }
-
+    
     .product-count {
-      margin: 0.5rem 0 0;
       color: #666;
       font-size: 1.1rem;
     }
@@ -36,11 +29,30 @@ main {
     width: 100%;
     max-width: 1400px;
     display: grid;
-    padding: 1rem;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    padding: 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 2rem;
     margin: 0 auto;
     border-bottom: 0.01em solid #ddd;
+    
+    .loading-container {
+      grid-column: 1 / -1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem;
+      
+      i {
+        color: #666;
+        margin-bottom: 1rem;
+      }
+      
+      p {
+        color: #666;
+        font-size: 1.1rem;
+      }
+    }
   }
 }
 

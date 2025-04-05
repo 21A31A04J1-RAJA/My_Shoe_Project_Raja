@@ -30,7 +30,7 @@ export class MyaccountComponent {
     email: new FormControl<string>('', [Validators.required, Validators.email]),
     password: new FormControl<string>('', [
       Validators.required,
-      Validators.minLength(6),
+      Validators.minLength(8),
     ]),
   });
 
@@ -38,11 +38,12 @@ export class MyaccountComponent {
     email: new FormControl<string>('', [Validators.required, Validators.email]),
     password: new FormControl<string>('', [
       Validators.required,
-      Validators.minLength(6),
+      Validators.minLength(8),
+      Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/)
     ]),
     name: new FormControl<string>('', [
       Validators.required,
-      Validators.minLength(1),
+      Validators.minLength(2),
     ]),
   });
 
@@ -76,8 +77,10 @@ export class MyaccountComponent {
     this.signUpForm.get('email')?.markAsTouched();
     this.signUpForm.get('password')?.markAsTouched();
     this.signUpForm.get('name')?.markAsTouched();
+    
     if (this.signUpForm.status === 'VALID') {
       this.buttonInvalide = true;
+      
       this.auth
         .signup(
           this.signUpForm.value.email!,
@@ -86,30 +89,40 @@ export class MyaccountComponent {
         )
         .subscribe({
           next: (response) => {
-            console.log(response);
             this.toggleForm = true;
             const signupToast: GenericToastProps = {
               severity: Severity.success,
-              summary: 'Succès',
-              detail: 'Compte créé avec succès.',
+              summary: 'Success',
+              detail: 'Account created successfully. Please log in.',
             };
             this.toastService.displayGenericToast(signupToast);
-            this.signUpForm.get('email')?.setValue('');
-            this.signUpForm.get('password')?.setValue('');
-            this.signUpForm.get('name')?.setValue('');
+            this.signUpForm.reset();
             this.buttonInvalide = false;
           },
           error: (error) => {
+            let errorMessage = 'Registration failed. Please try again.';
+            if (error.error && error.error.message) {
+              errorMessage = error.error.message;
+            } else if (error.message) {
+              errorMessage = error.message;
+            }
+            
             const signupToast: GenericToastProps = {
               severity: Severity.error,
-              summary: 'Error',
-              detail: `The email address or password is not valid.`,
+              summary: 'Registration Failed',
+              detail: errorMessage,
             };
             this.toastService.displayGenericToast(signupToast);
             this.buttonInvalide = false;
-            console.log(error);
           },
         });
+    } else {
+      const signupToast: GenericToastProps = {
+        severity: Severity.error,
+        summary: 'Validation Error',
+        detail: 'Please fill in all required fields correctly.',
+      };
+      this.toastService.displayGenericToast(signupToast);
     }
   }
 
@@ -131,6 +144,6 @@ export class MyaccountComponent {
     return this.signUpForm.get('password');
   }
   get signUpName() {
-    return this.signUpForm.get('password');
+    return this.signUpForm.get('name');
   }
 }

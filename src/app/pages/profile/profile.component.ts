@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthService } from '../../services/auth/auth.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-profile',
@@ -10,20 +12,45 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss',
 })
-export class ProfileComponent implements OnInit {
-  user!: UserAuth;
+export class ProfileComponent implements OnInit, OnDestroy {
+  user: UserAuth | null = null;
   toggleSettingsContent: boolean = false;
   toggleFavoritesContent: boolean = true;
   toggleCommandeContent: boolean = true;
+  error: string | null = null;
+  loading: boolean = true;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   tabs: { title: string; value: number; content: string }[] = [];
   ngOnInit(): void {
-    this.authService.authenticateUser()?.subscribe((value) => {
-      this.user = value;
-    });
+    console.log('Profile component initialized');
+    const auth = this.authService.authenticateUser();
+    console.log('Auth response:', auth);
+    if (auth) {
+      auth.subscribe({
+        next: (user) => {
+          console.log('User data received:', user);
+          this.user = user;
+          this.loading = false;
+        },
+        error: (error) => {
+          console.error('Error loading user:', error);
+          this.error = 'Failed to load user data';
+          this.loading = false;
+        }
+      });
+    } else {
+      console.log('No auth token found');
+      this.error = 'Not authenticated';
+      this.loading = false;
+    }
   }
+  
+  ngOnDestroy(): void {
+    // Clean up any subscriptions or resources here if needed
+  }
+  
   openCloseContentTab(tab: string) {
     if (tab === 'toggleFavoritesContent')
       this.toggleFavoritesContent = !this.toggleFavoritesContent;

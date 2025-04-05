@@ -7,6 +7,8 @@ import { ProductService } from './../../../services/product-service/product.serv
 import { Component, OnInit } from '@angular/core';
 import { SearchBarComponent } from '../../../components/search-bar/search-bar.component';
 import { Route, Router } from '@angular/router';
+import { ToastService } from '../../../services/toast/toast.service';
+import CartProduct, { Severity } from '../../../model/CartProduct';
 
 @Component({
   selector: 'app-dashboard',
@@ -19,7 +21,11 @@ export class DashboardComponent implements OnInit {
   products!: CatalogProduct[];
   searchInput: string = '';
   searchInputProduct!: CatalogProduct[];
-  constructor(private productService: ProductService, private router: Router) {}
+  constructor(
+    private productService: ProductService, 
+    private router: Router,
+    private toastService: ToastService
+  ) {}
 
   ngOnInit(): void {
     this.productService
@@ -35,5 +41,22 @@ export class DashboardComponent implements OnInit {
 
   redirectToProductSettings(id: string) {
     this.router.navigate([`/admin/${id}`]);
+  }
+
+  editProduct(product: CatalogProduct) {
+    this.router.navigate([`/admin/product-settings/${product.id}`]);
+  }
+
+  deleteProduct(product: CatalogProduct) {
+    // In a real application, you would call an API to delete the product
+    // For now, we'll just show a toast message
+    this.toastService.displayGenericToast({
+      severity: Severity.success,
+      summary: 'Product Deleted',
+      detail: `${product.name} has been deleted successfully.`
+    });
+    
+    // Remove the product from the local array
+    this.products = this.products.filter(p => p.id !== product.id);
   }
 }

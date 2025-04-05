@@ -1,6 +1,6 @@
 <section class="shoe-container">
   <div class="shoe-image">
-    <img [src]="product.image" [alt]="'Image of ' + product.name" title="{{product.name}}" />
+    <img [src]="product.imageUrl" [alt]="'Image of ' + product.name" title="{{product.name}}" />
   </div>
 
   <section class="shoe-details">
@@ -8,39 +8,10 @@
     <p class="category">{{product.category}}</p>
     <p class="price">{{product.price}} € <span>+ Free shipping</span></p>
 
-    <p>Available colors:</p>
     <form [formGroup]="productForm">
-      <section class="color-wrapper">
-        <div class="color-available" *ngFor="let color of product.variants"
-          (click)="changeShoesSizeAvailableByColorChosen(color.color)">
-          <div [class.borderOnClick]="shoesColor === color.color">
-            <button type="button" [ngStyle]="{'background-color': color.color }" required
-              (click)="productForm.get('productColor')?.setValue(color.color)">
-              <!-- Added aria-label for accessibility -->
-              <span class="visually-hidden">Choose color: {{color.color | shoesColor | titlecase}}</span>
-            </button>
-          </div>
-          <p>{{color.color | shoesColor | titlecase}}</p>
-        </div>
-      </section>
       <div class="shoe-size">
-        <p>Sizes</p>
-        <ul>
-          @for (shoes of shoesSizeStockList; track $index) {
-          <li>
-            <button type="button" (click)="setUpShoesSizeInFormControl(shoes)"
-              [class.borderOnClick]="shoes.size === productForm.get('productSize')?.value"
-              [class.fadeShoesizeButton]="shoes.stock < 1">
-              <!-- Added text inside button for accessibility -->
-              {{shoes.size}}
-            </button>
-          </li>
-          }
-        </ul>
-        @if (productForm.get('productSize')?.invalid && productForm.get('productSize')?.touched) {
-        <p class="chose-size"> Please select your size</p>
-        }
-
+        <p>Size: {{product.size}}</p>
+        <p>Color: {{product.color}}</p>
       </div>
       <div class="actions">
         <!-- Added aria-label for button -->
@@ -64,9 +35,8 @@
             </p>
           </p-accordionTab>
           <p-accordionTab header="Details">
-            <ul *ngFor="let detail of product.details">
-              <li>{{detail}}</li>
-            </ul>
+            <p>Brand: {{product.brand}}</p>
+            <p>Stock: {{product.stockQuantity}}</p>
           </p-accordionTab>
         </p-accordion>
       </div>

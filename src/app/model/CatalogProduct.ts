@@ -1,15 +1,15 @@
 export default interface CatalogProduct {
   id: string;
-  code: string;
   name: string;
   title: string;
   description: string;
-  details: string[];
   price: number;
+  stockQuantity: number;
   category: string;
-  variants: ItemVariant[];
-  image: string;
-  discount?: number;
+  brand: string;
+  size: string;
+  color: string;
+  imageUrl: string;
   createdAt: Date;
   updatedAt: Date;
 }
